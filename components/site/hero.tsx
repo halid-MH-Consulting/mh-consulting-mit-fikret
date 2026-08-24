@@ -116,11 +116,11 @@ export function Hero() {
         <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-medium tracking-widest text-muted-foreground uppercase">
           <span className="flex items-center gap-1.5 rounded-full border border-border bg-card/50 px-3 py-1 backdrop-blur">
             <MapPin className="size-3.5 text-electric" aria-hidden />
-            Dubai · Working Globally
+            Dubai, UAE — Operating Worldwide
           </span>
           <span className="hidden items-center gap-1.5 rounded-full border border-border bg-card/50 px-3 py-1 backdrop-blur sm:flex">
             <Sparkles className="size-3.5 text-neon" aria-hidden />
-            Travel &amp; Tourism Specialists
+            Travel Creator Management
           </span>
         </div>
 
@@ -131,13 +131,13 @@ export function Hero() {
           <span className="block">We manage the</span>
           <RotatingWord words={HEADLINE_WORDS} className="text-electric text-glow-electric" />
           <span className="block text-balance">
-            travel brands <span className="text-neon text-glow-neon">actually want.</span>
+            brands <span className="text-neon text-glow-neon">actually want.</span>
           </span>
         </h1>
 
-        <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
-          We don&apos;t believe in influencer marketing based on follower counts. We build
-          partnerships that generate trust, reach and measurable business results.
+        <p className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
+          MH Consulting is the link between travel creators and the sponsors who want their
+          audience. No noise, no inflated numbers — just deals that make sense on both ends.
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -145,7 +145,7 @@ export function Hero() {
             href="#contact"
             className="group inline-flex items-center gap-2 rounded-full bg-electric px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_var(--electric)] transition hover:shadow-[0_0_60px_-6px_var(--electric)]"
           >
-            Build your next campaign
+            Work with us
             <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
           </a>
           <a
