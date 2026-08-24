@@ -5,8 +5,8 @@ import { ArrowUpRight, MapPin, Sparkles } from 'lucide-react'
 
 import { RotatingWord } from './rotating-word'
 
-// The words the hero headline types out, deletes and retypes, in order.
-const HEADLINE_WORDS = ['creators', 'partnerships']
+// Verbatim from the sister site's script.js.
+const HEADLINE_WORDS = ['creators', 'partnerships', 'travel brands', 'the right deals']
 
 const NODES = [
   { x: 12, y: 22, r: 3, kind: 'brand' },
