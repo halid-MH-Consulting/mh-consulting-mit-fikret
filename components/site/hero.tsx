@@ -5,9 +5,10 @@ import { ArrowUpRight, MapPin, Sparkles } from 'lucide-react'
 
 import { RotatingWord } from './rotating-word'
 
-// Wie in der script.js der Schwester-Seite, nur "travel brands" ersetzt --
-// dort ergab die Zeile "We manage the travel brands brands actually want."
-const HEADLINE_WORDS = ['creators', 'partnerships', 'campaigns', 'the right deals']
+// Wie in der script.js der Schwester-Seite, mit zwei Korrekturen: dort ergaben
+// "travel brands" und "the right deals" ein doppeltes Wort in der Zeile
+// ("... the travel brands brands ...", "... the the right deals ...").
+const HEADLINE_WORDS = ['creators', 'partnerships', 'campaigns', 'right deals']
 
 const NODES = [
   { x: 12, y: 22, r: 3, kind: 'brand' },
