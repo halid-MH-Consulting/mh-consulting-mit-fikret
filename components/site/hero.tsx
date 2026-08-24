@@ -5,8 +5,9 @@ import { ArrowUpRight, MapPin, Sparkles } from 'lucide-react'
 
 import { RotatingWord } from './rotating-word'
 
-// Verbatim from the sister site's script.js.
-const HEADLINE_WORDS = ['creators', 'partnerships', 'travel brands', 'the right deals']
+// Wie in der script.js der Schwester-Seite, nur "travel brands" ersetzt --
+// dort ergab die Zeile "We manage the travel brands brands actually want."
+const HEADLINE_WORDS = ['creators', 'partnerships', 'campaigns', 'the right deals']
 
 const NODES = [
   { x: 12, y: 22, r: 3, kind: 'brand' },
