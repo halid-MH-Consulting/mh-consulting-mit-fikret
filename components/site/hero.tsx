@@ -3,6 +3,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, MapPin, Sparkles } from 'lucide-react'
 
+import { RotatingWord } from './rotating-word'
+
+// The words the hero headline types out, deletes and retypes, in order.
+const HEADLINE_WORDS = ['creators', 'partnerships', 'campaigns', 'communities', 'audiences']
+
 const NODES = [
   { x: 12, y: 22, r: 3, kind: 'brand' },
   { x: 30, y: 68, r: 2.4, kind: 'creator' },
@@ -107,8 +112,8 @@ export function Hero() {
         </defs>
       </svg>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
-        <div className="flex items-center gap-2 text-xs font-medium tracking-widest text-muted-foreground uppercase">
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6 text-center">
+        <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-medium tracking-widest text-muted-foreground uppercase">
           <span className="flex items-center gap-1.5 rounded-full border border-border bg-card/50 px-3 py-1 backdrop-blur">
             <MapPin className="size-3.5 text-electric" aria-hidden />
             Dubai · Working Globally
@@ -121,11 +126,13 @@ export function Hero() {
 
         <h1
           id="hero-heading"
-          className="mt-8 max-w-4xl text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
+          className="mt-8 max-w-5xl text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl"
         >
-          Turn creators into{' '}
-          <span className="text-electric text-glow-electric">long-term</span> brand{' '}
-          <span className="text-neon text-glow-neon">partners.</span>
+          <span className="block">Turn</span>
+          <RotatingWord words={HEADLINE_WORDS} className="text-electric text-glow-electric" />
+          <span className="block text-balance">
+            into <span className="text-neon text-glow-neon">long-term brand growth.</span>
+          </span>
         </h1>
 
         <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
@@ -133,7 +140,7 @@ export function Hero() {
           partnerships that generate trust, reach and measurable business results.
         </p>
 
-        <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="#contact"
             className="group inline-flex items-center gap-2 rounded-full bg-electric px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_var(--electric)] transition hover:shadow-[0_0_60px_-6px_var(--electric)]"
