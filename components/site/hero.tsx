@@ -122,7 +122,7 @@ export function Hero() {
           </span>
           <span className="hidden items-center gap-1.5 rounded-full border border-border bg-card/50 px-3 py-1 backdrop-blur sm:flex">
             <Sparkles className="size-3.5 text-neon" aria-hidden />
-            Travel Creator Management
+            Influencer Marketing Management
           </span>
         </div>
 
