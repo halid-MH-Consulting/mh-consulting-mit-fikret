@@ -6,7 +6,7 @@ import { ArrowUpRight, MapPin, Sparkles } from 'lucide-react'
 import { RotatingWord } from './rotating-word'
 
 // The words the hero headline types out, deletes and retypes, in order.
-const HEADLINE_WORDS = ['creators', 'partnerships', 'campaigns', 'communities', 'audiences']
+const HEADLINE_WORDS = ['creators', 'partnerships']
 
 const NODES = [
   { x: 12, y: 22, r: 3, kind: 'brand' },
@@ -128,10 +128,10 @@ export function Hero() {
           id="hero-heading"
           className="mt-8 max-w-5xl text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl"
         >
-          <span className="block">Turn</span>
+          <span className="block">We manage the</span>
           <RotatingWord words={HEADLINE_WORDS} className="text-electric text-glow-electric" />
           <span className="block text-balance">
-            into <span className="text-neon text-glow-neon">long-term brand growth.</span>
+            travel brands <span className="text-neon text-glow-neon">actually want.</span>
           </span>
         </h1>
 
