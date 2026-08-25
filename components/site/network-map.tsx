@@ -62,12 +62,12 @@ export function NetworkMap() {
                     <Geography
                       key={geo.rsmKey}
                       geography={geo}
-                      fill="oklch(0.22 0.03 264)"
-                      stroke="oklch(0.4 0.03 264)"
+                      fill="oklch(0.935 0.012 264)"
+                      stroke="oklch(0.82 0.018 264)"
                       strokeWidth={0.3}
                       style={{
                         default: { outline: 'none' },
-                        hover: { outline: 'none', fill: 'oklch(0.26 0.04 264)' },
+                        hover: { outline: 'none', fill: 'oklch(0.89 0.022 264)' },
                         pressed: { outline: 'none' },
                       }}
                     />

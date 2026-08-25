@@ -61,7 +61,7 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 transition-[background] duration-300"
         style={{
-          background: `radial-gradient(600px circle at ${glow.x}% ${glow.y}%, color-mix(in oklch, var(--electric) 22%, transparent), transparent 60%)`,
+          background: `radial-gradient(600px circle at ${glow.x}% ${glow.y}%, color-mix(in oklch, var(--electric) 12%, transparent), transparent 60%)`,
         }}
       />
       {/* ambient blobs */}
