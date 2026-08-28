@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Mail } from 'lucide-react'
 
 /*
@@ -10,12 +11,15 @@ const SOCIALS: { label: string; href: string }[] = [
   // { label: 'LinkedIn', href: 'https://linkedin.com/company/…' },
 ]
 
+// Anker mit fuehrendem Slash: aus einer Unterseite muessen sie erst zurueck
+// auf die Startseite fuehren, sonst laufen sie ins Leere.
 const SITE_LINKS = [
-  { href: '#services', label: 'What we do' },
-  { href: '#why', label: 'Why us' },
-  { href: '#network', label: 'Network' },
-  { href: '#process', label: 'Process' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '/for-brands', label: 'For brands' },
+  { href: '/for-creators', label: 'For creators' },
+  { href: '/about', label: 'About' },
+  { href: '/#services', label: 'What we do' },
+  { href: '/#network', label: 'Network' },
+  { href: '/#faq', label: 'FAQ' },
 ]
 
 const LEGAL_LINKS = [
@@ -29,9 +33,9 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <span className="text-lg font-extrabold tracking-tight">
+            <Link href="/" className="inline-block py-1 text-lg font-extrabold tracking-tight">
               MH<span className="text-primary"> Consulting</span>
-            </span>
+            </Link>
             <p className="measure-tight mt-3 text-sm leading-relaxed text-muted-foreground">
               Influencer marketing for travel brands. We turn creators into long-term brand
               partners, from a hub in Dubai.
@@ -45,18 +49,18 @@ export function Footer() {
             </a>
           </div>
 
-          <nav aria-label="Sections">
-            <h2 className="text-sm font-bold">Sections</h2>
+          <nav aria-label="Pages">
+            <h2 className="text-sm font-bold">Pages</h2>
             {/* py sorgt fuer >=24px Zielhoehe (WCAG 2.5.8), 17px Textzeile reicht nicht */}
             <ul className="mt-3 space-y-0.5">
               {SITE_LINKS.map((l) => (
                 <li key={l.href}>
-                  <a
+                  <Link
                     href={l.href}
                     className="inline-block py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -64,16 +68,15 @@ export function Footer() {
 
           <nav aria-label="Legal">
             <h2 className="text-sm font-bold">Legal</h2>
-            {/* py sorgt fuer >=24px Zielhoehe (WCAG 2.5.8), 17px Textzeile reicht nicht */}
             <ul className="mt-3 space-y-0.5">
               {LEGAL_LINKS.map((l) => (
                 <li key={l.href}>
-                  <a
+                  <Link
                     href={l.href}
                     className="inline-block py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               {SOCIALS.map((s) => (

@@ -73,7 +73,7 @@ export function WhyUs() {
                   delay={i * 60}
                   className="border-b border-border py-6 sm:[&:nth-child(-n+2)]:border-t"
                 >
-                  <dt className="flex items-center gap-2.5 text-base font-bold">
+                  <dt className="flex items-center gap-2.5 text-lg font-bold">
                     <Icon className="size-4.5 text-primary" aria-hidden />
                     {point.title}
                   </dt>

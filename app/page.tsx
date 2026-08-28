@@ -1,3 +1,4 @@
+import { AudienceSplit } from '@/components/site/audience-split'
 import { Header } from '@/components/site/header'
 import { Hero } from '@/components/site/hero'
 import { Industries } from '@/components/site/industries'
@@ -26,6 +27,7 @@ export default function Page() {
         <Hero />
         <Industries />
         <CoreMessage />
+        <AudienceSplit />
         <Services />
         <WhyUs />
         <NetworkMap />

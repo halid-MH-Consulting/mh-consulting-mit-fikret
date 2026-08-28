@@ -74,4 +74,52 @@ export const IMAGES = {
     1600,
     1067,
   ),
+
+  // --- Landingpages ---
+
+  // Tragflaeche ueber einer Bergkette: Aufmacher fuer Marken. Bewusst nicht die
+  // Aufnahme aus dem Kabinenfenster - deren dunkler Rahmen ergibt im breiten
+  // Zuschnitt schwarze Balken an beiden Seiten.
+  brandsHero: build(
+    'photo-1636807614810-15469432f51d',
+    'An aircraft wing above a mountain range, the route between a brand and the people it wants to reach',
+    1600,
+    1067,
+  ),
+  // Arbeitssitzung am hellen Tisch: wie eine Kampagne geplant wird.
+  strategyTable: build(
+    'photo-1681949103006-70066fb25dfe',
+    'A working session around a table, mapping out a campaign',
+    1600,
+    1067,
+  ),
+  // Creator mit Kamera vor Bergpanorama: Aufmacher fuer Creator.
+  creatorHero: build(
+    'photo-1758172797231-def21ae67609',
+    'A creator with a camera framing a mountain landscape',
+    1600,
+    1067,
+  ),
+  // Aufnahme in einer Schlucht. Ersetzt ein frueher gewaehltes Ausruestungsfoto:
+  // das wirkte in voller Groesse wie ein truebe belichteter Rohbau-Schnappschuss.
+  creatorOnLocation: build(
+    'photo-1657589835224-0bab10a464ff',
+    'A creator photographing a canyon from the rim, working the light',
+    1600,
+    1067,
+  ),
+  // Kamera auf Stativ an der Kueste: geplante Aufnahme statt Schnappschuss.
+  coastTripod: build(
+    'photo-1760809493742-58e62902717a',
+    'A camera on a tripod set up above the sea, waiting for the light',
+    1600,
+    1067,
+  ),
+  // Dubai bei Tag: Aufmacher der Ueber-uns-Seite.
+  dubaiDay: build(
+    'photo-1512453979798-5ea266f8880c',
+    'The Dubai skyline in daylight, with the Burj Khalifa above the city',
+    1600,
+    1067,
+  ),
 } satisfies Record<string, SiteImage>
