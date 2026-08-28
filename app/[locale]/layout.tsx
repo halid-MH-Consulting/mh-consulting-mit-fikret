@@ -77,19 +77,13 @@ export default async function LocaleLayout({
   const t = getDictionary(typedLocale)
 
   return (
-    <html lang={LOCALE_TAGS[typedLocale]} className={bricolage.variable} suppressHydrationWarning>
-      <head>
-        {/*
-          Laeuft vor dem ersten Paint und schaltet damit die Reveal-Animationen
-          frei. Ohne JavaScript fehlt die Klasse und alle Inhalte sind sofort
-          sichtbar, statt auf opacity 0 haengen zu bleiben.
-        */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.classList.add('js')`,
-          }}
-        />
-      </head>
+    /*
+      Kein Inline-Skript mehr fuer die Reveal-Animationen: das uebernimmt
+      jetzt @media (scripting: enabled) in globals.css. Damit entfaellt auch
+      der Grund fuer suppressHydrationWarning, weil niemand mehr die
+      Klassenliste vor der Hydration veraendert.
+    */
+    <html lang={LOCALE_TAGS[typedLocale]} className={bricolage.variable}>
       <body className="bg-background font-sans antialiased">
         <a
           href="#main"

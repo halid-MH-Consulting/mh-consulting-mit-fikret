@@ -218,21 +218,30 @@
     text-shadow: 0 0 26px color-mix(in oklch, var(--neon) 55%, transparent);
   }
   /*
-    Der Reveal-Effekt greift nur, wenn JavaScript wirklich laeuft. Ohne JS,
-    in einem Headless-Renderer oder wenn der IntersectionObserver scheitert,
-    bleibt der Inhalt einfach sichtbar statt fuer immer auf opacity 0 zu
-    haengen. Die Klasse `js` setzt ein Inline-Skript vor dem ersten Paint.
+    Der Reveal-Effekt greift nur, wenn JavaScript wirklich laeuft. Ohne JS
+    bliebe der Inhalt sonst fuer immer auf opacity 0 haengen, also unsichtbar.
+
+    `scripting: enabled` fragt genau das ab, ohne Skript und ohne Klasse am
+    <html>. Frueher stand hier eine `js`-Klasse, die ein Inline-Skript setzte;
+    React beanstandet <script> in Komponenten zu Recht, weil es beim
+    clientseitigen Rendern nicht ausgefuehrt wird.
+
+    Aeltere Browser ohne Unterstuetzung fuer die Abfrage ignorieren den Block:
+    dann fehlt die Animation und der Inhalt ist sofort sichtbar. Genau die
+    richtige Richtung zum Scheitern.
   */
-  :where(html.js) .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition:
-      opacity 0.75s var(--ease-out-expo),
-      transform 0.75s var(--ease-out-expo);
-  }
-  :where(html.js) .reveal.is-visible {
-    opacity: 1;
-    transform: none;
+  @media (scripting: enabled) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 0.75s var(--ease-out-expo),
+        transform 0.75s var(--ease-out-expo);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
   }
 }
 
