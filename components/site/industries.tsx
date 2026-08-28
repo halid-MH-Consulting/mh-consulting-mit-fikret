@@ -23,23 +23,21 @@ const ITEMS = [
 export function Industries() {
   const row = [...ITEMS, ...ITEMS]
   return (
-    <section className="relative border-y border-border bg-navy/40 py-8" aria-label="Industries we serve">
-      <div className="mb-6 text-center text-xs font-medium uppercase tracking-[0.3em] text-muted-foreground">
-        Trusted focus across travel &amp; beyond
-      </div>
-      <div className="group relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
-        <div className="flex w-max animate-marquee items-center gap-4 group-hover:[animation-play-state:paused]">
+    <section
+      className="relative border-y border-border bg-secondary/70 py-5"
+      aria-label="Industries we serve"
+    >
+      <div className="group relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+        <div className="flex w-max animate-marquee items-center gap-2 group-hover:[animation-play-state:paused]">
           {row.map((item, i) => {
             const Icon = item.icon
             return (
               <div
                 key={i}
-                className="flex items-center gap-3 rounded-full border border-border bg-card/40 px-6 py-3 backdrop-blur"
+                className="flex items-center gap-2 whitespace-nowrap px-4 py-1.5 text-sm font-medium text-muted-foreground"
               >
-                <Icon className="size-4 text-electric" aria-hidden />
-                <span className="whitespace-nowrap text-sm font-medium text-foreground/90">
-                  {item.label}
-                </span>
+                <Icon className="size-4 text-primary/70" aria-hidden />
+                {item.label}
               </div>
             )
           })}

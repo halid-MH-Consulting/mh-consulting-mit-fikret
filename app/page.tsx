@@ -1,3 +1,4 @@
+import { Header } from '@/components/site/header'
 import { Hero } from '@/components/site/hero'
 import { Industries } from '@/components/site/industries'
 import { CoreMessage } from '@/components/site/core-message'
@@ -11,21 +12,30 @@ import { Faq } from '@/components/site/faq'
 import { FinalCta } from '@/components/site/final-cta'
 import { Footer } from '@/components/site/footer'
 
+/*
+  Der Rhythmus der Seite: hell ist der Grundzustand, vier dunkle Sektionen
+  setzen die Akzente (CoreMessage, NetworkMap, Stats, FinalCta). Sie stehen
+  bewusst verteilt, damit nie mehr als drei helle Sektionen aufeinander
+  folgen. Gemessen an der Scrollhoehe ergibt das rund 70/30.
+*/
 export default function Page() {
   return (
-    <main className="relative overflow-x-clip">
-      <Hero />
-      <Industries />
-      <CoreMessage />
-      <Services />
-      <WhyUs />
-      <NetworkMap />
-      <Process />
-      <Stats />
-      <Testimonials />
-      <Faq />
-      <FinalCta />
+    <>
+      <Header />
+      <main id="main" className="relative overflow-x-clip">
+        <Hero />
+        <Industries />
+        <CoreMessage />
+        <Services />
+        <WhyUs />
+        <NetworkMap />
+        <Process />
+        <Stats />
+        <Testimonials />
+        <Faq />
+        <FinalCta />
+      </main>
       <Footer />
-    </main>
+    </>
   )
 }

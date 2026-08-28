@@ -1,56 +1,102 @@
-import { Camera, Mail, Share2, Video } from 'lucide-react'
+import { Mail } from 'lucide-react'
+
+/*
+  Frueher standen hier vier Social-Icons, die alle auf "#" zeigten. Tote Links
+  sind schlimmer als fehlende, deshalb ist die Liste jetzt leer und wird nur
+  gerendert, wenn echte Profile eingetragen sind.
+*/
+const SOCIALS: { label: string; href: string }[] = [
+  // { label: 'Instagram', href: 'https://instagram.com/…' },
+  // { label: 'LinkedIn', href: 'https://linkedin.com/company/…' },
+]
+
+const SITE_LINKS = [
+  { href: '#services', label: 'What we do' },
+  { href: '#why', label: 'Why us' },
+  { href: '#network', label: 'Network' },
+  { href: '#process', label: 'Process' },
+  { href: '#faq', label: 'FAQ' },
+]
+
+const LEGAL_LINKS = [
+  { href: '/legal-notice', label: 'Legal notice' },
+  { href: '/privacy', label: 'Privacy policy' },
+]
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-border py-14">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-6 text-center md:flex-row md:justify-between md:text-left">
-        <div>
-          <div className="flex items-center justify-center gap-2 md:justify-start">
-            <span className="text-lg font-semibold tracking-tight">
-              MH<span className="text-electric"> Consulting</span>
+    <footer className="border-t border-border bg-secondary/50">
+      <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="lg:col-span-2">
+            <span className="text-lg font-extrabold tracking-tight">
+              MH<span className="text-primary"> Consulting</span>
             </span>
+            <p className="measure-tight mt-3 text-sm leading-relaxed text-muted-foreground">
+              Influencer marketing for travel brands. We turn creators into long-term brand
+              partners, from a hub in Dubai.
+            </p>
+            <a
+              href="mailto:hello@mhconsulting.ae"
+              className="mt-4 inline-flex items-center gap-2 py-1.5 text-sm font-semibold underline underline-offset-4"
+            >
+              <Mail className="size-4 text-primary" aria-hidden />
+              hello@mhconsulting.ae
+            </a>
           </div>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Influencer marketing for travel brands. Dubai · Worldwide.
+
+          <nav aria-label="Sections">
+            <h2 className="text-sm font-bold">Sections</h2>
+            {/* py sorgt fuer >=24px Zielhoehe (WCAG 2.5.8), 17px Textzeile reicht nicht */}
+            <ul className="mt-3 space-y-0.5">
+              {SITE_LINKS.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="inline-block py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Legal">
+            <h2 className="text-sm font-bold">Legal</h2>
+            {/* py sorgt fuer >=24px Zielhoehe (WCAG 2.5.8), 17px Textzeile reicht nicht */}
+            <ul className="mt-3 space-y-0.5">
+              {LEGAL_LINKS.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="inline-block py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+              {SOCIALS.map((s) => (
+                <li key={s.href}>
+                  <a
+                    href={s.href}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="inline-block py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        <div className="mt-14 border-t border-border pt-6">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} MH Consulting. All rights reserved.
           </p>
         </div>
-
-        <div className="flex items-center gap-3">
-          <a
-            href="mailto:hello@mhconsulting.ae"
-            aria-label="Email MH Consulting"
-            className="flex size-10 items-center justify-center rounded-full border border-border bg-card/40 text-muted-foreground transition hover:border-electric/50 hover:text-electric"
-          >
-            <Mail className="size-4" aria-hidden />
-          </a>
-          <a
-            href="#"
-            aria-label="MH Consulting on LinkedIn"
-            className="flex size-10 items-center justify-center rounded-full border border-border bg-card/40 text-muted-foreground transition hover:border-electric/50 hover:text-electric"
-          >
-            <Share2 className="size-4" aria-hidden />
-          </a>
-          <a
-            href="#"
-            aria-label="MH Consulting on Instagram"
-            className="flex size-10 items-center justify-center rounded-full border border-border bg-card/40 text-muted-foreground transition hover:border-electric/50 hover:text-electric"
-          >
-            <Camera className="size-4" aria-hidden />
-          </a>
-          <a
-            href="#"
-            aria-label="MH Consulting on YouTube"
-            className="flex size-10 items-center justify-center rounded-full border border-border bg-card/40 text-muted-foreground transition hover:border-electric/50 hover:text-electric"
-          >
-            <Video className="size-4" aria-hidden />
-          </a>
-        </div>
-      </div>
-
-      <div className="mx-auto mt-10 max-w-6xl border-t border-border px-6 pt-6">
-        <p className="text-center text-xs text-muted-foreground md:text-left">
-          © {new Date().getFullYear()} MH Consulting. All rights reserved.
-        </p>
       </div>
     </footer>
   )

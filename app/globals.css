@@ -2,7 +2,15 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
-@custom-variant dark (&:is(.dark *));
+/*
+  Farbsystem
+  ----------
+  Die Seite ist hell als Grundzustand. Dunkel ist kein Theme, sondern ein
+  Gestaltungsmittel: einzelne Sektionen bekommen `.surface-dark` und
+  ueberschreiben damit dieselben semantischen Tokens. Komponenten benutzen
+  ausschliesslich die semantischen Namen (background, foreground, card ...)
+  und funktionieren dadurch auf beiden Untergruenden ohne Sonderfaelle.
+*/
 
 @theme inline {
   --color-background: var(--background);
@@ -24,70 +32,120 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-navy: var(--navy);
+  /* Markenfarben, unabhaengig vom Untergrund */
   --color-electric: var(--electric);
   --color-neon: var(--neon);
   --color-glow-cyan: var(--glow-cyan);
   --color-glow-violet: var(--glow-violet);
+  --color-ink: var(--ink);
+  --color-sand: var(--sand);
 
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
 
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 2.75);
 
-  --animate-marquee: marquee 40s linear infinite;
-  --animate-float: float 8s ease-in-out infinite;
+  --animate-marquee: marquee 46s linear infinite;
+  --animate-float: float 9s ease-in-out infinite;
   --animate-pulse-glow: pulseGlow 4s ease-in-out infinite;
-  --animate-orbit: orbit 24s linear infinite;
   --animate-halo: haloPulse 3.4s ease-out infinite;
   --animate-caret: caretBlink 1.05s step-end infinite;
+
+  /* Fliessende Typo-Skala, Verhaeltnis ~1.3 */
+  /* Obergrenze bewusst bei 4rem: die Schlagzeile steht im Hero in einer
+     halbbreiten Spalte, groesser bricht "We manage the" auf zwei Zeilen um. */
+  --text-display: clamp(2.5rem, 5vw, 4rem);
+  --text-h2: clamp(2rem, 4vw, 3.25rem);
+  --text-h3: clamp(1.25rem, 1.8vw, 1.5rem);
+  --text-lead: clamp(1.0625rem, 1.4vw, 1.25rem);
+
+  /* Exponentielle Ease-Out-Kurven, kein Bounce */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ---------- Heller Grundzustand ---------- */
 :root {
+  color-scheme: light;
+
+  --background: oklch(0.985 0.003 250);
+  --foreground: oklch(0.21 0.03 258);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.03 258);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.03 258);
+
+  /* Auf Hell abgedunkelt, damit weisse Schrift darauf 4.5:1 erreicht */
+  --primary: oklch(0.52 0.19 252);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.955 0.006 250);
+  --secondary-foreground: oklch(0.21 0.03 258);
+
+  --muted: oklch(0.955 0.005 250);
+  --muted-foreground: oklch(0.47 0.021 258);
+
+  --accent: oklch(0.55 0.22 25);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.55 0.22 25);
+
+  --border: oklch(0.21 0.03 258 / 12%);
+  --input: oklch(0.21 0.03 258 / 20%);
+  --ring: oklch(0.52 0.19 252);
+
+  /* Markenkonstanten: die Leuchtfarben bleiben unveraendert, sie leben in
+     den dunklen Sektionen. Auf Hell wird stattdessen primary/accent benutzt. */
+  --electric: oklch(0.68 0.19 250);
+  --neon: oklch(0.62 0.24 25);
+  --glow-cyan: oklch(0.82 0.15 196);
+  --glow-violet: oklch(0.66 0.23 300);
+  --ink: oklch(0.15 0.025 262);
+  --sand: oklch(0.93 0.012 250);
+
+  --radius: 0.75rem;
+
+  --font-sans: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------- Dunkle Ankersektionen ---------- */
+.surface-dark {
   color-scheme: dark;
-  --background: oklch(0.12 0.02 264);
+
+  --background: oklch(0.145 0.026 264);
   --foreground: oklch(0.98 0.005 260);
 
-  --card: oklch(0.17 0.025 264);
+  --card: oklch(0.2 0.03 264);
   --card-foreground: oklch(0.98 0.005 260);
-  --popover: oklch(0.15 0.025 264);
+  --popover: oklch(0.18 0.03 264);
   --popover-foreground: oklch(0.98 0.005 260);
 
+  /* Auf Dunkel darf die volle Leuchtkraft zurueck */
   --primary: oklch(0.68 0.19 250);
-  --primary-foreground: oklch(0.1 0.02 264);
+  --primary-foreground: oklch(0.13 0.02 264);
 
-  --secondary: oklch(0.22 0.03 264);
+  --secondary: oklch(0.24 0.03 264);
   --secondary-foreground: oklch(0.98 0.005 260);
 
-  --muted: oklch(0.2 0.025 264);
-  --muted-foreground: oklch(0.68 0.02 260);
+  --muted: oklch(0.22 0.028 264);
+  --muted-foreground: oklch(0.75 0.02 260);
 
   --accent: oklch(0.62 0.24 25);
   --accent-foreground: oklch(0.98 0.005 260);
+  /* Muss hier eigens aufgehellt werden: das Rot fuer hellen Grund kommt auf
+     der dunklen Karte nur auf 3.3:1, Fehlermeldungen brauchen aber 4.5:1. */
+  --destructive: oklch(0.75 0.16 25);
 
-  --destructive: oklch(0.62 0.24 25);
-
-  --border: oklch(0.98 0.02 260 / 10%);
-  --input: oklch(0.98 0.02 260 / 14%);
+  --border: oklch(0.98 0.02 260 / 14%);
+  --input: oklch(0.98 0.02 260 / 22%);
   --ring: oklch(0.68 0.19 250);
 
-  --navy: oklch(0.16 0.04 264);
-  --electric: oklch(0.68 0.19 250);
-  --neon: oklch(0.62 0.24 25);
-
-  /* Zusaetzliche Neon-Toene, nur fuer die Hero-Netzwerkpunkte. */
-  --glow-cyan: oklch(0.82 0.15 196);
-  --glow-violet: oklch(0.66 0.23 300);
-
-  --radius: 0.9rem;
-
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 @layer base {
@@ -97,41 +155,84 @@
   body {
     @apply bg-background text-foreground;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   ::selection {
-    background: color-mix(in oklch, var(--electric) 40%, transparent);
+    background: color-mix(in oklch, var(--primary) 28%, transparent);
     color: var(--foreground);
+  }
+  /* Sichtbarer Fokus auf beiden Untergruenden */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  /* Anker nicht unter den fixierten Header schieben */
+  :where(section[id]) {
+    scroll-margin-top: 6rem;
   }
 }
 
 @layer utilities {
-  .glass {
-    background: color-mix(in oklch, var(--card) 55%, transparent);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--border);
+  .text-display {
+    font-size: var(--text-display);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 800;
   }
-  .text-glow-electric {
-    text-shadow: 0 0 24px color-mix(in oklch, var(--electric) 55%, transparent);
+  .text-h2 {
+    font-size: var(--text-h2);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    font-weight: 700;
   }
-  .text-glow-neon {
-    text-shadow: 0 0 24px color-mix(in oklch, var(--neon) 55%, transparent);
+  .text-lead {
+    font-size: var(--text-lead);
+    line-height: 1.6;
+  }
+  /* Zeilenlaenge begrenzen: 65-75 Zeichen */
+  .measure {
+    max-width: 68ch;
+  }
+  .measure-tight {
+    max-width: 54ch;
   }
   .bg-grid {
     background-image:
-      linear-gradient(to right, oklch(0.98 0.02 260 / 4%) 1px, transparent 1px),
-      linear-gradient(to bottom, oklch(0.98 0.02 260 / 4%) 1px, transparent 1px);
-    background-size: 64px 64px;
+      linear-gradient(to right, color-mix(in oklch, var(--foreground) 6%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklch, var(--foreground) 6%, transparent) 1px, transparent 1px);
+    background-size: 72px 72px;
   }
-  .reveal {
+  .text-glow-electric {
+    text-shadow: 0 0 26px color-mix(in oklch, var(--electric) 55%, transparent);
+  }
+  .text-glow-neon {
+    text-shadow: 0 0 26px color-mix(in oklch, var(--neon) 55%, transparent);
+  }
+  /*
+    Der Reveal-Effekt greift nur, wenn JavaScript wirklich laeuft. Ohne JS,
+    in einem Headless-Renderer oder wenn der IntersectionObserver scheitert,
+    bleibt der Inhalt einfach sichtbar statt fuer immer auf opacity 0 zu
+    haengen. Die Klasse `js` setzt ein Inline-Skript vor dem ersten Paint.
+  */
+  :where(html.js) .reveal {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(24px);
     transition:
-      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 0.75s var(--ease-out-expo),
+      transform 0.75s var(--ease-out-expo);
   }
-  .reveal.is-visible {
+  :where(html.js) .reveal.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -150,7 +251,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-18px);
+    transform: translateY(-16px);
   }
 }
 
@@ -161,25 +262,6 @@
   }
   50% {
     opacity: 0.85;
-  }
-}
-
-@keyframes orbit {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes caretBlink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
   }
 }
 
@@ -194,5 +276,34 @@
   100% {
     transform: scale(2.9);
     opacity: 0;
+  }
+}
+
+@keyframes caretBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/*
+  Reduzierte Bewegung ist keine Option, sondern Pflicht. Alle Dauerschleifen
+  stehen still, Reveals erscheinen sofort statt zu faden.
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

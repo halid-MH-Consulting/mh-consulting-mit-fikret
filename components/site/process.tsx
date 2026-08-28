@@ -1,76 +1,89 @@
 import { Search, Target, Handshake, PlayCircle, BarChart3 } from 'lucide-react'
+
+import { IMAGES } from '@/lib/images'
+import { Photo } from './photo'
 import { Reveal } from './reveal'
 
 const STEPS = [
   {
     icon: Search,
-    step: '01',
     title: 'Research & strategy',
     body: 'We study your market, audience and goals to define a creator strategy that fits your brand.',
   },
   {
     icon: Target,
-    step: '02',
     title: 'Creator discovery',
     body: 'We shortlist and vet creators from our international network for authenticity and fit.',
   },
   {
     icon: Handshake,
-    step: '03',
     title: 'Negotiation & planning',
     body: 'We handle outreach, negotiation and campaign planning so terms and content align with results.',
   },
   {
     icon: PlayCircle,
-    step: '04',
     title: 'Campaign management',
-    body: 'We run the campaign end-to-end, keeping creators, timelines and deliverables on track.',
+    body: 'We run the campaign end to end, keeping creators, timelines and deliverables on track.',
   },
   {
     icon: BarChart3,
-    step: '05',
     title: 'Performance & partnership',
     body: 'We analyse results, report transparently and grow the best collaborations into long-term partnerships.',
   },
 ]
 
+/*
+  Die Nummerierung bleibt: hier ist sie keine Deko, sondern echte Reihenfolge.
+  Als durchgehende Zeitachse statt als Kartenreihe, damit man den Ablauf sieht.
+*/
 export function Process() {
   return (
-    <section className="relative py-24 md:py-32" aria-labelledby="process-heading">
+    <section id="process" className="relative py-24 md:py-32" aria-labelledby="process-heading">
       <div className="mx-auto max-w-6xl px-6">
-        <Reveal className="max-w-2xl">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.3em] text-neon">
-            The campaign lifecycle
-          </p>
-          <h2
-            id="process-heading"
-            className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl"
-          >
-            A clear process, from first idea to lasting partnership.
-          </h2>
-        </Reveal>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.72fr)] lg:gap-16">
+          <div>
+            <Reveal>
+              <h2 id="process-heading" className="text-h2">
+                A clear process, from first idea to lasting partnership.
+              </h2>
+            </Reveal>
 
-        <ol className="relative mt-14 grid gap-4 md:grid-cols-5">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-electric/0 via-electric/40 to-neon/0 md:block"
-          />
-          {STEPS.map((s, i) => {
-            const Icon = s.icon
-            return (
-              <Reveal as="li" key={s.step} delay={i * 90} className="relative">
-                <div className="relative flex size-12 items-center justify-center rounded-full border border-electric/40 bg-background text-electric">
-                  <Icon className="size-5" aria-hidden />
-                </div>
-                <div className="mt-5">
-                  <span className="font-mono text-xs text-muted-foreground">{s.step}</span>
-                  <h3 className="mt-1 text-base font-semibold">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-                </div>
-              </Reveal>
-            )
-          })}
-        </ol>
+            <ol className="relative mt-12">
+              {/* Durchgehende Achse hinter den Punkten */}
+              <span
+                aria-hidden
+                className="absolute bottom-8 left-[15px] top-3 w-px bg-border"
+              />
+              {STEPS.map((step, i) => {
+                const Icon = step.icon
+                return (
+                  <Reveal as="li" key={step.title} delay={i * 70} className="relative flex gap-5 pb-9 last:pb-0">
+                    <span className="relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full border border-border bg-background">
+                      <Icon className="size-4 text-primary" aria-hidden />
+                    </span>
+                    <div className="pt-0.5">
+                      <h3 className="flex items-baseline gap-2.5 text-base font-bold">
+                        <span className="text-xs font-semibold tabular-nums text-muted-foreground">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        {step.title}
+                      </h3>
+                      <p className="measure mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {step.body}
+                      </p>
+                    </div>
+                  </Reveal>
+                )
+              })}
+            </ol>
+          </div>
+
+          <Reveal delay={140} className="lg:sticky lg:top-28 lg:self-start">
+            <div className="relative aspect-3/4 overflow-hidden rounded-2xl">
+              <Photo image={IMAGES.shoot} sizes="(min-width: 1024px) 34vw, calc(100vw - 3rem)" />
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   )
