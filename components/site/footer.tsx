@@ -17,8 +17,8 @@ const SITE_LINKS = [
   { href: '/for-brands', label: 'For brands' },
   { href: '/for-creators', label: 'For creators' },
   { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
   { href: '/#services', label: 'What we do' },
-  { href: '/#network', label: 'Network' },
   { href: '/#faq', label: 'FAQ' },
 ]
 

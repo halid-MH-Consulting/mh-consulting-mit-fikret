@@ -83,7 +83,7 @@ export default function ForCreatorsPage() {
           }
           lead="You did not become a travel creator to write follow-up emails about unpaid invoices. We handle the commercial side so you can spend your time on the part you are actually good at."
           image={IMAGES.creatorHero}
-          cta={{ href: '/#contact', label: 'Apply to the roster' }}
+          cta={{ href: '/contact', label: 'Apply to the roster' }}
         />
 
         {/* Klare Arbeitsteilung, zwei Spalten gegenueber */}
@@ -204,7 +204,7 @@ export default function ForCreatorsPage() {
         <CtaBand
           title="Send us your work."
           body="Profiles, the regions you cover, and a couple of pieces you are proud of. That is enough to start."
-          primary={{ href: '/#contact', label: 'Apply to the roster' }}
+          primary={{ href: '/contact', label: 'Apply to the roster' }}
           secondary={{ href: '/about', label: 'Who we are' }}
         />
       </main>

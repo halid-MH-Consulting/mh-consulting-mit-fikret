@@ -89,7 +89,7 @@ export default function ForBrandsPage() {
           }
           lead="You are not short of people willing to post about your destination. You are short of people whose recommendation actually changes a booking decision. That difference is the whole job."
           image={IMAGES.brandsHero}
-          cta={{ href: '/#contact', label: 'Talk to us about your brand' }}
+          cta={{ href: '/contact', label: 'Talk to us about your brand' }}
         />
 
         {/* Dunkler Anker: die unbequeme Diagnose bekommt eigenes Gewicht */}
@@ -200,7 +200,7 @@ export default function ForBrandsPage() {
         <CtaBand
           title="Tell us what you are trying to move."
           body="Bookings, awareness in a new market, a launch with a date attached. Bring the goal and we will tell you honestly whether creators are the right lever for it."
-          primary={{ href: '/#contact', label: 'Start a project' }}
+          primary={{ href: '/contact', label: 'Start a project' }}
           secondary={{ href: '/about', label: 'Who we are' }}
         />
       </main>

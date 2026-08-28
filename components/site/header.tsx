@@ -89,7 +89,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/#contact"
+            href="/contact"
             className="group hidden items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 sm:inline-flex"
           >
             Start a project
@@ -134,7 +134,7 @@ export function Header() {
             ))}
           </nav>
           <Link
-            href="/#contact"
+            href="/contact"
             onClick={() => setOpen(false)}
             className="mt-5 flex items-center justify-center gap-1.5 rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground"
           >
