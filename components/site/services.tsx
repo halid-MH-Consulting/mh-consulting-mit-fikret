@@ -1,65 +1,22 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { Radar, Users, Rocket, Compass, Check, type LucideIcon } from 'lucide-react'
+import { Radar, Users, Rocket, Compass, Check } from 'lucide-react'
 
 import { IMAGES } from '@/lib/images'
+import type { Dictionary } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 import { Photo } from './photo'
 import { Reveal } from './reveal'
 
-type Service = {
-  id: string
-  title: string
-  icon: LucideIcon
-  tagline: string
-  description: string
-  capabilities: string[]
-}
+// Reihenfolge entspricht der Liste im Woerterbuch.
+const ICONS = [Radar, Users, Rocket, Compass]
 
-const SERVICES: Service[] = [
-  {
-    id: 'awareness',
-    title: 'Build Brand Awareness',
-    icon: Radar,
-    tagline: 'Get known by the right audiences',
-    description:
-      'We position your brand in front of engaged travel audiences through creators whose voice genuinely fits your story, not whoever has the biggest number.',
-    capabilities: ['Market Research', 'Content Strategy', 'Travel Marketing Expertise'],
-  },
-  {
-    id: 'discovery',
-    title: 'Creator Discovery',
-    icon: Users,
-    tagline: 'The right creators, carefully vetted',
-    description:
-      'We shortlist creators from an international roster and screen every one of them for authenticity, audience quality and brand fit before they reach you.',
-    capabilities: ['Authenticity Screening', 'Audience Analysis', 'Brand Fit Matching'],
-  },
-  {
-    id: 'campaigns',
-    title: 'High Impact Campaigns',
-    icon: Rocket,
-    tagline: 'From concept to measurable results',
-    description:
-      'We run campaigns end to end: concept, negotiation, timelines, deliverables and reporting. You get one point of contact instead of twelve inboxes.',
-    capabilities: ['Campaign Management', 'Negotiation', 'Transparent Reporting'],
-  },
-  {
-    id: 'consulting',
-    title: 'Consulting',
-    icon: Compass,
-    tagline: 'Strategy for the long game',
-    description:
-      'We help you build a creator programme that outlives a single campaign, with the structure and standards to keep it running after we hand it over.',
-    capabilities: ['Creator Programmes', 'Channel Strategy', 'Team Enablement'],
-  },
-]
-
-export function Services() {
-  const [activeId, setActiveId] = useState(SERVICES[0].id)
+export function Services({ t }: { t: Dictionary }) {
+  const items = t.services.items
+  const [activeIndex, setActiveIndex] = useState(0)
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
-  const active = SERVICES.find((s) => s.id === activeId) ?? SERVICES[0]
+  const active = items[activeIndex] ?? items[0]
 
   // Pfeiltasten wechseln die Auswahl, wie es fuer eine Tableiste erwartet wird.
   function onKeyDown(e: React.KeyboardEvent, index: number) {
@@ -69,13 +26,13 @@ export function Services() {
       ArrowUp: index - 1,
       ArrowLeft: index - 1,
       Home: 0,
-      End: SERVICES.length - 1,
+      End: items.length - 1,
     }
     const next = keys[e.key]
     if (next === undefined) return
     e.preventDefault()
-    const bounded = (next + SERVICES.length) % SERVICES.length
-    setActiveId(SERVICES[bounded].id)
+    const bounded = (next + items.length) % items.length
+    setActiveIndex(bounded)
     tabRefs.current[bounded]?.focus()
   }
 
@@ -84,32 +41,34 @@ export function Services() {
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="max-w-3xl">
           <h2 id="services-heading" className="text-h2">
-            Four ways we build partnerships that perform.
+            {t.services.heading}
           </h2>
-          <p className="text-lead measure mt-5 text-muted-foreground">
-            Every engagement starts with the same question: which creator would this audience
-            actually believe?
-          </p>
+          <p className="text-lead measure mt-5 text-muted-foreground">{t.services.lead}</p>
         </Reveal>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
           {/* Auswahl: reine Textliste mit Markierung, keine Karten */}
-          <div role="tablist" aria-label="Services" aria-orientation="vertical" className="flex flex-col">
-            {SERVICES.map((service, i) => {
-              const isActive = service.id === activeId
-              const Icon = service.icon
+          <div
+            role="tablist"
+            aria-label={t.services.label}
+            aria-orientation="vertical"
+            className="flex flex-col"
+          >
+            {items.map((service, i) => {
+              const isActive = i === activeIndex
+              const Icon = ICONS[i % ICONS.length]
               return (
                 <button
-                  key={service.id}
+                  key={service.title}
                   ref={(el) => {
                     tabRefs.current[i] = el
                   }}
                   role="tab"
-                  id={`tab-${service.id}`}
+                  id={`tab-${i}`}
                   aria-selected={isActive}
-                  aria-controls={`panel-${service.id}`}
+                  aria-controls={`panel-${i}`}
                   tabIndex={isActive ? 0 : -1}
-                  onClick={() => setActiveId(service.id)}
+                  onClick={() => setActiveIndex(i)}
                   onKeyDown={(e) => onKeyDown(e, i)}
                   className={cn(
                     'group flex items-start gap-4 border-b border-border py-5 text-left transition-colors first:border-t',
@@ -151,10 +110,10 @@ export function Services() {
           {/* Detail: ein Panel mit Bild, kein verschachtelter Kartenstapel */}
           <div
             role="tabpanel"
-            id={`panel-${active.id}`}
-            aria-labelledby={`tab-${active.id}`}
+            id={`panel-${activeIndex}`}
+            aria-labelledby={`tab-${activeIndex}`}
             tabIndex={0}
-            key={active.id}
+            key={activeIndex}
             className="flex flex-col"
           >
             <div className="relative aspect-16/10 overflow-hidden rounded-2xl">

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { ComposableMap, Geographies, Geography, Line, Marker } from 'react-simple-maps'
 
+import type { Dictionary } from '@/lib/i18n'
 import { Reveal } from './reveal'
 
 /*
@@ -47,7 +48,7 @@ const CREATORS: { name: string; coords: [number, number] }[] = [
   unsichtbar im Markup (sr-only-Liste unten), weil es auf Touchgeraeten kein
   Hover gibt.
 */
-export function NetworkMap() {
+export function NetworkMap({ t }: { t: Dictionary }) {
   const [mounted, setMounted] = useState(false)
   const [hovered, setHovered] = useState<string | null>(null)
   useEffect(() => setMounted(true), [])
@@ -94,7 +95,7 @@ export function NetworkMap() {
             height={MAP_HEIGHT}
             preserveAspectRatio="xMidYMid slice"
             style={{ width: '100%', height: '100%' }}
-            aria-label="World map showing the MH Consulting creator network, with a hub in Dubai connecting to London, New York, Singapore, Cape Town, Sydney, Tokyo, São Paulo and Bali"
+            aria-label={t.network.mapLabel}
           >
             <Geographies geography={GEO_URL}>
               {({ geographies }) =>
@@ -251,11 +252,10 @@ export function NetworkMap() {
       >
         <Reveal className="max-w-xl">
           <h2 id="network-heading" className="text-h2">
-            One hub in Dubai. Creators everywhere your audience is.
+            {t.network.heading}
           </h2>
           <p className="text-lead measure mt-5 text-muted-foreground">
-            We match the right voice to the right destination, so the recommendation comes from
-            someone who has actually been there.
+            {t.network.lead}
           </p>
         </Reveal>
       </div>
@@ -263,7 +263,7 @@ export function NetworkMap() {
       {/* Unsichtbar, aber vorhanden: die Namen stehen sonst nur im Hover, und
           den gibt es auf Touchgeraeten nicht. */}
       <ul className="sr-only">
-        <li>Dubai (hub)</li>
+        <li>{t.network.hub}</li>
         {CREATORS.map((c) => (
           <li key={c.name}>{c.name}</li>
         ))}

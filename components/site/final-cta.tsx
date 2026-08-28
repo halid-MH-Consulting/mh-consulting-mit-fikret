@@ -1,6 +1,7 @@
 import { Mail, MapPin } from 'lucide-react'
 
 import { IMAGES } from '@/lib/images'
+import type { Dictionary } from '@/lib/i18n'
 import { ContactForm } from './contact-form'
 import { Photo } from './photo'
 import { Reveal } from './reveal'
@@ -10,7 +11,7 @@ import { Reveal } from './reveal'
   Das Foto liegt gedaempft hinter allem: es soll Stimmung tragen, nicht mit
   dem Text um Aufmerksamkeit kaempfen.
 */
-export function FinalCta() {
+export function FinalCta({ t }: { t: Dictionary }) {
   return (
     <section
       id="contact"
@@ -25,17 +26,15 @@ export function FinalCta() {
       <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
         <Reveal className="lg:py-4">
           <h2 id="cta-heading" className="text-h2">
-            Let&apos;s build your next{' '}
-            <span className="text-electric text-glow-electric">campaign</span> together.
+            {t.finalCta.headingBefore}{' '}
+            <span className="text-electric text-glow-electric">{t.finalCta.headingAccent}</span>{' '}
+            {t.finalCta.headingAfter}
           </h2>
-          <p className="text-lead measure mt-6 text-muted-foreground">
-            Tell us about your brand and your goals. We reply to every enquiry within two working
-            days, with a straight answer on whether we are the right fit.
-          </p>
+          <p className="text-lead measure mt-6 text-muted-foreground">{t.finalCta.lead}</p>
 
           <dl className="mt-10 space-y-4 text-sm">
             <div className="flex items-center gap-3">
-              <dt className="sr-only">Email</dt>
+              <dt className="sr-only">{t.finalCta.email}</dt>
               <Mail className="size-4 shrink-0 text-primary" aria-hidden />
               <dd>
                 <a
@@ -47,15 +46,15 @@ export function FinalCta() {
               </dd>
             </div>
             <div className="flex items-center gap-3">
-              <dt className="sr-only">Location</dt>
+              <dt className="sr-only">{t.finalCta.location}</dt>
               <MapPin className="size-4 shrink-0 text-primary" aria-hidden />
-              <dd className="text-muted-foreground">Dubai, UAE — working worldwide</dd>
+              <dd className="text-muted-foreground">{t.finalCta.locationValue}</dd>
             </div>
           </dl>
         </Reveal>
 
         <Reveal delay={120}>
-          <ContactForm />
+          <ContactForm t={t} />
         </Reveal>
       </div>
     </section>

@@ -1,48 +1,19 @@
 import { Gem, Globe, BadgeCheck, HeartHandshake, MessageSquareShare, LineChart } from 'lucide-react'
 
 import { IMAGES } from '@/lib/images'
+import type { Dictionary } from '@/lib/i18n'
 import { Photo } from './photo'
 import { Reveal } from './reveal'
 
-const POINTS = [
-  {
-    icon: Gem,
-    title: 'Quality over quantity',
-    body: 'We measure creators by trust and fit, never by follower counts. Fewer, better partnerships that actually convert.',
-  },
-  {
-    icon: Globe,
-    title: 'International creator network',
-    body: 'A curated global roster spanning the destinations and audiences your brand cares about.',
-  },
-  {
-    icon: BadgeCheck,
-    title: 'Carefully vetted creators',
-    body: 'Every partner is screened for authenticity and audience quality before we recommend them.',
-  },
-  {
-    icon: LineChart,
-    title: 'Performance-driven strategy',
-    body: 'Campaigns built around business outcomes and transparent reporting, not vanity metrics.',
-  },
-  {
-    icon: MessageSquareShare,
-    title: 'Transparent communication',
-    body: 'You always know what is happening, why, and what it is delivering.',
-  },
-  {
-    icon: HeartHandshake,
-    title: 'Dubai based, European expertise',
-    body: 'Global reach with the rigour and standards of European marketing experience.',
-  },
-]
+// Reihenfolge entspricht der Liste im Woerterbuch.
+const ICONS = [Gem, Globe, BadgeCheck, LineChart, MessageSquareShare, HeartHandshake]
 
 /*
   Frueher waren das sechs gleich grosse Karten. Jetzt traegt ein Bild die linke
   Spalte und die Punkte stehen als geteilte Liste rechts: gleiche Information,
   aber eine Komposition statt eines Rasters.
 */
-export function WhyUs() {
+export function WhyUs({ t }: { t: Dictionary }) {
   return (
     <section
       id="why"
@@ -52,7 +23,7 @@ export function WhyUs() {
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="max-w-3xl">
           <h2 id="why-heading" className="text-h2">
-            What makes us different.
+            {t.whyUs.heading}
           </h2>
         </Reveal>
 
@@ -64,8 +35,8 @@ export function WhyUs() {
           </Reveal>
 
           <dl className="grid gap-0 sm:grid-cols-2 sm:gap-x-10">
-            {POINTS.map((point, i) => {
-              const Icon = point.icon
+            {t.whyUs.points.map((point, i) => {
+              const Icon = ICONS[i % ICONS.length]
               return (
                 <Reveal
                   as="div"
@@ -74,7 +45,7 @@ export function WhyUs() {
                   className="border-b border-border py-6 sm:[&:nth-child(-n+2)]:border-t"
                 >
                   <dt className="flex items-center gap-2.5 text-lg font-bold">
-                    <Icon className="size-4.5 text-primary" aria-hidden />
+                    <Icon className="size-4.5 shrink-0 text-primary" aria-hidden />
                     {point.title}
                   </dt>
                   <dd className="mt-2.5 text-sm leading-relaxed text-muted-foreground">

@@ -3,11 +3,10 @@
 import { useState } from 'react'
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react'
 
+import type { Dictionary } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 
 const EMAIL = 'hello@mhconsulting.ae'
-
-const BUDGETS = ['Under 10k', '10k – 25k', '25k – 50k', '50k+', 'Not sure yet']
 
 type Errors = Partial<Record<'name' | 'email' | 'message', string>>
 
@@ -21,7 +20,8 @@ type Errors = Partial<Record<'name' | 'email' | 'message', string>>
 */
 const ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT
 
-export function ContactForm() {
+export function ContactForm({ t }: { t: Dictionary }) {
+  const f = t.form
   const [errors, setErrors] = useState<Errors>({})
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
 
@@ -31,10 +31,10 @@ export function ContactForm() {
     const email = String(data.get('email') ?? '').trim()
     const message = String(data.get('message') ?? '').trim()
 
-    if (name.length < 2) next.name = 'Please tell us your name.'
+    if (name.length < 2) next.name = f.errName
     // Absichtlich grosszuegig: strengere Muster sperren gueltige Adressen aus.
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) next.email = 'Please check this address.'
-    if (message.length < 10) next.message = 'A sentence or two about your brand helps us reply properly.'
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) next.email = f.errEmail
+    if (message.length < 10) next.message = f.errMessage
     return next
   }
 
@@ -87,12 +87,12 @@ export function ContactForm() {
   }
 
   function openMailClient(p: Record<string, string>) {
-    const subject = `Project enquiry — ${p.company || p.name}`
+    const subject = `${f.subjectPrefix} — ${p.company || p.name}`
     const body = [
-      `Name: ${p.name}`,
-      `Email: ${p.email}`,
-      p.company && `Company: ${p.company}`,
-      p.budget && `Budget: ${p.budget}`,
+      `${f.name}: ${p.name}`,
+      `${f.email}: ${p.email}`,
+      p.company && `${f.company}: ${p.company}`,
+      p.budget && `${f.budget}: ${p.budget}`,
       '',
       p.message,
     ]
@@ -108,11 +108,13 @@ export function ContactForm() {
         className="flex h-full min-h-72 flex-col items-center justify-center rounded-2xl border border-border bg-card/60 p-10 text-center"
       >
         <CheckCircle2 className="size-9 text-primary" aria-hidden />
-        <p className="mt-5 text-lg font-bold">Thanks, that is on its way.</p>
+        <p className="mt-5 text-lg font-bold">{f.sentTitle}</p>
         <p className="measure-tight mt-2 text-sm text-muted-foreground">
-          We reply to every enquiry within two working days. If your mail client did not open, write
-          to{' '}
-          <a href={`mailto:${EMAIL}`} className="font-semibold text-primary underline underline-offset-4">
+          {f.sentBodyBefore}{' '}
+          <a
+            href={`mailto:${EMAIL}`}
+            className="font-semibold text-primary underline underline-offset-4"
+          >
             {EMAIL}
           </a>
           .
@@ -122,28 +124,37 @@ export function ContactForm() {
           onClick={() => setStatus('idle')}
           className="mt-6 text-sm font-semibold text-muted-foreground underline underline-offset-4 hover:text-foreground"
         >
-          Send another
+          {f.sendAnother}
         </button>
       </div>
     )
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-2xl border border-border bg-card/60 p-6 sm:p-8">
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      className="rounded-2xl border border-border bg-card/60 p-6 sm:p-8"
+    >
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Name" name="name" error={errors.name} autoComplete="name" required />
+        <Field label={f.name} name="name" error={errors.name} autoComplete="name" required />
         <Field
-          label="Work email"
+          label={f.email}
           name="email"
           type="email"
           error={errors.email}
           autoComplete="email"
           required
         />
-        <Field label="Company" name="company" autoComplete="organization" optional />
+        <Field
+          label={f.company}
+          name="company"
+          autoComplete="organization"
+          optionalLabel={f.optional}
+        />
         <div className="flex flex-col gap-2">
           <label htmlFor="budget" className="text-sm font-semibold">
-            Budget <span className="font-normal text-muted-foreground">(optional)</span>
+            {f.budget} <span className="font-normal text-muted-foreground">{f.optional}</span>
           </label>
           <select
             id="budget"
@@ -151,8 +162,8 @@ export function ContactForm() {
             defaultValue=""
             className="h-12 rounded-xl border border-input bg-background px-3.5 text-sm text-foreground"
           >
-            <option value="">Select a range</option>
-            {BUDGETS.map((b) => (
+            <option value="">{f.budgetPlaceholder}</option>
+            {f.budgets.map((b) => (
               <option key={b} value={b}>
                 {b}
               </option>
@@ -163,7 +174,7 @@ export function ContactForm() {
 
       <div className="mt-5 flex flex-col gap-2">
         <label htmlFor="message" className="text-sm font-semibold">
-          What are you trying to achieve?
+          {f.message}
         </label>
         <textarea
           id="message"
@@ -172,7 +183,7 @@ export function ContactForm() {
           required
           aria-invalid={errors.message ? 'true' : undefined}
           aria-describedby={errors.message ? 'message-error' : undefined}
-          placeholder="Destination, audience, timing — whatever you already know."
+          placeholder={f.messagePlaceholder}
           className={cn(
             'rounded-xl border bg-background p-3.5 text-sm text-foreground placeholder:text-muted-foreground',
             errors.message ? 'border-destructive' : 'border-input',
@@ -190,7 +201,7 @@ export function ContactForm() {
         disabled={status === 'sending'}
         className="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 disabled:opacity-70 sm:w-auto"
       >
-        {status === 'sending' ? 'Sending…' : 'Send enquiry'}
+        {status === 'sending' ? f.sending : f.submit}
         <ArrowUpRight
           className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           aria-hidden
@@ -198,7 +209,7 @@ export function ContactForm() {
       </button>
 
       <p className="mt-4 text-xs text-muted-foreground">
-        Prefer email? Write to{' '}
+        {f.preferEmailBefore}{' '}
         <a href={`mailto:${EMAIL}`} className="underline underline-offset-4 hover:text-foreground">
           {EMAIL}
         </a>
@@ -215,7 +226,7 @@ function Field({
   error,
   autoComplete,
   required,
-  optional,
+  optionalLabel,
 }: {
   label: string
   name: string
@@ -223,13 +234,13 @@ function Field({
   error?: string
   autoComplete?: string
   required?: boolean
-  optional?: boolean
+  optionalLabel?: string
 }) {
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={name} className="text-sm font-semibold">
         {label}{' '}
-        {optional && <span className="font-normal text-muted-foreground">(optional)</span>}
+        {optionalLabel && <span className="font-normal text-muted-foreground">{optionalLabel}</span>}
       </label>
       <input
         id={name}

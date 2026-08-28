@@ -1,42 +1,18 @@
 import { Search, Target, Handshake, PlayCircle, BarChart3 } from 'lucide-react'
 
 import { IMAGES } from '@/lib/images'
+import type { Dictionary } from '@/lib/i18n'
 import { Photo } from './photo'
 import { Reveal } from './reveal'
 
-const STEPS = [
-  {
-    icon: Search,
-    title: 'Research & strategy',
-    body: 'We study your market, audience and goals to define a creator strategy that fits your brand.',
-  },
-  {
-    icon: Target,
-    title: 'Creator discovery',
-    body: 'We shortlist and vet creators from our international network for authenticity and fit.',
-  },
-  {
-    icon: Handshake,
-    title: 'Negotiation & planning',
-    body: 'We handle outreach, negotiation and campaign planning so terms and content align with results.',
-  },
-  {
-    icon: PlayCircle,
-    title: 'Campaign management',
-    body: 'We run the campaign end to end, keeping creators, timelines and deliverables on track.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Performance & partnership',
-    body: 'We analyse results, report transparently and grow the best collaborations into long-term partnerships.',
-  },
-]
+// Reihenfolge entspricht der Liste im Woerterbuch.
+const ICONS = [Search, Target, Handshake, PlayCircle, BarChart3]
 
 /*
   Die Nummerierung bleibt: hier ist sie keine Deko, sondern echte Reihenfolge.
   Als durchgehende Zeitachse statt als Kartenreihe, damit man den Ablauf sieht.
 */
-export function Process() {
+export function Process({ t }: { t: Dictionary }) {
   return (
     <section id="process" className="relative py-24 md:py-32" aria-labelledby="process-heading">
       <div className="mx-auto max-w-6xl px-6">
@@ -44,20 +20,22 @@ export function Process() {
           <div>
             <Reveal>
               <h2 id="process-heading" className="text-h2">
-                A clear process, from first idea to lasting partnership.
+                {t.process.heading}
               </h2>
             </Reveal>
 
             <ol className="relative mt-12">
               {/* Durchgehende Achse hinter den Punkten */}
-              <span
-                aria-hidden
-                className="absolute bottom-8 left-[15px] top-3 w-px bg-border"
-              />
-              {STEPS.map((step, i) => {
-                const Icon = step.icon
+              <span aria-hidden className="absolute bottom-8 left-[15px] top-3 w-px bg-border" />
+              {t.process.steps.map((step, i) => {
+                const Icon = ICONS[i % ICONS.length]
                 return (
-                  <Reveal as="li" key={step.title} delay={i * 70} className="relative flex gap-5 pb-9 last:pb-0">
+                  <Reveal
+                    as="li"
+                    key={step.title}
+                    delay={i * 70}
+                    className="relative flex gap-5 pb-9 last:pb-0"
+                  >
                     <span className="relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full border border-border bg-background">
                       <Icon className="size-4 text-primary" aria-hidden />
                     </span>

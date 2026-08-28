@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 
 import { IMAGES } from '@/lib/images'
+import { href, type Dictionary, type Locale } from '@/lib/i18n'
 import { Photo } from './photo'
 import { Reveal } from './reveal'
 
@@ -10,35 +11,23 @@ import { Reveal } from './reveal'
   einsortieren koennen, ohne die ganze Startseite durchzuscrollen. Zwei grosse
   Flaechen statt einer Kartenreihe: die Wahl soll sich wie eine Tuer anfuehlen.
 */
-const DOORS = [
-  {
-    href: '/for-brands',
-    kicker: 'For brands',
-    title: 'You need creators your audience believes.',
-    body: 'Tourism boards, hotels, airlines, travel tech, eSIM and VPN. What you get, how an engagement runs, and what it costs you in time.',
-    image: IMAGES.brandsHero,
-  },
-  {
-    href: '/for-creators',
-    kicker: 'For creators',
-    title: 'You need briefs, not another pitch email.',
-    body: 'We negotiate the terms, chase the invoices and bring you work that fits what you already make. What we look for, and how to apply.',
-    image: IMAGES.creatorHero,
-  },
-]
+export function AudienceSplit({ locale, t }: { locale: Locale; t: Dictionary }) {
+  const doors = [
+    { path: '/for-brands', image: IMAGES.brandsHero, ...t.audience.brands },
+    { path: '/for-creators', image: IMAGES.creatorHero, ...t.audience.creators },
+  ]
 
-export function AudienceSplit() {
   return (
     <section className="py-24 md:py-32" aria-labelledby="audience-heading">
       <div className="mx-auto max-w-6xl px-6">
         <h2 id="audience-heading" className="sr-only">
-          Choose your path
+          {t.audience.srHeading}
         </h2>
         <div className="grid gap-6 md:grid-cols-2 md:gap-8">
-          {DOORS.map((door, i) => (
-            <Reveal as="div" key={door.href} delay={i * 110}>
+          {doors.map((door, i) => (
+            <Reveal as="div" key={door.path} delay={i * 110}>
               <Link
-                href={door.href}
+                href={href(locale, door.path)}
                 className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border transition-colors duration-300 hover:border-primary/50"
               >
                 <div className="relative aspect-16/10 overflow-hidden">
@@ -55,7 +44,7 @@ export function AudienceSplit() {
                     {door.body}
                   </p>
                   <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">
-                    Read on
+                    {t.common.readOn}
                     <ArrowUpRight
                       className="size-4 text-primary transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                       aria-hidden

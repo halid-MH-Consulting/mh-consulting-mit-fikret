@@ -1,15 +1,12 @@
+import Link from 'next/link'
 import { ArrowUpRight, MapPin } from 'lucide-react'
 
 import { IMAGES } from '@/lib/images'
+import { href, type Dictionary, type Locale } from '@/lib/i18n'
 import { Photo } from './photo'
 import { RotatingWord } from './rotating-word'
 
-// Wie in der script.js der Schwester-Seite, mit zwei Korrekturen: dort ergaben
-// "travel brands" und "the right deals" ein doppeltes Wort in der Zeile
-// ("... the travel brands brands ...", "... the the right deals ...").
-const HEADLINE_WORDS = ['creators', 'partnerships', 'campaigns', 'right deals']
-
-export function Hero() {
+export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
   return (
     <section
       id="top"
@@ -21,38 +18,35 @@ export function Hero() {
         <div className="lg:py-10">
           <p className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
             <MapPin className="size-4 text-primary" aria-hidden />
-            Dubai, UAE — working worldwide
+            {t.hero.location}
           </p>
 
           <h1 id="hero-heading" className="text-display mt-6">
-            <span className="block">We manage the</span>
-            <RotatingWord words={HEADLINE_WORDS} className="text-primary" />
+            <span className="block">{t.hero.line1}</span>
+            <RotatingWord words={t.hero.words} className="text-primary" />
             <span className="block">
-              brands <span className="text-accent">actually want.</span>
+              {t.hero.line3} <span className="text-accent">{t.hero.line3Accent}</span>
             </span>
           </h1>
 
-          <p className="text-lead measure mt-7 text-muted-foreground">
-            MH Consulting is the link between travel creators and the sponsors who want their
-            audience. No noise, no inflated numbers, just deals that make sense on both ends.
-          </p>
+          <p className="text-lead measure mt-7 text-muted-foreground">{t.hero.lead}</p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a
-              href="#contact"
+            <Link
+              href={href(locale, '/contact')}
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5"
             >
-              Start a project
+              {t.hero.ctaPrimary}
               <ArrowUpRight
                 className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 aria-hidden
               />
-            </a>
+            </Link>
             <a
               href="#services"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-input px-7 py-4 text-sm font-semibold transition-colors hover:bg-secondary"
             >
-              See what we do
+              {t.hero.ctaSecondary}
             </a>
           </div>
         </div>
@@ -70,8 +64,7 @@ export function Hero() {
           {/* Eine einzelne belegbare Aussage statt einer Kennzahlen-Reihe */}
           <figure className="absolute bottom-4 left-4 right-4 rounded-xl bg-card/92 p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-xs">
             <figcaption className="text-sm leading-relaxed text-card-foreground">
-              One hub in Dubai, creators on six continents, matched to the destination they
-              actually know.
+              {t.hero.caption}
             </figcaption>
           </figure>
         </div>

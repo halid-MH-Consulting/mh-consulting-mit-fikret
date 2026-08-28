@@ -5,20 +5,21 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 
+import { href, type Dictionary, type Locale } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 
-const NAV = [
-  { href: '/for-brands', label: 'For brands' },
-  { href: '/for-creators', label: 'For creators' },
-  { href: '/about', label: 'About' },
-  { href: '/#faq', label: 'FAQ' },
-]
-
-export function Header() {
+export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const panelRef = useRef<HTMLDivElement | null>(null)
+
+  const NAV = [
+    { path: '/for-brands', label: t.nav.forBrands },
+    { path: '/for-creators', label: t.nav.forCreators },
+    { path: '/about', label: t.nav.about },
+    { path: '/#faq', label: t.nav.faq },
+  ]
 
   // Kompakter Zustand, sobald der Seitenkopf verlassen wird.
   useEffect(() => {
@@ -53,7 +54,7 @@ export function Header() {
   }, [open])
 
   // Nur echte Routen koennen "aktuell" sein, der FAQ-Anker nie.
-  const isCurrent = (href: string) => href.startsWith('/') && !href.includes('#') && pathname === href
+  const isCurrent = (path: string) => !path.includes('#') && pathname === href(locale, path)
 
   return (
     <header
@@ -65,19 +66,23 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-6 md:h-20">
-        <Link href="/" className="text-lg font-extrabold tracking-tight" aria-label="MH Consulting, home">
+        <Link
+          href={href(locale, '/')}
+          className="text-lg font-extrabold tracking-tight"
+          aria-label={t.nav.home}
+        >
           MH<span className="text-primary"> Consulting</span>
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+        <nav aria-label={t.nav.main} className="hidden items-center gap-1 md:flex">
           {NAV.map((item) => (
             <Link
-              key={item.href}
-              href={item.href}
-              aria-current={isCurrent(item.href) ? 'page' : undefined}
+              key={item.path}
+              href={href(locale, item.path)}
+              aria-current={isCurrent(item.path) ? 'page' : undefined}
               className={cn(
                 'rounded-full px-3.5 py-2 text-sm font-medium transition-colors',
-                isCurrent(item.href)
+                isCurrent(item.path)
                   ? 'font-semibold text-foreground'
                   : 'text-muted-foreground hover:text-foreground',
               )}
@@ -89,10 +94,10 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/contact"
+            href={href(locale, '/contact')}
             className="group hidden items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 sm:inline-flex"
           >
-            Start a project
+            {t.common.startProject}
             <ArrowUpRight
               className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               aria-hidden
@@ -104,7 +109,7 @@ export function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             className="flex size-11 items-center justify-center rounded-full border border-border text-foreground md:hidden"
           >
             {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
@@ -120,12 +125,12 @@ export function Header() {
           // darunter durch und man sieht zwei Haupt-Buttons gleichzeitig.
           className="fixed inset-x-0 bottom-0 top-16 overflow-y-auto border-t border-border bg-background px-6 pb-8 pt-4 md:hidden"
         >
-          <nav aria-label="Mobile" className="flex flex-col">
+          <nav aria-label={t.nav.mobile} className="flex flex-col">
             {NAV.map((item) => (
               <Link
-                key={item.href}
-                href={item.href}
-                aria-current={isCurrent(item.href) ? 'page' : undefined}
+                key={item.path}
+                href={href(locale, item.path)}
+                aria-current={isCurrent(item.path) ? 'page' : undefined}
                 onClick={() => setOpen(false)}
                 className="border-b border-border py-4 text-base font-medium text-foreground last:border-b-0"
               >
@@ -134,11 +139,11 @@ export function Header() {
             ))}
           </nav>
           <Link
-            href="/contact"
+            href={href(locale, '/contact')}
             onClick={() => setOpen(false)}
             className="mt-5 flex items-center justify-center gap-1.5 rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground"
           >
-            Start a project
+            {t.common.startProject}
             <ArrowUpRight className="size-4" aria-hidden />
           </Link>
         </div>
