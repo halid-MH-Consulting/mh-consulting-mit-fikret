@@ -5,6 +5,14 @@ import { ComposableMap, Geographies, Geography, Line, Marker } from 'react-simpl
 
 import { Reveal } from './reveal'
 
+/*
+  Die Kartenflaeche ist bewusst 800x430 statt der Vorgabe 800x600. Bei einer
+  Mercator-Projektion mit scale 130 sind die Landmassen nur rund 320px hoch,
+  der Rest war leerer Ozean ueber und unter dem Motiv.
+*/
+const MAP_WIDTH = 800
+const MAP_HEIGHT = 430
+
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
 
 const HUB: [number, number] = [55.27, 25.2] // Dubai
@@ -29,6 +37,7 @@ const CREATORS: { name: string; coords: [number, number] }[] = [
 */
 export function NetworkMap() {
   const [mounted, setMounted] = useState(false)
+  const [hovered, setHovered] = useState<string | null>(null)
   useEffect(() => setMounted(true), [])
 
   return (
@@ -48,21 +57,29 @@ export function NetworkMap() {
           </p>
         </Reveal>
 
-        <Reveal delay={120} className="mt-12">
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card/40 p-2 sm:p-4">
+        <Reveal delay={120} className="mt-10">
+          {/* Kein Rahmen, kein Kasten: die Karte liegt direkt auf der Sektion,
+              und etwas schmaler als der Textsatz, damit sie nicht dominiert. */}
+          <div className="relative mx-auto max-w-4xl">
             <div
               aria-hidden
-              className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/10 blur-[120px]"
+              className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/10 blur-[130px]"
             />
             {/* Platz reservieren, damit beim Nachladen nichts springt */}
             {!mounted && (
-              <div className="aspect-2/1 w-full animate-pulse rounded-2xl bg-muted/40" aria-hidden />
+              <div
+                className="w-full animate-pulse rounded-2xl bg-muted/30"
+                style={{ aspectRatio: `${MAP_WIDTH} / ${MAP_HEIGHT}` }}
+                aria-hidden
+              />
             )}
             {mounted && (
               <ComposableMap
                 projection="geoMercator"
-                projectionConfig={{ scale: 130, center: [30, 25] }}
-                style={{ width: '100%', height: 'auto' }}
+                projectionConfig={{ scale: 130, center: [30, 22] }}
+                width={MAP_WIDTH}
+                height={MAP_HEIGHT}
+                style={{ width: '100%', height: 'auto', overflow: 'visible' }}
                 aria-label="World map showing the MH Consulting creator network, with a hub in Dubai connecting to London, New York, Singapore, Cape Town, Sydney, Tokyo, São Paulo and Bali"
               >
                 <Geographies geography={GEO_URL}>
@@ -84,43 +101,84 @@ export function NetworkMap() {
                   }
                 </Geographies>
 
-                {CREATORS.map((c, i) => (
-                  <Line
-                    key={c.name}
-                    from={HUB}
-                    to={c.coords}
-                    stroke="var(--electric)"
-                    strokeWidth={1}
-                    strokeLinecap="round"
-                    strokeOpacity={0.55}
-                    style={{
-                      strokeDasharray: 4,
-                      animation: `dashFlow 3s linear ${i * 0.25}s infinite`,
-                    }}
-                  />
-                ))}
+                {CREATORS.map((c, i) => {
+                  const isActive = hovered === c.name
+                  return (
+                    <Line
+                      key={c.name}
+                      from={HUB}
+                      to={c.coords}
+                      stroke={isActive ? 'var(--glow-cyan)' : 'var(--electric)'}
+                      strokeWidth={isActive ? 1.6 : 1}
+                      strokeLinecap="round"
+                      // Beim Zeigen tritt die gewaehlte Verbindung hervor und
+                      // die uebrigen treten zurueck, sonst bleibt es ein Knaeuel.
+                      strokeOpacity={hovered ? (isActive ? 1 : 0.18) : 0.55}
+                      style={{
+                        strokeDasharray: 4,
+                        animation: `dashFlow 3s linear ${i * 0.25}s infinite`,
+                        transition: 'stroke-opacity 220ms var(--ease-out-quart), stroke-width 220ms var(--ease-out-quart)',
+                      }}
+                    />
+                  )
+                })}
 
-                {CREATORS.map((c) => (
-                  <Marker key={c.name} coordinates={c.coords}>
-                    <circle r={2.4} fill="var(--glow-cyan)" />
-                    <circle r={2.4} fill="var(--glow-cyan)" opacity={0.4}>
-                      <animate
-                        attributeName="r"
-                        from="2.4"
-                        to="7"
-                        dur="2.5s"
-                        repeatCount="indefinite"
+                {CREATORS.map((c) => {
+                  const isActive = hovered === c.name
+                  return (
+                    <Marker
+                      key={c.name}
+                      coordinates={c.coords}
+                      onMouseEnter={() => setHovered(c.name)}
+                      onMouseLeave={() => setHovered(null)}
+                      style={{ default: { cursor: 'pointer' } }}
+                    >
+                      {/* Unsichtbare, grosszuegige Zielflaeche: der sichtbare
+                          Punkt allein waere mit der Maus kaum zu treffen. */}
+                      <circle r={11} fill="transparent" />
+                      <circle
+                        r={isActive ? 4 : 2.4}
+                        fill="var(--glow-cyan)"
+                        style={{ transition: 'r 220ms var(--ease-out-quart)' }}
                       />
-                      <animate
-                        attributeName="opacity"
-                        from="0.4"
-                        to="0"
-                        dur="2.5s"
-                        repeatCount="indefinite"
-                      />
-                    </circle>
-                  </Marker>
-                ))}
+                      <circle r={2.4} fill="var(--glow-cyan)" opacity={0.4}>
+                        <animate
+                          attributeName="r"
+                          from="2.4"
+                          to="7"
+                          dur="2.5s"
+                          repeatCount="indefinite"
+                        />
+                        <animate
+                          attributeName="opacity"
+                          from="0.4"
+                          to="0"
+                          dur="2.5s"
+                          repeatCount="indefinite"
+                        />
+                      </circle>
+                      {isActive && (
+                        <text
+                          textAnchor="middle"
+                          y={-12}
+                          style={{
+                            fill: 'var(--foreground)',
+                            fontSize: 11,
+                            fontWeight: 700,
+                            // Kontur nach hinten: der Name bleibt ueber jedem
+                            // Kartenausschnitt lesbar, hell wie dunkel.
+                            stroke: 'var(--background)',
+                            strokeWidth: 3,
+                            paintOrder: 'stroke',
+                            pointerEvents: 'none',
+                          }}
+                        >
+                          {c.name}
+                        </text>
+                      )}
+                    </Marker>
+                  )
+                })}
 
                 <Marker coordinates={HUB}>
                   <circle r={4} fill="var(--neon)" />
