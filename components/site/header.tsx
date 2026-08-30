@@ -66,12 +66,21 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-6 md:h-20">
-        <Link
-          href={href(locale, '/')}
-          className="text-lg font-extrabold tracking-tight"
-          aria-label={t.nav.home}
-        >
-          MH<span className="text-primary"> Consulting</span>
+        {/*
+          Kein aria-label auf dem Link: der zugaengliche Name soll aus dem
+          alt-Text des Bildes kommen, sonst wuerde das Label ihn verdecken.
+          Das Emblem ist nahezu quadratisch, deshalb bestimmt die Hoehe die
+          Breite. 40px in der 64px-Leiste, 52px in der 80px-Leiste - die
+          Leiste selbst waechst dadurch nicht.
+        */}
+        <Link href={href(locale, '/')} className="flex shrink-0 items-center">
+          <img
+            src="/mh-consulting-logo.png"
+            alt="MH Consulting & Influencer Marketing"
+            width={240}
+            height={237}
+            className="h-[40px] w-auto object-contain md:h-[52px]"
+          />
         </Link>
 
         <nav aria-label={t.nav.main} className="hidden items-center gap-1 md:flex">

@@ -16,12 +16,12 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-14 lg:pb-24">
         {/* Textspalte */}
         <div className="lg:py-10">
-          <p className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+          <p className="text-hero-meta flex items-center gap-2 font-medium text-muted-foreground">
             <MapPin className="size-4 text-primary" aria-hidden />
             {t.hero.location}
           </p>
 
-          <h1 id="hero-heading" className="text-display mt-6">
+          <h1 id="hero-heading" className="text-hero-display mt-6">
             <span className="block">{t.hero.line1}</span>
             <RotatingWord words={t.hero.words} className="text-primary" />
             <span className="block">
@@ -29,7 +29,7 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
             </span>
           </h1>
 
-          <p className="text-lead measure mt-7 text-muted-foreground">{t.hero.lead}</p>
+          <p className="text-hero-lead measure mt-7 text-muted-foreground">{t.hero.lead}</p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link

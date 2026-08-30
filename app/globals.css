@@ -198,6 +198,49 @@
     font-size: var(--text-lead);
     line-height: 1.6;
   }
+
+  /*
+    Eigene Groessen nur fuer den Hero der Startseite.
+
+    Sie stehen bewusst neben der gemeinsamen Skala und nicht in ihr:
+    --text-display traegt auch die Ueberschriften von /about, /contact und
+    den beiden Landingpages, --text-lead sogar ein Dutzend Absaetze quer
+    ueber die Seite. Wuerde man dort drehen, waechst die halbe Webseite mit.
+
+    Die Obergrenze liegt rund neun Prozent ueber der gemeinsamen Skala. Der
+    mittlere Term ist mitgewachsen (5vw -> 5.45vw), sonst bliebe der Zuwachs
+    auf die Breiten beschraenkt, an denen die Obergrenze greift, und mittlere
+    Fenster um 1024px saehen unveraendert aus.
+
+    Die Untergrenze bleibt bewusst auf 2.5rem, also genau dem heutigen Wert.
+    Sie greift auf Telefonen, und dort ist kein Platz mehr: die rotierende
+    Zeile traegt whitespace-nowrap, und das laengste deutsche Wort
+    "Partnerschaften" fuellt bei 390px die Spalte bereits bis auf 1px aus.
+    Groesser gesetzt liefe es bei 375px um 14px heraus. Der Zuwachs greift
+    daher ab etwa 734px Fensterbreite, wo 5.45vw die Untergrenze ueberholt.
+  */
+  .text-hero-display {
+    font-size: clamp(2.5rem, 5.45vw, 4.35rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+  }
+  /*
+    Auch hier bleibt die Untergrenze auf dem heutigen Wert. Bei 390px stuende
+    der Absatz sonst in fuenf statt vier Zeilen und der Hero waere allein
+    dadurch 36px hoeher. Der mittlere Term ist so gewaehlt, dass der Zuwachs
+    ab etwa 1100px greift und auf Desktop zwischen einem und zwei Pixeln
+    liegt: 19.8px bei 1280, 21.4px bei 1440 gegenueber 17.9px und 20px.
+  */
+  .text-hero-lead {
+    font-size: clamp(1.0625rem, 1.55vw, 1.34rem);
+    line-height: 1.6;
+  }
+  /* Die Ortszeile nur einen Hauch groesser, damit sie Beiwerk bleibt. */
+  .text-hero-meta {
+    font-size: clamp(0.875rem, 1.05vw, 0.9375rem);
+    line-height: 1.45;
+  }
   /* Zeilenlaenge begrenzen: 65-75 Zeichen */
   .measure {
     max-width: 68ch;
