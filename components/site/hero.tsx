@@ -1,9 +1,7 @@
 import Link from 'next/link'
 import { ArrowUpRight, MapPin } from 'lucide-react'
 
-import { IMAGES } from '@/lib/images'
 import { href, type Dictionary, type Locale } from '@/lib/i18n'
-import { Photo } from './photo'
 import { RotatingWord } from './rotating-word'
 
 export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
@@ -76,19 +74,48 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
           und wird unten beschnitten, statt aus dem Sichtfeld zu wachsen.
         */}
         <div className="relative lg:-mr-[max(0px,calc((100vw-72rem)/2))] lg:self-stretch">
-          <div className="relative aspect-4/5 overflow-hidden rounded-2xl sm:aspect-16/10 lg:aspect-auto lg:h-full lg:max-h-[calc(100svh-9rem)] lg:rounded-l-3xl lg:rounded-r-none">
-            <Photo
-              image={IMAGES.hero}
-              priority
-              sizes="(min-width: 1024px) 48vw, calc(100vw - 3rem)"
-            />
+          <div className="relative aspect-4/5 overflow-hidden rounded-2xl bg-secondary sm:aspect-16/10 lg:aspect-auto lg:h-full lg:max-h-[calc(100svh-9rem)] lg:rounded-l-3xl lg:rounded-r-none">
+            {/*
+              Das Video ist quadratisch (960x960), der Kasten ist es nie:
+              bei 1440px misst er 596x634, bei 1920px 836x634. object-cover
+              skaliert deshalb auf die laengere Kante und beschneidet die
+              andere mittig - bei 1920px 101px oben und unten, bei 1440px
+              19px links und rechts. Die Motive sind mittig aufgebaut, das
+              vertraegt der Schnitt.
 
-            {/* Eine einzelne belegbare Aussage statt einer Kennzahlen-Reihe */}
-            <figure className="absolute bottom-4 left-4 right-4 rounded-xl bg-card/92 p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6 sm:max-w-xs">
-              <figcaption className="text-sm leading-relaxed text-card-foreground">
-                {t.hero.caption}
-              </figcaption>
-            </figure>
+              Das Standbild ist der erste Videobild selbst, nicht ein fremdes
+              Foto: der Uebergang von poster zu laufendem Bild ist dadurch
+              nicht zu sehen.
+
+              Beide liegen absolut im Kasten, damit sie nichts zur Hoehe der
+              Rasterzeile beitragen. Im Fluss haette das quadratische Video
+              seine eigene Hoehe eingebracht: bei 1920px ist der Kasten 836px
+              breit, das waeren 836px Hoehe und damit mehr als die Textspalte
+              - die Zeile waere aufgegangen und der Abstand zur Schaltflaeche
+              von 40 auf 112px gewachsen. Gemessen genau so aufgetreten.
+            */}
+            <video
+              className="hero-video absolute inset-0 h-full w-full object-cover"
+              poster="/hero-poster.jpg"
+              aria-label={t.hero.videoLabel}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+            >
+              <source src="/hero.mp4" type="video/mp4" />
+            </video>
+
+            {/*
+              Ersatz fuer prefers-reduced-motion, per CSS eingeblendet.
+              Dieselbe Datei wie das poster-Attribut, also kein zweiter Abruf.
+            */}
+            <img
+              src="/hero-poster.jpg"
+              alt=""
+              className="hero-video-still absolute inset-0 h-full w-full object-cover"
+            />
           </div>
         </div>
       </div>

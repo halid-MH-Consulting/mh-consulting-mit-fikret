@@ -355,6 +355,11 @@
   }
 }
 
+/* Standbild des Hero-Videos: nur bei reduzierter Bewegung sichtbar. */
+.hero-video-still {
+  display: none;
+}
+
 /*
   Reduzierte Bewegung ist keine Option, sondern Pflicht. Alle Dauerschleifen
   stehen still, Reveals erscheinen sofort statt zu faden.
@@ -371,5 +376,16 @@
   .reveal {
     opacity: 1;
     transform: none;
+  }
+  /*
+    Das Hero-Video laeuft 90 Sekunden in Schleife und ist damit genau die
+    Dauerbewegung, die diese Einstellung abstellen soll. Ein `animation`-Stopp
+    greift bei einem <video> nicht, also tritt das Standbild an seine Stelle.
+  */
+  .hero-video {
+    display: none;
+  }
+  .hero-video-still {
+    display: block;
   }
 }

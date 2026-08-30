@@ -39,13 +39,6 @@ function build(id: string, alt: string, width: number, height: number): SiteImag
 }
 
 export const IMAGES = {
-  // Hero: Kuestenlinie aus der Luft, tuerkises Wasser, gruene Landzunge.
-  hero: build(
-    'photo-1555979864-7a8f9b4fddf8',
-    'Aerial view of a turquoise bay meeting a green headland — the kind of destination our creators make people book',
-    1600,
-    1067,
-  ),
   // Creator bei der Arbeit, Kamera auf Stativ ueber einer Kuestenklippe.
   creatorAtWork: build(
     'photo-1608208771441-9661953383a2',

@@ -90,8 +90,8 @@ export const de: Dictionary = {
     lead: 'MH Consulting ist die Verbindung zwischen Reise-Creators und den Sponsoren, die deren Publikum erreichen wollen. Kein Rauschen, keine aufgeblasenen Zahlen, nur Abschlüsse, die für beide Seiten Sinn ergeben.',
     ctaPrimary: 'Projekt starten',
     ctaSecondary: 'Was wir tun',
-    caption:
-      'Eine Zentrale in Dubai, Creators auf sechs Kontinenten — ausgewählt nach den Zielen, die sie wirklich kennen.',
+    videoLabel:
+      'Reiseaufnahmen unserer Creator: Dubai in der Dämmerung, Wüstendünen, Canyon-Pisten.',
   },
 
   industries: {

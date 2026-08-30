@@ -88,8 +88,8 @@ export const en = {
     lead: 'MH Consulting is the link between travel creators and the sponsors who want their audience. No noise, no inflated numbers, just deals that make sense on both ends.',
     ctaPrimary: 'Start a project',
     ctaSecondary: 'See what we do',
-    caption:
-      'One hub in Dubai, creators on six continents, matched to the destination they actually know.',
+    videoLabel:
+      'Travel footage from our creators: Dubai at dusk, desert dunes, canyon roads.',
   },
 
   industries: {
