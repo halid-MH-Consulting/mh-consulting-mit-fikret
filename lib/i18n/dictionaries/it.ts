@@ -287,7 +287,7 @@ export const it: Dictionary = {
     company: 'Azienda',
     budget: 'Budget',
     budgetPlaceholder: 'Scegliete una fascia',
-    budgets: ['Sotto 10k', '10k – 25k', '25k – 50k', '50k+', 'Ancora da definire'],
+    budgets: ['100–500', '500–1,000', '1k–5k', '5k–10k', '10k+'],
     message: 'Che cosa volete ottenere?',
     messagePlaceholder: 'Destinazione, pubblico, tempistiche — tutto quello che già sapete.',
     submit: 'Invia richiesta',
@@ -520,7 +520,7 @@ export const it: Dictionary = {
         body: 'Se il marketing con i creator non muoverà l’obiettivo che descrivete, ve lo diciamo invece di vendervi una campagna.',
       },
       {
-        title: 'Poi una call, se ha senso',
+        title: 'Andiamo avanti, se ha senso',
         body: 'Trenta minuti, senza presentazione. Chiediamo obiettivo, mercato e fascia di budget, e ricevete una risposta chiara su che cosa è realistico.',
       },
     ],

@@ -286,7 +286,7 @@ export const en = {
     company: 'Company',
     budget: 'Budget',
     budgetPlaceholder: 'Select a range',
-    budgets: ['Under 10k', '10k – 25k', '25k – 50k', '50k+', 'Not sure yet'],
+    budgets: ['100–500', '500–1,000', '1k–5k', '5k–10k', '10k+'],
     message: 'What are you trying to achieve?',
     messagePlaceholder: 'Destination, audience, timing — whatever you already know.',
     submit: 'Send enquiry',
@@ -518,7 +518,7 @@ export const en = {
         body: 'If creator marketing will not move the goal you describe, we tell you that instead of selling you a campaign.',
       },
       {
-        title: 'Then a call, if it makes sense',
+        title: 'Moving forward, if it makes sense',
         body: 'Thirty minutes, no deck. We ask about the goal, the market and the budget range, and you get a straight answer on what is realistic.',
       },
     ],

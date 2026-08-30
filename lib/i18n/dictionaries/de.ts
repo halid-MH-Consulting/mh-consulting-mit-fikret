@@ -288,7 +288,7 @@ export const de: Dictionary = {
     company: 'Unternehmen',
     budget: 'Budget',
     budgetPlaceholder: 'Bereich wählen',
-    budgets: ['Unter 10k', '10k – 25k', '25k – 50k', '50k+', 'Noch offen'],
+    budgets: ['100–500', '500–1,000', '1k–5k', '5k–10k', '10k+'],
     message: 'Was wollen Sie erreichen?',
     messagePlaceholder: 'Reiseziel, Zielgruppe, Zeitraum — alles, was Sie schon wissen.',
     submit: 'Anfrage senden',
@@ -521,7 +521,7 @@ export const de: Dictionary = {
         body: 'Wenn Creator-Marketing das von Ihnen beschriebene Ziel nicht bewegt, sagen wir Ihnen das, statt Ihnen eine Kampagne zu verkaufen.',
       },
       {
-        title: 'Danach ein Gespräch, wenn es sinnvoll ist',
+        title: 'Weiter geht es, wenn es passt',
         body: 'Dreißig Minuten, ohne Präsentation. Wir fragen nach Ziel, Markt und Budgetrahmen, und Sie bekommen eine klare Aussage, was realistisch ist.',
       },
     ],
