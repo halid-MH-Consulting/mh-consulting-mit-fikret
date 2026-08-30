@@ -59,24 +59,37 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
           bei 1440px um 144px breiter als seine Spalte. Gleich breit werden
           beide erst bei 1.137fr zu 0.863fr, dann misst jede Seite 596px.
 
-          Das Seitenverhaeltnis wandert von 4/5 auf 20/21, damit das breitere
-          Bild nicht auch hoeher wird - bei 1440px bleibt es bei 625px.
+          Ab lg gibt nicht mehr das Seitenverhaeltnis die Hoehe vor, sondern
+          die Textspalte: die Bildspalte streckt sich ueber die volle
+          Rasterzeile (self-stretch + h-full), und die Zeile ist so hoch wie
+          der Text samt seiner py-10. Die Oberkante bleibt damit exakt dort,
+          wo sie vorher lag, die Unterkante endet 40px unter der Schaltflaeche
+          "See what we do" - unabhaengig von Sprache und Fensterbreite.
+
+          Vorher trug das Bild aspect-[20/21] und wurde bei 1440px 626, bei
+          1920px 878px hoch. Zusammen mit den 112px Kopfabstand lief es damit
+          auf jedem Laptop unten aus dem Bild: die abgerundete Ecke und die
+          Bildunterschrift waren nicht mehr zu sehen.
+
+          Das max-h greift nur auf sehr flachen Fenstern, wenn schon der Text
+          allein hoeher ist als der Schirm. Dann bleibt das Bild oben stehen
+          und wird unten beschnitten, statt aus dem Sichtfeld zu wachsen.
         */}
-        <div className="relative lg:-mr-[max(0px,calc((100vw-72rem)/2))]">
-          <div className="relative aspect-4/5 overflow-hidden rounded-2xl sm:aspect-16/10 lg:aspect-[20/21] lg:rounded-l-3xl lg:rounded-r-none">
+        <div className="relative lg:-mr-[max(0px,calc((100vw-72rem)/2))] lg:self-stretch">
+          <div className="relative aspect-4/5 overflow-hidden rounded-2xl sm:aspect-16/10 lg:aspect-auto lg:h-full lg:max-h-[calc(100svh-9rem)] lg:rounded-l-3xl lg:rounded-r-none">
             <Photo
               image={IMAGES.hero}
               priority
               sizes="(min-width: 1024px) 48vw, calc(100vw - 3rem)"
             />
-          </div>
 
-          {/* Eine einzelne belegbare Aussage statt einer Kennzahlen-Reihe */}
-          <figure className="absolute bottom-4 left-4 right-4 rounded-xl bg-card/92 p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6 sm:max-w-xs">
-            <figcaption className="text-sm leading-relaxed text-card-foreground">
-              {t.hero.caption}
-            </figcaption>
-          </figure>
+            {/* Eine einzelne belegbare Aussage statt einer Kennzahlen-Reihe */}
+            <figure className="absolute bottom-4 left-4 right-4 rounded-xl bg-card/92 p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6 sm:max-w-xs">
+              <figcaption className="text-sm leading-relaxed text-card-foreground">
+                {t.hero.caption}
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
