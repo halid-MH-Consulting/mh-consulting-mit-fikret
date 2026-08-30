@@ -275,7 +275,7 @@ export const de: Dictionary = {
     headingBefore: 'Bauen wir Ihre nächste',
     headingAccent: 'Kampagne',
     headingAfter: 'gemeinsam.',
-    lead: 'Erzählen Sie uns von Ihrer Marke und Ihren Zielen. Wir antworten auf jede Anfrage innerhalb von zwei Werktagen — mit einer klaren Aussage, ob wir zueinander passen.',
+    lead: 'Erzählen Sie uns von sich und Ihren Zielen. Wir antworten auf jede Anfrage innerhalb von zwei Werktagen — mit einer klaren Aussage, ob wir zueinander passen.',
     email: 'E-Mail',
     location: 'Standort',
     locationValue: 'Dubai, VAE — weltweit tätig',

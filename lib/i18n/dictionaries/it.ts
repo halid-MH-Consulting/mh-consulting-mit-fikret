@@ -274,7 +274,7 @@ export const it: Dictionary = {
     headingBefore: 'Costruiamo insieme la vostra prossima',
     headingAccent: 'campagna',
     headingAfter: '.',
-    lead: 'Raccontateci il vostro brand e i vostri obiettivi. Rispondiamo a ogni richiesta entro due giorni lavorativi, dicendo chiaramente se facciamo al caso vostro.',
+    lead: 'Raccontateci di voi e dei vostri obiettivi. Rispondiamo a ogni richiesta entro due giorni lavorativi, dicendo chiaramente se facciamo al caso vostro.',
     email: 'Email',
     location: 'Sede',
     locationValue: 'Dubai, EAU — attivi in tutto il mondo',

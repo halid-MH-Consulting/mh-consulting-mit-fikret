@@ -273,7 +273,7 @@ export const en = {
     headingBefore: "Let's build your next",
     headingAccent: 'campaign',
     headingAfter: 'together.',
-    lead: 'Tell us about your brand and your goals. We reply to every enquiry within two working days, with a straight answer on whether we are the right fit.',
+    lead: 'Tell us about you and your goals. We reply to every enquiry within two working days, with a straight answer on whether we are the right fit.',
     email: 'Email',
     location: 'Location',
     locationValue: 'Dubai, UAE — working worldwide',
