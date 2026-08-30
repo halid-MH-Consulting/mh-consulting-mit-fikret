@@ -34,7 +34,7 @@ export default function NotFound() {
           {t.notFound.back}
         </Link>
         <a
-          href="mailto:hello@mhconsulting.ae"
+          href="mailto:outreach@m-hconsulting.com"
           className="inline-flex items-center justify-center rounded-full border border-input px-7 py-3.5 text-sm font-semibold transition-colors hover:bg-secondary"
         >
           {t.notFound.email}

@@ -38,10 +38,10 @@ export function FinalCta({ t }: { t: Dictionary }) {
               <Mail className="size-4 shrink-0 text-primary" aria-hidden />
               <dd>
                 <a
-                  href="mailto:hello@mhconsulting.ae"
+                  href="mailto:outreach@m-hconsulting.com"
                   className="font-semibold underline underline-offset-4"
                 >
-                  hello@mhconsulting.ae
+                  outreach@m-hconsulting.com
                 </a>
               </dd>
             </div>

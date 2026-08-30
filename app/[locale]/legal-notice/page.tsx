@@ -45,10 +45,10 @@ export default async function LegalNoticePage({
         <p>
           {t.finalCta.email}:{' '}
           <a
-            href="mailto:hello@mhconsulting.ae"
+            href="mailto:outreach@m-hconsulting.com"
             className="text-primary underline underline-offset-4"
           >
-            hello@mhconsulting.ae
+            outreach@m-hconsulting.com
           </a>
           <br />
           {p.phone}: <Pending prefix={p.pendingPrefix}>{p.phoneValue}</Pending>

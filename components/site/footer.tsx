@@ -45,11 +45,11 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
               {t.footer.tagline}
             </p>
             <a
-              href="mailto:hello@mhconsulting.ae"
+              href="mailto:outreach@m-hconsulting.com"
               className="mt-4 inline-flex items-center gap-2 py-1.5 text-sm font-semibold underline underline-offset-4"
             >
               <Mail className="size-4 text-primary" aria-hidden />
-              hello@mhconsulting.ae
+              outreach@m-hconsulting.com
             </a>
           </div>
 

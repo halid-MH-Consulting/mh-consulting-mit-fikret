@@ -65,12 +65,12 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                       <Mail className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
                       <dd>
                         <a
-                          href="mailto:hello@mhconsulting.ae"
+                          href="mailto:outreach@m-hconsulting.com"
                           // py fuer >=24px Zielhoehe: eigenstaendiger Link, keine
                           // Inline-Ausnahme wie bei Links mitten im Satz.
                           className="-my-1 inline-block py-1 font-semibold underline underline-offset-4"
                         >
-                          hello@mhconsulting.ae
+                          outreach@m-hconsulting.com
                         </a>
                       </dd>
                     </div>

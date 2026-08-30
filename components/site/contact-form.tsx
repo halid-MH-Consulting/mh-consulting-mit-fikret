@@ -6,7 +6,7 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-react'
 import type { Dictionary } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 
-const EMAIL = 'hello@mhconsulting.ae'
+const EMAIL = 'outreach@m-hconsulting.com'
 
 type Errors = Partial<Record<'name' | 'email' | 'message', string>>
 

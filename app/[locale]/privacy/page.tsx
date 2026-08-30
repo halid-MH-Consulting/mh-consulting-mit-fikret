@@ -32,10 +32,10 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           <Pending prefix={t.legalNotice.pendingPrefix}>{p.responsibleAddress}</Pending>.{' '}
           {p.responsibleAfter}{' '}
           <a
-            href="mailto:hello@mhconsulting.ae"
+            href="mailto:outreach@m-hconsulting.com"
             className="text-primary underline underline-offset-4"
           >
-            hello@mhconsulting.ae
+            outreach@m-hconsulting.com
           </a>
           .
         </p>
