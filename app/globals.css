@@ -207,8 +207,14 @@
     den beiden Landingpages, --text-lead sogar ein Dutzend Absaetze quer
     ueber die Seite. Wuerde man dort drehen, waechst die halbe Webseite mit.
 
-    Die Obergrenze liegt rund neunzehn Prozent ueber der gemeinsamen Skala:
-    76px statt 64px bei 1440. Der mittlere Term ist mitgewachsen
+    Die Obergrenze liegt rund zehn Prozent ueber der gemeinsamen Skala:
+    70.4px statt 64px bei 1440. Sie lag kurzzeitig bei 76px, das passt aber
+    nicht mehr, seit Text und Bild sich die Breite haelftig teilen: das
+    sichtbare Band misst bei 1440 vom Textrand bis zum Bildschirmrand
+    1264px, abzueglich 56px Spalt bleiben 604px je Seite. Das laengste
+    deutsche Wort Partnerschaften braucht bei 76px 600px und haette dort
+    keine Luft mehr; bei 70.4px sind es 556px und damit 40px Reserve.
+    Der mittlere Term ist mitgewachsen
     (5vw -> 5.94vw), sonst bliebe der Zuwachs auf die Breiten beschraenkt,
     an denen die Obergrenze greift, und mittlere Fenster um 1024px saehen
     unveraendert aus. Platz dafuer schafft die Bildspalte, die von 0.9fr
@@ -223,7 +229,7 @@
     daher ab etwa 734px Fensterbreite, wo 5.45vw die Untergrenze ueberholt.
   */
   .text-hero-display {
-    font-size: clamp(2.5rem, 5.94vw, 4.75rem);
+    font-size: clamp(2.5rem, 5.94vw, 4.4rem);
     line-height: 1.02;
     letter-spacing: -0.03em;
     font-weight: 800;

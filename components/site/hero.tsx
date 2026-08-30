@@ -13,7 +13,7 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
       className="relative overflow-hidden pt-24 md:pt-28"
       aria-labelledby="hero-heading"
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 lg:grid-cols-[minmax(0,1.32fr)_minmax(0,0.68fr)] lg:gap-14 lg:pb-24">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 lg:grid-cols-[minmax(0,1.137fr)_minmax(0,0.863fr)] lg:gap-14 lg:pb-24">
         {/* Textspalte */}
         <div className="lg:py-10">
           <p className="text-hero-meta flex items-center gap-2 font-medium text-muted-foreground">
@@ -51,9 +51,19 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
           </div>
         </div>
 
-        {/* Bildspalte: blutet auf grossen Schirmen nach rechts aus dem Raster */}
+        {/*
+          Bildspalte: blutet auf grossen Schirmen nach rechts aus dem Raster.
+
+          Die Spaltenteilung ist nicht 1:1, obwohl Text und Bild gleich breit
+          erscheinen sollen. Grund ist genau dieser Ueberstand: das Bild ist
+          bei 1440px um 144px breiter als seine Spalte. Gleich breit werden
+          beide erst bei 1.137fr zu 0.863fr, dann misst jede Seite 596px.
+
+          Das Seitenverhaeltnis wandert von 4/5 auf 20/21, damit das breitere
+          Bild nicht auch hoeher wird - bei 1440px bleibt es bei 625px.
+        */}
         <div className="relative lg:-mr-[max(0px,calc((100vw-72rem)/2))]">
-          <div className="relative aspect-4/5 overflow-hidden rounded-2xl sm:aspect-16/10 lg:aspect-4/5 lg:rounded-l-3xl lg:rounded-r-none">
+          <div className="relative aspect-4/5 overflow-hidden rounded-2xl sm:aspect-16/10 lg:aspect-[20/21] lg:rounded-l-3xl lg:rounded-r-none">
             <Photo
               image={IMAGES.hero}
               priority
