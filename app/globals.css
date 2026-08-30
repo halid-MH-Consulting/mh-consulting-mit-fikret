@@ -245,12 +245,17 @@
   }
 }
 
+/*
+  Die Strecke kommt aus der Spur selbst: --marquee-shift wird dort auf
+  100%/Gruppenanzahl gesetzt, was exakt einer Gruppenbreite entspricht.
+  Der Rueckfallwert haelt die Regel fuer sich genommen gueltig.
+*/
 @keyframes marquee {
   from {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(var(--marquee-shift, -50%));
   }
 }
 

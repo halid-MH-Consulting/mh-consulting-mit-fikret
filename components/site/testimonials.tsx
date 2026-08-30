@@ -1,11 +1,52 @@
 import type { Dictionary } from '@/lib/i18n'
+import { cn } from '@/lib/utils'
 import { Reveal } from './reveal'
 
 /*
-  Die Namen sind noch nicht besetzt. Das Layout ist so gebaut, dass echte
-  Zitate spaeter nur eingetragen werden muessen, und die Kennzeichnung unten
-  verhindert, dass die Sektion versehentlich mit Platzhaltern live geht.
+  Unter der Ueberschrift stehen die Marken selbst statt der frueheren
+  Platzhalter-Zitate, jeweils mit ihrem eigenen Einzeiler darunter.
+
+  Die Beschreibungen stehen bewusst hier und nicht im Woerterbuch: es sind
+  die Claims der Marken, die in allen drei Sprachfassungen gleich lauten.
+
+  Die Hoehen sind pro Logo unterschiedlich gesetzt und das ist Absicht. Der
+  freedome-Schriftzug ist fast doppelt so breit wie die beiden anderen; bei
+  gleicher Kastenhoehe wuerde er Directo und Holafly erschlagen. Die Werte
+  sind ueber die tatsaechliche Farbflaeche je Logo ausgeglichen, damit alle
+  drei gleich schwer wirken. `max-w-full` faengt schmale Spalten ab, bevor
+  etwas aus dem Raster laeuft.
+
+  Der Kasten um das Logo hat eine feste Hoehe. Nur so sitzen alle drei
+  Zeichen auf derselben Mittelachse und alle drei Beschreibungen beginnen
+  auf derselben Linie, obwohl die Logos verschieden hoch sind.
 */
+const BRANDS = [
+  {
+    name: 'Directo',
+    src: '/logos/directo.png',
+    width: 819,
+    height: 219,
+    size: 'h-[36px] md:h-[32px] lg:h-[40px] xl:h-[44px]',
+    description: 'Same hotel, better price',
+  },
+  {
+    name: 'Holafly',
+    src: '/logos/holafly.png',
+    width: 900,
+    height: 248,
+    size: 'h-[38px] md:h-[34px] lg:h-[42px] xl:h-[46px]',
+    description: 'Stay connected wherever you go',
+  },
+  {
+    name: 'Freedome',
+    src: '/logos/freedome.png',
+    width: 900,
+    height: 128,
+    size: 'h-[30px] md:h-[27px] lg:h-[34px] xl:h-[38px]',
+    description: 'Discover unforgettable outdoor experiences across Italy',
+  },
+]
+
 export function Testimonials({ t }: { t: Dictionary }) {
   return (
     <section className="relative py-24 md:py-32" aria-labelledby="testimonials-heading">
@@ -16,21 +57,31 @@ export function Testimonials({ t }: { t: Dictionary }) {
           </h2>
         </Reveal>
 
-        {/* Zitate ohne Kartenrahmen: die Anfuehrung traegt, nicht der Kasten */}
-        <div className="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-3">
-          {t.testimonials.quotes.map((item, i) => (
-            <Reveal as="div" key={i} delay={i * 90}>
-              <figure className="flex h-full flex-col border-t border-border pt-6">
-                <blockquote className="flex-1 text-lg leading-relaxed">
-                  <p>&ldquo;{item.quote}&rdquo;</p>
-                </blockquote>
-                <figcaption className="mt-6 text-sm text-muted-foreground">{item.role}</figcaption>
-              </figure>
+        <ul className="mt-14 grid grid-cols-1 items-start justify-items-center gap-x-8 gap-y-12 md:grid-cols-3 lg:gap-x-10">
+          {BRANDS.map((brand, i) => (
+            <Reveal
+              as="li"
+              key={brand.name}
+              delay={i * 90}
+              className="flex w-full flex-col items-center text-center"
+            >
+              <span className="flex h-[44px] items-center md:h-[40px] lg:h-[48px] xl:h-[52px]">
+                <img
+                  src={brand.src}
+                  alt={brand.name}
+                  width={brand.width}
+                  height={brand.height}
+                  loading="lazy"
+                  decoding="async"
+                  className={cn('w-auto max-w-full object-contain', brand.size)}
+                />
+              </span>
+              <p className="mt-5 max-w-[17rem] text-sm leading-relaxed text-muted-foreground">
+                {brand.description}
+              </p>
             </Reveal>
           ))}
-        </div>
-
-        <p className="mt-12 text-xs text-muted-foreground">{t.testimonials.note}</p>
+        </ul>
       </div>
     </section>
   )

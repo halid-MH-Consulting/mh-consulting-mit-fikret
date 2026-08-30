@@ -235,26 +235,12 @@ export const de: Dictionary = {
     note: 'Platzhalterwerte — vor dem Livegang durch echte Leistungsdaten ersetzen.',
   },
 
+  /*
+    Unter der Ueberschrift stehen nur noch die Markenzeichen selbst,
+    keine Zitate mehr.
+  */
   testimonials: {
     heading: 'Marken, die langfristig denken, vertrauen uns.',
-    quotes: [
-      {
-        quote:
-          'MH Consulting hat verändert, wie wir über Creators denken. Statt einzelner Posts haben wir jetzt Partner, die unser Reiseziel das ganze Jahr über glaubwürdig vertreten.',
-        role: 'Marketingleitung, Tourismusverband',
-      },
-      {
-        quote:
-          'Die Prüfung ist beispiellos. Jeder Creator, den sie uns gebracht haben, hat tatsächlich Buchungen bewegt, nicht nur Sichtkontakte.',
-        role: 'Growth Lead, Reise-App',
-      },
-      {
-        quote:
-          'Offen, strategisch und wirklich am Ergebnis interessiert. Es fühlt sich an wie eine Erweiterung des eigenen Teams.',
-        role: 'CMO, eSIM-Anbieter',
-      },
-    ],
-    note: 'Die Zitate bleiben ohne Namensnennung, bis die Referenzen bestätigt sind. Vor dem Livegang Namen ergänzen oder den Abschnitt entfernen.',
   },
 
   faq: {

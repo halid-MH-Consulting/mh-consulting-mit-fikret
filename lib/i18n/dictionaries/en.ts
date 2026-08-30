@@ -233,26 +233,12 @@ export const en = {
     note: 'Placeholder figures — replace with live performance data before launch.',
   },
 
+  /*
+    Unter der Ueberschrift stehen nur noch die Markenzeichen selbst,
+    keine Zitate mehr.
+  */
   testimonials: {
     heading: 'Trusted by brands that think long term.',
-    quotes: [
-      {
-        quote:
-          'MH Consulting completely changed how we think about creators. Instead of one-off posts, we now have partners who genuinely represent our destination year-round.',
-        role: 'Head of Marketing, Tourism Board',
-      },
-      {
-        quote:
-          'The vetting process is unmatched. Every creator they brought us actually moved bookings, not just impressions.',
-        role: 'Growth Lead, Travel App',
-      },
-      {
-        quote:
-          'Transparent, strategic and genuinely invested in results. It feels like an extension of our own team.',
-        role: 'CMO, eSIM Company',
-      },
-    ],
-    note: 'Quotes are unattributed until the named references are confirmed. Add the names, or remove this section, before launch.',
   },
 
   faq: {

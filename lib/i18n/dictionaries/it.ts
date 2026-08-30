@@ -234,26 +234,12 @@ export const it: Dictionary = {
     note: 'Valori segnaposto — sostituirli con dati reali prima della pubblicazione.',
   },
 
+  /*
+    Unter der Ueberschrift stehen nur noch die Markenzeichen selbst,
+    keine Zitate mehr.
+  */
   testimonials: {
     heading: 'Scelti da brand che ragionano sul lungo periodo.',
-    quotes: [
-      {
-        quote:
-          'MH Consulting ha cambiato del tutto il nostro modo di pensare ai creator. Al posto di post isolati abbiamo partner che rappresentano la nostra destinazione tutto l’anno.',
-        role: 'Responsabile marketing, ente del turismo',
-      },
-      {
-        quote:
-          'Il processo di verifica non ha eguali. Ogni creator che ci hanno portato ha spostato prenotazioni reali, non solo impression.',
-        role: 'Growth lead, app di viaggio',
-      },
-      {
-        quote:
-          'Trasparenti, strategici e davvero interessati al risultato. Sembra un’estensione del nostro team.',
-        role: 'CMO, operatore eSIM',
-      },
-    ],
-    note: 'Le citazioni restano senza nome finché le referenze non sono confermate. Prima della pubblicazione aggiungere i nomi o rimuovere la sezione.',
   },
 
   faq: {
