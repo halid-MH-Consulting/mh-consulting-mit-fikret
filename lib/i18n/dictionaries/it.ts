@@ -312,7 +312,6 @@ export const it: Dictionary = {
     whatWeDo: 'Cosa facciamo',
     legalNotice: 'Note legali',
     privacy: 'Informativa privacy',
-    rights: 'Tutti i diritti riservati.',
   },
 
   languageSwitcher: {

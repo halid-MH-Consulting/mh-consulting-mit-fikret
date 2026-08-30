@@ -313,7 +313,6 @@ export const de: Dictionary = {
     whatWeDo: 'Was wir tun',
     legalNotice: 'Impressum',
     privacy: 'Datenschutz',
-    rights: 'Alle Rechte vorbehalten.',
   },
 
   languageSwitcher: {

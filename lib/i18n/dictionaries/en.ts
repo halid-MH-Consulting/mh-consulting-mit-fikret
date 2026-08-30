@@ -310,7 +310,6 @@ export const en = {
     whatWeDo: 'What we do',
     legalNotice: 'Legal notice',
     privacy: 'Privacy policy',
-    rights: 'All rights reserved.',
   },
 
   languageSwitcher: {

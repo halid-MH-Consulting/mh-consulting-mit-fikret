@@ -35,18 +35,26 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <Link
-              href={href(locale, '/')}
-              className="inline-block py-1 text-lg font-extrabold tracking-tight"
-            >
-              MH<span className="text-primary"> Consulting</span>
+            {/*
+              Dieselbe Datei wie im Kopf, nur kleiner gesetzt: 52 statt 62px.
+              Kein aria-label auf dem Link, der zugaengliche Name kommt aus
+              dem alt-Text - ein Label wuerde ihn verdecken.
+            */}
+            <Link href={href(locale, '/')} className="inline-flex items-center">
+              <img
+                src="/mh-consulting-logo.png"
+                alt="MH Consulting & Influencer Marketing"
+                width={400}
+                height={248}
+                className="h-[52px] w-auto object-contain"
+              />
             </Link>
-            <p className="measure-tight mt-3 text-sm leading-relaxed text-muted-foreground">
+            <p className="measure-tight mt-6 text-sm leading-relaxed text-muted-foreground">
               {t.footer.tagline}
             </p>
             <a
               href="mailto:outreach@m-hconsulting.com"
-              className="mt-4 inline-flex items-center gap-2 py-1.5 text-sm font-semibold underline underline-offset-4"
+              className="mt-5 inline-flex items-center gap-2 py-1.5 text-sm font-semibold underline underline-offset-4"
             >
               <Mail className="size-4 text-primary" aria-hidden />
               outreach@m-hconsulting.com
@@ -100,8 +108,14 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
         </div>
 
         <div className="mt-14 border-t border-border pt-6">
+          {/*
+            Kein Copyright-Vermerk: die Zeile nennt die Inhaberschaft, nicht
+            ein Urheberrecht. Sie steht in allen drei Sprachfassungen gleich,
+            weil sie eine Firmierung ist und keine uebersetzbare Aussage -
+            deshalb hier in der Komponente statt im Woerterbuch.
+          */}
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} MH Consulting. {t.footer.rights}
+            MH Consulting<sup className="text-[0.7em]">&trade;</sup> owned by Imeroska - FZCO
           </p>
         </div>
       </div>
