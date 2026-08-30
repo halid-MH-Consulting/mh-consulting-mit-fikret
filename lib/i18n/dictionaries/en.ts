@@ -295,11 +295,11 @@ export const en = {
     errName: 'Please tell us your name.',
     errEmail: 'Please check this address.',
     errMessage: 'A sentence or two about your brand helps us reply properly.',
+    errSend: 'We could not send that just now. Please try again, or write to us directly.',
     sentTitle: 'Thanks, that is on its way.',
     sentBodyBefore:
-      'We reply to every enquiry within two working days. If your mail client did not open, write to',
+      'We reply to every enquiry within two working days. You can also write to',
     sendAnother: 'Send another',
-    subjectPrefix: 'Project enquiry',
   },
 
   footer: {

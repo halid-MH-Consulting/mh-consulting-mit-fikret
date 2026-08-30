@@ -296,11 +296,12 @@ export const it: Dictionary = {
     errName: 'Indicateci il vostro nome.',
     errEmail: 'Controllate questo indirizzo.',
     errMessage: 'Una o due frasi sul vostro brand ci aiutano a rispondere come si deve.',
+    errSend:
+      'Non siamo riusciti a inviare la richiesta. Riprovate oppure scriveteci direttamente.',
     sentTitle: 'Grazie, è in viaggio.',
     sentBodyBefore:
-      'Rispondiamo a ogni richiesta entro due giorni lavorativi. Se il vostro programma di posta non si è aperto, scrivete a',
+      'Rispondiamo a ogni richiesta entro due giorni lavorativi. Potete anche scrivere a',
     sendAnother: 'Invia un’altra richiesta',
-    subjectPrefix: 'Richiesta di progetto',
   },
 
   footer: {

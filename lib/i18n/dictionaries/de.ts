@@ -297,11 +297,12 @@ export const de: Dictionary = {
     errName: 'Bitte nennen Sie uns Ihren Namen.',
     errEmail: 'Bitte prüfen Sie diese Adresse.',
     errMessage: 'Ein, zwei Sätze zu Ihrer Marke helfen uns, sinnvoll zu antworten.',
+    errSend:
+      'Das Senden hat gerade nicht geklappt. Bitte versuchen Sie es noch einmal oder schreiben Sie uns direkt.',
     sentTitle: 'Danke, das ist unterwegs.',
     sentBodyBefore:
-      'Wir antworten auf jede Anfrage innerhalb von zwei Werktagen. Falls Ihr Mailprogramm sich nicht geöffnet hat, schreiben Sie an',
+      'Wir antworten auf jede Anfrage innerhalb von zwei Werktagen. Sie erreichen uns auch unter',
     sendAnother: 'Weitere Anfrage senden',
-    subjectPrefix: 'Projektanfrage',
   },
 
   footer: {

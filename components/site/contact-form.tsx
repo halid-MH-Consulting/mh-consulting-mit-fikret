@@ -11,19 +11,20 @@ const EMAIL = 'hello@mhconsulting.ae'
 type Errors = Partial<Record<'name' | 'email' | 'message', string>>
 
 /*
-  Es gibt (noch) kein Backend. Statt deswegen gar kein Formular anzubieten,
-  sammelt dieses hier die Angaben, prueft sie und uebergibt sie strukturiert
-  an das Mailprogramm.
+  Die Anfrage geht an /api/contact, dort verschickt sie Resend. Der Browser
+  kennt weder Empfaenger noch Absender: beide stehen serverseitig in
+  Umgebungsvariablen, hier gehen nur die Angaben des Besuchers raus.
 
-  Sobald ein Endpunkt existiert, reicht es, NEXT_PUBLIC_CONTACT_ENDPOINT zu
-  setzen: dann geht dieselbe Eingabe per fetch raus, ohne Aenderung am Markup.
+  Die Pruefung unten ist reine Bequemlichkeit - sie zeigt Fehler an, bevor
+  eine Runde zum Server noetig ist. Verlassen tut sich darauf nichts, der
+  Route Handler prueft dieselben Regeln noch einmal.
 */
-const ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT
+const ENDPOINT = '/api/contact'
 
 export function ContactForm({ t }: { t: Dictionary }) {
   const f = t.form
   const [errors, setErrors] = useState<Errors>({})
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   function validate(data: FormData): Errors {
     const next: Errors = {}
@@ -65,40 +66,26 @@ export function ContactForm({ t }: { t: Dictionary }) {
       company: String(data.get('company') ?? ''),
       budget: String(data.get('budget') ?? ''),
       message: String(data.get('message')),
+      // Honigtopf, siehe unten im Markup.
+      company_website: String(data.get('company_website') ?? ''),
     }
 
-    if (ENDPOINT) {
-      try {
-        await fetch(ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        })
-      } catch {
-        // Netzwerk weg: unten faellt es auf das Mailprogramm zurueck.
-        openMailClient(payload)
-      }
-    } else {
-      openMailClient(payload)
+    try {
+      const response = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const result = await response.json().catch(() => null)
+      if (!response.ok || !result?.ok) throw new Error('rejected')
+
+      // Erst zuruecksetzen, wenn wirklich versendet wurde. Bei einem Fehler
+      // bleibt alles stehen, damit niemand seine Nachricht neu tippen muss.
+      form.reset()
+      setStatus('sent')
+    } catch {
+      setStatus('error')
     }
-
-    setStatus('sent')
-    form.reset()
-  }
-
-  function openMailClient(p: Record<string, string>) {
-    const subject = `${f.subjectPrefix} — ${p.company || p.name}`
-    const body = [
-      `${f.name}: ${p.name}`,
-      `${f.email}: ${p.email}`,
-      p.company && `${f.company}: ${p.company}`,
-      p.budget && `${f.budget}: ${p.budget}`,
-      '',
-      p.message,
-    ]
-      .filter(Boolean)
-      .join('\n')
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }
 
   if (status === 'sent') {
@@ -196,6 +183,30 @@ export function ContactForm({ t }: { t: Dictionary }) {
         )}
       </div>
 
+      {/*
+        Honigtopf. Fuer Menschen unsichtbar und unerreichbar: kein Tabstopp,
+        keine Autovervollstaendigung, aus dem Sichtfeld geschoben. Wer ihn
+        ausfuellt, ist ein Skript - der Route Handler verwirft die Anfrage
+        dann stillschweigend.
+
+        Bewusst verschoben statt display:none: einfache Spam-Skripte
+        ueberspringen ausgeblendete Felder, ein verschobenes fuellen sie mit.
+      */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-[-9999px] h-0 w-0 overflow-hidden"
+      >
+        <label htmlFor="company_website">Company website</label>
+        <input
+          id="company_website"
+          name="company_website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          defaultValue=""
+        />
+      </div>
+
       <button
         type="submit"
         disabled={status === 'sending'}
@@ -207,6 +218,12 @@ export function ContactForm({ t }: { t: Dictionary }) {
           aria-hidden
         />
       </button>
+
+      {status === 'error' && (
+        <p role="alert" className="mt-4 text-sm text-destructive">
+          {f.errSend}
+        </p>
+      )}
 
       <p className="mt-4 text-xs text-muted-foreground">
         {f.preferEmailBefore}{' '}
