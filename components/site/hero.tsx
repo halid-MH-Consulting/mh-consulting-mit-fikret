@@ -13,7 +13,7 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
       className="relative overflow-hidden pt-24 md:pt-28"
       aria-labelledby="hero-heading"
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-14 lg:pb-24">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 lg:grid-cols-[minmax(0,1.32fr)_minmax(0,0.68fr)] lg:gap-14 lg:pb-24">
         {/* Textspalte */}
         <div className="lg:py-10">
           <p className="text-hero-meta flex items-center gap-2 font-medium text-muted-foreground">
@@ -62,7 +62,7 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
           </div>
 
           {/* Eine einzelne belegbare Aussage statt einer Kennzahlen-Reihe */}
-          <figure className="absolute bottom-4 left-4 right-4 rounded-xl bg-card/92 p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-xs">
+          <figure className="absolute bottom-4 left-4 right-4 rounded-xl bg-card/92 p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6 sm:max-w-xs">
             <figcaption className="text-sm leading-relaxed text-card-foreground">
               {t.hero.caption}
             </figcaption>

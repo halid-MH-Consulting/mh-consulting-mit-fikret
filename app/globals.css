@@ -207,10 +207,13 @@
     den beiden Landingpages, --text-lead sogar ein Dutzend Absaetze quer
     ueber die Seite. Wuerde man dort drehen, waechst die halbe Webseite mit.
 
-    Die Obergrenze liegt rund neun Prozent ueber der gemeinsamen Skala. Der
-    mittlere Term ist mitgewachsen (5vw -> 5.45vw), sonst bliebe der Zuwachs
-    auf die Breiten beschraenkt, an denen die Obergrenze greift, und mittlere
-    Fenster um 1024px saehen unveraendert aus.
+    Die Obergrenze liegt rund neunzehn Prozent ueber der gemeinsamen Skala:
+    76px statt 64px bei 1440. Der mittlere Term ist mitgewachsen
+    (5vw -> 5.94vw), sonst bliebe der Zuwachs auf die Breiten beschraenkt,
+    an denen die Obergrenze greift, und mittlere Fenster um 1024px saehen
+    unveraendert aus. Platz dafuer schafft die Bildspalte, die von 0.9fr
+    auf 0.68fr geschrumpft ist - die Textspalte waechst bei 1440 dadurch
+    von 576 auf 692px.
 
     Die Untergrenze bleibt bewusst auf 2.5rem, also genau dem heutigen Wert.
     Sie greift auf Telefonen, und dort ist kein Platz mehr: die rotierende
@@ -220,7 +223,7 @@
     daher ab etwa 734px Fensterbreite, wo 5.45vw die Untergrenze ueberholt.
   */
   .text-hero-display {
-    font-size: clamp(2.5rem, 5.45vw, 4.35rem);
+    font-size: clamp(2.5rem, 5.94vw, 4.75rem);
     line-height: 1.02;
     letter-spacing: -0.03em;
     font-weight: 800;

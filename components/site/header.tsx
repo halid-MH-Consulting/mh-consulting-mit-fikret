@@ -65,21 +65,21 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
           : 'border-b border-transparent bg-transparent',
       )}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-6 md:h-20">
+      <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-6 px-6 md:h-24">
         {/*
           Kein aria-label auf dem Link: der zugaengliche Name soll aus dem
           alt-Text des Bildes kommen, sonst wuerde das Label ihn verdecken.
-          Das Emblem ist nahezu quadratisch, deshalb bestimmt die Hoehe die
-          Breite. 40px in der 64px-Leiste, 52px in der 80px-Leiste - die
+          Die Wortmarke ist breiter als hoch, die Hoehe bestimmt die
+          Breite. 46px in der 72px-Leiste, 62px in der 96px-Leiste - die
           Leiste selbst waechst dadurch nicht.
         */}
         <Link href={href(locale, '/')} className="flex shrink-0 items-center">
           <img
             src="/mh-consulting-logo.png"
             alt="MH Consulting & Influencer Marketing"
-            width={240}
-            height={237}
-            className="h-[40px] w-auto object-contain md:h-[52px]"
+            width={400}
+            height={248}
+            className="h-[46px] w-auto object-contain md:h-[62px]"
           />
         </Link>
 
@@ -90,7 +90,7 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
               href={href(locale, item.path)}
               aria-current={isCurrent(item.path) ? 'page' : undefined}
               className={cn(
-                'rounded-full px-3.5 py-2 text-sm font-medium transition-colors',
+                'rounded-full px-4 py-2 text-[0.9375rem] font-medium transition-colors',
                 isCurrent(item.path)
                   ? 'font-semibold text-foreground'
                   : 'text-muted-foreground hover:text-foreground',
@@ -104,7 +104,7 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
         <div className="flex items-center gap-2">
           <Link
             href={href(locale, '/contact')}
-            className="group hidden items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 sm:inline-flex"
+            className="group hidden items-center gap-1.5 rounded-full bg-primary px-5.5 py-2.5 text-[0.9375rem] font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 sm:inline-flex"
           >
             {t.common.startProject}
             <ArrowUpRight
@@ -132,7 +132,7 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
           ref={panelRef}
           // Bildschirmfuellend statt als Klappe: sonst scheint der Inhalt
           // darunter durch und man sieht zwei Haupt-Buttons gleichzeitig.
-          className="fixed inset-x-0 bottom-0 top-16 overflow-y-auto border-t border-border bg-background px-6 pb-8 pt-4 md:hidden"
+          className="fixed inset-x-0 bottom-0 top-[72px] overflow-y-auto border-t border-border bg-background px-6 pb-8 pt-4 md:hidden"
         >
           <nav aria-label={t.nav.mobile} className="flex flex-col">
             {NAV.map((item) => (
