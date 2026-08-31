@@ -36,17 +36,21 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             {/*
-              Dieselbe Datei wie im Kopf, nur kleiner gesetzt: 52 statt 62px.
+              Hier die Fassung mit Kreis, im Kopf steht die Wortmarke ohne.
+              Der Kreis ist fast quadratisch und traegt seine Schrift innen;
+              bei der Kopfhoehe von 62px waere die Zeile "& INFLUENCER
+              MARKETING" unter zwei Pixel hoch. In der Fusszeile ist Platz,
+              deshalb 88px - dort traegt dieselbe Zeile gut drei Pixel.
               Kein aria-label auf dem Link, der zugaengliche Name kommt aus
               dem alt-Text - ein Label wuerde ihn verdecken.
             */}
             <Link href={href(locale, '/')} className="inline-flex items-center">
               <img
-                src="/mh-consulting-logo.png"
+                src="/mh-consulting-logo-circle.png"
                 alt="MH Consulting & Influencer Marketing"
-                width={400}
-                height={248}
-                className="h-[52px] w-auto object-contain"
+                width={240}
+                height={237}
+                className="h-[88px] w-auto object-contain"
               />
             </Link>
             <p className="measure-tight mt-6 text-sm leading-relaxed text-muted-foreground">
@@ -115,7 +119,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
             deshalb hier in der Komponente statt im Woerterbuch.
           */}
           <p className="text-xs text-muted-foreground">
-            MH Consulting<sup className="text-[0.7em]">&trade;</sup> owned by Imeroska - FZCO
+            MH Consulting own Imeroska - FZCO<sup className="text-[0.7em]">&trade;</sup>
           </p>
         </div>
       </div>
