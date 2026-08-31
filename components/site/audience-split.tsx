@@ -31,11 +31,28 @@ export function AudienceSplit({ locale, t }: { locale: Locale; t: Dictionary }) 
                 className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border transition-colors duration-300 hover:border-primary/50"
               >
                 <div className="relative aspect-16/10 overflow-hidden">
-                  <Photo
-                    image={door.image}
-                    sizes="(min-width: 768px) 46vw, calc(100vw - 3rem)"
-                    imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                  />
+                  {door.path === '/for-brands' ? (
+                    <video
+                      className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-hidden="true"
+                    >
+                      <source
+                        src="/videos/influencer-marketing-loop.webm"
+                        type="video/webm"
+                      />
+                    </video>
+                  ) : (
+                    <Photo
+                      image={door.image}
+                      sizes="(min-width: 768px) 46vw, calc(100vw - 3rem)"
+                      imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                    />
+                  )}
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <span className="text-sm font-semibold text-primary">{door.kicker}</span>
