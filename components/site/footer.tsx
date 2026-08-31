@@ -37,10 +37,18 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
           <div className="lg:col-span-2">
             {/*
               Hier die Fassung mit Kreis, im Kopf steht die Wortmarke ohne.
-              Der Kreis ist fast quadratisch und traegt seine Schrift innen;
-              bei der Kopfhoehe von 62px waere die Zeile "& INFLUENCER
-              MARKETING" unter zwei Pixel hoch. In der Fusszeile ist Platz,
-              deshalb 88px - dort traegt dieselbe Zeile gut drei Pixel.
+
+              Die Datei stammt aus Logo_vektor.ai und wird bei 1200px Breite
+              gerastert, nicht mehr aus der alten 240px-Fassung skaliert.
+              Bei 199px Anzeige reicht das bis zu dreifacher Pixeldichte.
+
+              Die Hoehe ist nicht geschaetzt, sondern aus dem Zeichen selbst
+              abgeleitet: im Render misst der Schriftzug CONSULTING 86 Pixel,
+              die Zeile "&INFLUENCER MARKETING" 38. Damit die untere Zeile so
+              gross wird wie CONSULTING bei 88px war, muss das ganze Zeichen
+              um 86/38 wachsen - das sind 199px. Nachgerechnet traegt
+              "&INFLUENCER MARKETING" dort 6.4px, genau so viel wie
+              CONSULTING vorher.
               Kein aria-label auf dem Link, der zugaengliche Name kommt aus
               dem alt-Text - ein Label wuerde ihn verdecken.
             */}
@@ -48,9 +56,9 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
               <img
                 src="/mh-consulting-logo-circle.png"
                 alt="MH Consulting & Influencer Marketing"
-                width={240}
-                height={237}
-                className="h-[88px] w-auto object-contain"
+                width={1200}
+                height={1182}
+                className="h-[199px] w-auto object-contain"
               />
             </Link>
             <p className="measure-tight mt-6 text-sm leading-relaxed text-muted-foreground">
