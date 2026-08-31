@@ -1,0 +1,49 @@
+# LiteLLM proxy config: exposes an Anthropic /v1/messages endpoint backed by Ollama.
+#
+# Claude Code speaks the Anthropic Messages API. Ollama speaks its own /api/chat.
+# LiteLLM sits between them and translates. Verified against LiteLLM 1.98.0.
+#
+# Two syntax notes, both verified the hard way:
+#   * `ollama_chat/` (NOT `ollama/`) routes to Ollama's /api/chat endpoint, which
+#     is the one that applies the chat template and handles tool calling.
+#   * Env vars use LiteLLM's `os.environ/NAME` form. Shell-style `${NAME}` is NOT
+#     interpolated -- it is passed through literally and produces a broken URL.
+#     Because the whole value is substituted, the env var must carry the full
+#     provider-prefixed string, e.g. OLLAMA_MAIN_REF="ollama_chat/qwen3-coder:30b".
+
+model_list:
+  # Main model. Claude Code is pointed here via ANTHROPIC_MODEL.
+  - model_name: local-main
+    litellm_params:
+      model: os.environ/OLLAMA_MAIN_REF
+      api_base: os.environ/OLLAMA_HOST_URL
+
+  # Cheap/fast model. Claude Code uses this for background work such as
+  # conversation titles and summaries. Pointing it at a smaller model keeps the
+  # main model free for actual reasoning.
+  - model_name: local-fast
+    litellm_params:
+      model: os.environ/OLLAMA_FAST_REF
+      api_base: os.environ/OLLAMA_HOST_URL
+
+  # Catch-all. Claude Code occasionally requests a hardcoded model name that the
+  # env vars do not override. Without this the request fails; with it, the
+  # request quietly lands on the main model.
+  - model_name: "*"
+    litellm_params:
+      model: os.environ/OLLAMA_MAIN_REF
+      api_base: os.environ/OLLAMA_HOST_URL
+
+# No `general_settings.master_key` here, deliberately. LiteLLM prefers the
+# `Authorization: Bearer` header over `x-api-key`, and if that bearer is not the
+# master key it tries to look it up as a virtual key in a database that does not
+# exist -- failing with the very unhelpful `400 No connected db`. A Claude Code
+# install that is logged in via OAuth sends its own rotating `sk-ant-oat-...`
+# bearer, which overrides ANTHROPIC_AUTH_TOKEN, so no fixed master key can ever
+# match it. With no master key set, the proxy accepts any token. start.sh binds
+# it to 127.0.0.1 so nothing off this machine can reach it anyway.
+
+litellm_settings:
+  # Silently discard params the local backend does not understand instead of
+  # erroring. Claude Code sends Anthropic-specific fields Ollama has no use for.
+  drop_params: true

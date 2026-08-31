@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# Launch Claude Code against the local Ollama-backed proxy.
+# Any arguments are forwarded to `claude`, e.g.  ./claude-local "explain lib/i18n"
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+# shellcheck source=config.env
+source ./config.env
+
+command -v claude >/dev/null 2>&1 || {
+  echo "claude CLI not found. Install: npm i -g @anthropic-ai/claude-code" >&2; exit 1; }
+
+curl -fsS --max-time 5 "${LITELLM_URL}/health/liveliness" >/dev/null 2>&1 || {
+  echo "Proxy not reachable at ${LITELLM_URL}. Start it with: ./start.sh" >&2; exit 1; }
+
+# ANTHROPIC_BASE_URL is read once at process start and never re-checked, so it
+# must be set before `claude` launches -- exporting it mid-session does nothing.
+export ANTHROPIC_BASE_URL="$LITELLM_URL"
+
+# ANTHROPIC_AUTH_TOKEN sets the literal Authorization: Bearer header. The proxy
+# ignores its value, but the CLI needs a credential present so it does not drop
+# into an interactive login. Unset the real key so a genuine Anthropic
+# credential is never handed to a local process.
+#
+# Note: if this CLI is logged in via OAuth, the stored credential wins over this
+# variable and a rotating sk-ant-oat-... bearer is sent instead. That is exactly
+# why the proxy does not check tokens -- see litellm.config.yaml.
+export ANTHROPIC_AUTH_TOKEN="$LOCAL_PLACEHOLDER_TOKEN"
+unset ANTHROPIC_API_KEY
+
+# Model routing. The names must match model_name entries in litellm.config.yaml.
+# Both the older ANTHROPIC_MODEL/ANTHROPIC_SMALL_FAST_MODEL pair and the newer
+# per-tier vars are set, so this works across Claude Code versions. The "*"
+# catch-all in the config covers anything these miss.
+export ANTHROPIC_MODEL="local-main"
+export ANTHROPIC_SMALL_FAST_MODEL="local-fast"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="local-main"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="local-main"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="local-fast"
+
+# Claude Code does not recognise these model names, and for an unknown model it
+# assumes a 200k context window. Left alone it would happily fill 200k before
+# auto-compacting, while Ollama silently discards everything past num_ctx --
+# the two failure modes compound. Tell it the real window so compaction fires
+# while the conversation still fits.
+export CLAUDE_CODE_MAX_CONTEXT_TOKENS="$NUM_CTX_MAIN"
+
+# Ollama treats num_ctx as one budget shared by prompt and completion. Claude
+# Code defaults to requesting 32000 output tokens, which would consume nearly
+# the entire 32k window before the prompt is even counted. Verified: this maps
+# straight through to Ollama's options.num_predict.
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS="$MAX_OUTPUT_TOKENS"
+
+# Local models are slow. The default request timeout is too tight for a big
+# prompt on CPU or a cold model load.
+export API_TIMEOUT_MS="${API_TIMEOUT_MS:-600000}"
+
+# Nothing here should phone home.
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+
+printf '\033[1;34m==>\033[0m claude -> %s (%s)\n' "$LITELLM_URL" "$OLLAMA_MAIN_MODEL"
+exec claude "$@"
