@@ -75,10 +75,22 @@ export function Testimonials({ t }: { t: Dictionary }) {
     // erhalten bleibt. Ueberschrift, Beschreibungen und Trennlinien ziehen
     // ueber die semantischen Tokens automatisch nach.
     <section
-      className="surface-dark relative py-24 md:py-32"
+      className="surface-dark relative overflow-hidden py-24 md:py-32"
       aria-labelledby="testimonials-heading"
     >
-      <div className="mx-auto max-w-6xl px-6">
+      {/*
+        Derselbe weiche Schein wie in CoreMessage und CtaBand. Ohne ihn bliebe
+        die Flaeche flach schwarz und faellt gegen die uebrigen dunklen
+        Sektionen ab - sie leben alle von dieser leichten Aufhellung zur
+        Mitte hin. Werte aus CoreMessage uebernommen, weil diese Sektion
+        aehnlich hoch ist; overflow-hidden an der Sektion beschneidet den
+        Kreis, relative am Inhalt haelt ihn darunter.
+      */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[38rem] w-[38rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/12 blur-[140px]"
+      />
+      <div className="relative mx-auto max-w-6xl px-6">
         <Reveal className="max-w-2xl">
           <h2 id="testimonials-heading" className="text-h2">
             {t.testimonials.heading}
