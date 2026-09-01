@@ -18,9 +18,14 @@ import { getDictionary, isLocale } from '@/lib/i18n'
 
 /*
   Der Rhythmus der Seite: hell ist der Grundzustand, vier dunkle Sektionen
-  setzen die Akzente (CoreMessage, NetworkMap, Stats, FinalCta). Sie stehen
-  bewusst verteilt, damit nie mehr als drei helle Sektionen aufeinander
-  folgen. Gemessen an der Scrollhoehe ergibt das rund 70/30.
+  setzen die Akzente (CoreMessage, NetworkMap, Testimonials, FinalCta). Sie
+  stehen bewusst verteilt, damit nie mehr als drei helle Sektionen
+  aufeinander folgen.
+
+  Der dritte Anker sass frueher auf Stats. Seit die Zahlenreihe ruht, traegt
+  ihn Testimonials - die Sektion direkt darunter, an praktisch derselben
+  Stelle im Seitenlauf. Wird Stats wieder eingeschaltet, stehen zwei dunkle
+  Sektionen hintereinander; dann gehoert Testimonials zurueck auf hell.
 */
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params

@@ -19,11 +19,31 @@ import { Reveal } from './reveal'
   Der Kasten um das Logo hat eine feste Hoehe. Nur so sitzen alle drei
   Zeichen auf derselben Mittelachse und alle drei Beschreibungen beginnen
   auf derselben Linie, obwohl die Logos verschieden hoch sind.
+
+  srcDark ist die Fassung fuer den dunklen Grund. Sie entsteht nicht durch
+  filter: invert() - das wuerde Gelb zu Blau und Gruen zu Magenta drehen und
+  damit fremde Markenfarben zeigen. Stattdessen sind in der Datei nur die
+  unbunten Pixel auf Weiss gesetzt; Alpha und alle farbigen Flaechen bleiben
+  Pixel fuer Pixel unangetastet. Gemessen betrifft das bei Directo 80.7% der
+  Flaeche (der Schriftzug, das gelbe D bleibt) und bei Freedome 86.9% (der
+  Schriftzug, der gruene Vogel bleibt).
+
+  Holafly hat kein srcDark: das Zeichen ist zu 100% farbig, es gibt dort
+  nichts umzufaerben.
 */
-const BRANDS = [
+const BRANDS: {
+  name: string
+  src: string
+  srcDark?: string
+  width: number
+  height: number
+  size: string
+  description: string
+}[] = [
   {
     name: 'Directo',
     src: '/logos/directo.png',
+    srcDark: '/logos/directo-dark.png',
     width: 819,
     height: 219,
     size: 'h-[36px] md:h-[32px] lg:h-[40px] xl:h-[44px]',
@@ -40,6 +60,7 @@ const BRANDS = [
   {
     name: 'Freedome',
     src: '/logos/freedome.png',
+    srcDark: '/logos/freedome-dark.png',
     width: 900,
     height: 128,
     size: 'h-[30px] md:h-[27px] lg:h-[34px] xl:h-[38px]',
@@ -49,7 +70,14 @@ const BRANDS = [
 
 export function Testimonials({ t }: { t: Dictionary }) {
   return (
-    <section className="relative py-24 md:py-32" aria-labelledby="testimonials-heading">
+    // Dunkler Anker an der Stelle, an der vorher die Zahlenreihe stand:
+    // dieselbe Flaeche wie dort, damit der Wechsel hell/dunkel im Seitenlauf
+    // erhalten bleibt. Ueberschrift, Beschreibungen und Trennlinien ziehen
+    // ueber die semantischen Tokens automatisch nach.
+    <section
+      className="surface-dark relative py-24 md:py-32"
+      aria-labelledby="testimonials-heading"
+    >
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="max-w-2xl">
           <h2 id="testimonials-heading" className="text-h2">
@@ -67,7 +95,7 @@ export function Testimonials({ t }: { t: Dictionary }) {
             >
               <span className="flex h-[44px] items-center md:h-[40px] lg:h-[48px] xl:h-[52px]">
                 <img
-                  src={brand.src}
+                  src={brand.srcDark ?? brand.src}
                   alt={brand.name}
                   width={brand.width}
                   height={brand.height}

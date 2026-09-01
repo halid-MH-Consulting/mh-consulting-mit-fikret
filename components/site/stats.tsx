@@ -2,6 +2,21 @@ import type { Dictionary } from '@/lib/i18n'
 import { Reveal } from './reveal'
 import { CountUp } from './count-up'
 
+/*
+  Schalter fuer die Zahlenreihe.
+
+  Die vier Werte sind Platzhalter, wie der Hinweis unter ihnen selbst
+  einraeumt. Bis belastbare Fallstudien und echte Leistungsdaten vorliegen,
+  bleibt die Sektion aus. Sobald sie da sind: hier auf true stellen, die
+  Zahlen in VALUES eintragen und t.stats.note anpassen oder streichen -
+  mehr ist nicht noetig, der Rest der Sektion steht unveraendert bereit.
+
+  Ausgeblendet rendert die Komponente gar nichts. Ihr Abstand steckt in der
+  Sektion selbst (py-20), nicht in einem Aussenabstand, deshalb bleibt an
+  ihrer Stelle keine Luecke zurueck.
+*/
+const SHOW_STATS_SECTION = false
+
 // Zahlen sind sprachunabhaengig, nur die Beschriftungen kommen aus dem
 // Woerterbuch. Reihenfolge entspricht t.stats.items.
 const VALUES = [
@@ -12,6 +27,8 @@ const VALUES = [
 ]
 
 export function Stats({ t }: { t: Dictionary }) {
+  if (!SHOW_STATS_SECTION) return null
+
   return (
     // Dunkler Anker 3 von 4: unterbricht die lange helle Strecke zwischen
     // Karte und Abschluss und gibt den Zahlen mehr Gewicht.
