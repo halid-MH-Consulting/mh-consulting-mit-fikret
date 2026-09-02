@@ -1,0 +1,29 @@
+# Einstellungen fuer pnpm.
+#
+# Ab pnpm 11 liest pnpm sie nicht mehr aus package.json, sondern von hier.
+# Vercel ist mitten am Tag von pnpm 10 auf 11 gewechselt; seitdem scheiterte
+# jeder Build. Diese Datei gilt fuer beide Fassungen, pnpm 10 liest sie
+# ebenso - deshalb keine Festschreibung auf eine alte Fassung.
+
+# Stand vorher unter "pnpm.overrides" in package.json. pnpm 11 hat den
+# Eintrag stillschweigend uebergangen, waehrend er in der Sperrdatei weiter
+# stand: [ERR_PNPM_LOCKFILE_CONFIG_MISMATCH].
+overrides:
+  hono: 4.12.25
+
+# Beide Pakete tragen Installationsskripte, die hier noch nie ausgefuehrt
+# wurden. Unter pnpm 10 war das eine Warnung, unter pnpm 11 bricht die
+# Installation ab: [ERR_PNPM_IGNORED_BUILDS]. Die Eintraege schreiben also nur
+# fest, was ohnehin schon galt - die laufende Seite ist genau so gebaut.
+#
+# sharp haengt an next und dient der Bildoptimierung; auf Vercel uebernimmt
+# die die Plattform. msw haengt am shadcn-Kommandozeilenwerkzeug und kommt im
+# Seitenbau nicht vor.
+allowBuilds:
+  msw: false
+  sharp: false
+
+# Dasselbe fuer pnpm 10, das allowBuilds noch nicht kennt.
+ignoredBuiltDependencies:
+  - msw
+  - sharp
