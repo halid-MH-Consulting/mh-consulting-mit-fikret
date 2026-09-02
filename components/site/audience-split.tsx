@@ -52,11 +52,11 @@ export function AudienceSplit({ locale, t }: { locale: Locale; t: Dictionary }) 
                       loop
                       playsInline
                       preload="metadata"
-                      poster="/videos/creator-cafe-loop-poster.jpg"
+                      poster="/videos/travel-creator-loop-poster.jpg"
                       aria-hidden="true"
                     >
-                      <source src="/videos/creator-cafe-loop.webm" type="video/webm" />
-                      <source src="/videos/creator-cafe-loop.mp4" type="video/mp4" />
+                      <source src="/videos/travel-creator-loop.webm" type="video/webm" />
+                      <source src="/videos/travel-creator-loop.mp4" type="video/mp4" />
                     </video>
                   )}
                 </div>
