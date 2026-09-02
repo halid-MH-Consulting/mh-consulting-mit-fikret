@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 
 import { LanguageSwitcher } from '@/components/site/language-switcher'
 import { LOCALES, LOCALE_TAGS, getDictionary, isLocale, type Locale } from '@/lib/i18n'
+import { SITE_URL } from '@/lib/site'
 import '../globals.css'
 
 /*
@@ -38,7 +39,7 @@ export async function generateMetadata({
   const t = getDictionary(locale)
 
   return {
-    metadataBase: new URL('https://mh-consulting-mit-fikret.vercel.app'),
+    metadataBase: new URL(SITE_URL),
     title: t.meta.home.title,
     description: t.meta.home.description,
     /*

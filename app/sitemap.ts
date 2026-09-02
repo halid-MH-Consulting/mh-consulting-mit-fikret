@@ -1,8 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 import { LOCALES, LOCALE_TAGS } from '@/lib/i18n/config'
-
-const BASE = 'https://mh-consulting-mit-fikret.vercel.app'
+import { SITE_URL as BASE } from '@/lib/site'
 
 // Impressum und Datenschutz stehen bewusst nicht drin: sie sind per
 // robots-Metadatum auf noindex gesetzt, solange die Firmenangaben fehlen.
