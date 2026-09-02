@@ -31,10 +31,10 @@ export const it: Dictionary = {
 
   meta: {
     home: {
-      title: 'MH Consulting — Influencer marketing per i brand del turismo | Dubai',
+      title: 'MH Consulting & Influencer marketing per i brand del turismo | Dubai',
       description:
         'MH Consulting è un’agenzia di influencer marketing con sede a Dubai che trasforma i creator in partner di lungo periodo. Specializzata in viaggi, turismo, hotel, compagnie aeree, eSIM, VPN e travel tech. Attiva in tutto il mondo.',
-      ogTitle: 'MH Consulting — Influencer marketing per i brand del turismo',
+      ogTitle: 'MH Consulting & Influencer marketing per i brand del turismo',
       ogDescription:
         'Agenzia di influencer marketing con sede a Dubai che trasforma i creator in partner di lungo periodo.',
     },

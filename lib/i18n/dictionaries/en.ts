@@ -30,10 +30,10 @@ export const en = {
 
   meta: {
     home: {
-      title: 'MH Consulting — Influencer Marketing for Travel Brands | Dubai',
+      title: 'MH Consulting & Influencer Marketing for Travel Brands | Dubai',
       description:
         'MH Consulting is a Dubai-based influencer marketing agency turning creators into long-term brand partners. Specialists in travel, tourism, hotels, airlines, eSIM, VPN and travel tech. Working globally.',
-      ogTitle: 'MH Consulting — Influencer Marketing for Travel Brands',
+      ogTitle: 'MH Consulting & Influencer Marketing for Travel Brands',
       ogDescription:
         'Dubai-based influencer marketing agency turning creators into long-term brand partners.',
     },
