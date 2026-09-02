@@ -1,9 +1,7 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 
-import { IMAGES } from '@/lib/images'
 import { href, type Dictionary, type Locale } from '@/lib/i18n'
-import { Photo } from './photo'
 import { Reveal } from './reveal'
 
 /*
@@ -13,8 +11,8 @@ import { Reveal } from './reveal'
 */
 export function AudienceSplit({ locale, t }: { locale: Locale; t: Dictionary }) {
   const doors = [
-    { path: '/for-brands', image: IMAGES.brandsHero, ...t.audience.brands },
-    { path: '/for-creators', image: IMAGES.creatorHero, ...t.audience.creators },
+    { path: '/for-brands', ...t.audience.brands },
+    { path: '/for-creators', ...t.audience.creators },
   ]
 
   return (
@@ -47,11 +45,18 @@ export function AudienceSplit({ locale, t }: { locale: Locale; t: Dictionary }) 
                       />
                     </video>
                   ) : (
-                    <Photo
-                      image={door.image}
-                      sizes="(min-width: 768px) 46vw, calc(100vw - 3rem)"
-                      imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                    />
+                    <video
+                      className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      poster="/videos/creator-cafe-loop-poster.jpg"
+                      aria-hidden="true"
+                    >
+                      <source src="/videos/creator-cafe-loop.mp4" type="video/mp4" />
+                    </video>
                   )}
                 </div>
                 <div className="flex flex-1 flex-col p-7">
