@@ -30,7 +30,7 @@ export function WhyUs({ t }: { t: Dictionary }) {
         <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
           <Reveal className="lg:sticky lg:top-28 lg:self-start">
             <div className="relative aspect-4/5 overflow-hidden rounded-2xl">
-              <Photo image={IMAGES.resort} sizes="(min-width: 1024px) 38vw, calc(100vw - 3rem)" />
+              <Photo image={IMAGES.worldwideNetwork} sizes="(min-width: 1024px) 38vw, calc(100vw - 3rem)" />
             </div>
           </Reveal>
 

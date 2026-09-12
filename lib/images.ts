@@ -170,4 +170,27 @@ export const IMAGES = {
     width: 1800,
     height: 945,
   },
+  /*
+    Motiv fuer "What makes us different". Quelle von MH Consulting als JPEG,
+    1844x2304, 2.59 MB; hier 1440x1800 und WebP q=90, 429 KB bei 41.7 dB
+    PSNR gegen die gleich verkleinerte Quelle.
+
+    Groesser als die uebrigen eigenen Motive, weil neun Einzelbilder in
+    einer Collage deutlich schlechter komprimieren als ein Foto. 1440px
+    deckt den groessten Anzeigefall ab: bei 768px Fensterbreite steht das
+    Bild ueber die volle Breite von 720px, das sind 1440 Geraetepixel bei
+    doppelter Dichte.
+
+    Das Seitenverhaeltnis ist exakt 0.800 und damit genau das des Rahmens
+    (aspect-4/5) - hier wird als einzigem Motiv nichts beschnitten.
+
+    Der Bildtext steht im alt-Attribut: er ist Teil der Aussage und fuer
+    Suchmaschinen sonst unsichtbar.
+  */
+  worldwideNetwork: {
+    src: '/worldwide-network.webp',
+    alt: 'A collage headed "Worldwide Network": a traveller with a backpack walking down an open road, framed by destinations - snow-capped mountains with prayer flags, boats on a lake, a temple at sunset, the Taj Mahal, a hill fort, a waterfall, a tiger, a European street and overwater bungalows',
+    width: 1440,
+    height: 1800,
+  },
 } satisfies Record<string, SiteImage>
