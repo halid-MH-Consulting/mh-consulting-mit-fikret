@@ -156,7 +156,7 @@ export const it: Dictionary = {
         title: 'Selezione dei creator',
         tagline: 'I creator giusti, verificati con cura',
         description:
-          'Le grandi campagne richiedono più di grandi creator. Sviluppiamo campagne di influencer marketing basate sui dati, con obiettivi chiari, esecuzione impeccabile e risultati misurabili: così ogni collaborazione contribuisce alla notorietà, alla crescita e al successo di lungo periodo del vostro brand.',
+          'Trovare creator è facile. Trovare i creator giusti è ciò che fa funzionare una campagna. Abbiniamo con cura il vostro brand a creator il cui pubblico, i cui contenuti e i cui valori si allineano ai vostri obiettivi: così nascono collaborazioni autentiche, con il massimo impatto e risultati che durano.',
         capabilities: ['Competenza di nicchia', 'Verifica dei creator', 'Coerenza con il brand'],
       },
       {

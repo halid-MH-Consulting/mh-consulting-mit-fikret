@@ -164,7 +164,7 @@ export const en = {
         title: 'Creator Discovery',
         tagline: 'The right creators, carefully vetted',
         description:
-          'Great campaigns are built on more than great creators. We develop data driven influencer campaigns with clear objectives, seamless execution and measurable outcomes, ensuring every partnership contributes to your brand’s awareness, growth and long term success.',
+          'Finding creators is easy. Finding the right creators is what drives successful campaigns. We carefully match your brand with creators whose audience, content and values align with your goals, creating authentic partnerships that maximise impact and long term performance.',
         capabilities: ['Niche Expertise', 'Creator Vetting', 'Brand Fit'],
       },
       {

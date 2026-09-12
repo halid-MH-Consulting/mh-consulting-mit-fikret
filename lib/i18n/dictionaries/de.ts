@@ -157,7 +157,7 @@ export const de: Dictionary = {
         title: 'Creator-Auswahl',
         tagline: 'Die passenden Creators, sorgfältig geprüft',
         description:
-          'Große Kampagnen brauchen mehr als große Creators. Wir entwickeln datengetriebene Influencer-Kampagnen mit klaren Zielen, reibungsloser Umsetzung und messbaren Ergebnissen — damit jede Partnerschaft zu Bekanntheit, Wachstum und langfristigem Erfolg Ihrer Marke beiträgt.',
+          'Creator zu finden ist einfach. Die richtigen Creator zu finden entscheidet über den Erfolg einer Kampagne. Wir bringen Ihre Marke sorgfältig mit Creators zusammen, deren Publikum, Inhalte und Werte zu Ihren Zielen passen — so entstehen glaubwürdige Partnerschaften mit größtmöglicher Wirkung und langfristiger Leistung.',
         capabilities: ['Niche Expertise', 'Creator Vetting', 'Brand Fit'],
       },
       {
