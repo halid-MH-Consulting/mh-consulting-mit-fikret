@@ -122,6 +122,7 @@ export const de: Dictionary = {
     },
     target: {
       title: 'Für wen wir arbeiten',
+      leadIn: 'Reise als Schwerpunkt.',
       body: 'Unser Schwerpunkt liegt bei Reisemarken und Reise-Creators, unsere Erfahrung ist aber nicht auf eine Branche beschränkt. Wir unterstützen genauso Unternehmen aus anderen Branchen, die über strategisches Influencer-Marketing wachsen wollen.',
     },
   },

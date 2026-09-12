@@ -129,6 +129,7 @@ export const en = {
     },
     target: {
       title: 'Our Target',
+      leadIn: 'Travel as Focus.',
       body: 'While we primarily specialise in travel brands and creators, our expertise is not limited to one industry. We are equally equipped to support businesses in other industries looking to grow through strategic influencer marketing.',
     },
   },

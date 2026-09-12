@@ -121,6 +121,7 @@ export const it: Dictionary = {
     },
     target: {
       title: 'A chi ci rivolgiamo',
+      leadIn: 'Focus sul turismo.',
       body: 'Siamo specializzati soprattutto in brand e creator del turismo, ma la nostra esperienza non si limita a un solo settore. Sosteniamo allo stesso modo le aziende di altri settori che vogliono crescere attraverso l’influencer marketing strategico.',
     },
   },

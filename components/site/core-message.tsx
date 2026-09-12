@@ -1,4 +1,4 @@
-import { Blocks, Group } from 'lucide-react'
+import { Blocks, Group, type LucideIcon } from 'lucide-react'
 
 import type { Dictionary } from '@/lib/i18n'
 import { Reveal } from './reveal'
@@ -17,8 +17,45 @@ import { Reveal } from './reveal'
   Abschluss. Ein fuenfter mitten im Text nimmt den anderen die Wirkung.
 */
 
-const CARD_BASE =
-  'flex h-full flex-col rounded-3xl border bg-card/40 p-7 backdrop-blur-sm md:p-9'
+/*
+  Beide Karten tragen denselben Aufbau und unterscheiden sich nur in Farbe und
+  Zeichen. Deshalb ein Baustein statt zweimal dasselbe Markup: gleiche Kanten,
+  gleiche Innenabstaende, gleiche Grundlinien - und eine Aenderung wirkt auf
+  beide.
+*/
+function Card({
+  title,
+  leadIn,
+  body,
+  icon: Icon,
+  tone,
+}: {
+  title: string
+  leadIn: string
+  body: string
+  icon: LucideIcon
+  tone: 'neon' | 'electric'
+}) {
+  return (
+    <article
+      className={`flex h-full flex-col rounded-3xl border bg-card/40 p-7 backdrop-blur-sm md:p-9 ${
+        tone === 'neon' ? 'card-outline-neon' : 'card-outline-electric'
+      }`}
+    >
+      <div className="flex items-start justify-between gap-6">
+        <h3 className="text-base font-semibold">{title}</h3>
+        <Icon
+          className={`size-9 shrink-0 ${tone === 'neon' ? 'text-neon' : 'text-electric'}`}
+          strokeWidth={1.5}
+          aria-hidden
+        />
+      </div>
+      <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+        <strong className="font-semibold text-foreground">{leadIn}</strong> {body}
+      </p>
+    </article>
+  )
+}
 
 export function CoreMessage({ t }: { t: Dictionary }) {
   const c = t.core
@@ -58,26 +95,10 @@ export function CoreMessage({ t }: { t: Dictionary }) {
             selbst gleich hoch - deshalb h-full an der Karte selbst. */}
         <div className="mt-14 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-8">
           <Reveal as="div" delay={120} className="h-full">
-            <article className={`${CARD_BASE} card-outline-neon`}>
-              <div className="flex items-start justify-between gap-6">
-                <h3 className="text-base font-semibold">{c.solution.title}</h3>
-                <Blocks className="size-9 shrink-0 text-neon" strokeWidth={1.5} aria-hidden />
-              </div>
-              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-                <strong className="font-semibold text-foreground">{c.solution.leadIn}</strong>{' '}
-                {c.solution.body}
-              </p>
-            </article>
+            <Card {...c.solution} icon={Blocks} tone="neon" />
           </Reveal>
-
           <Reveal as="div" delay={200} className="h-full">
-            <article className={`${CARD_BASE} card-outline-electric`}>
-              <div className="flex items-start justify-between gap-6">
-                <h3 className="text-base font-semibold">{c.target.title}</h3>
-                <Group className="size-9 shrink-0 text-electric" strokeWidth={1.5} aria-hidden />
-              </div>
-              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{c.target.body}</p>
-            </article>
+            <Card {...c.target} icon={Group} tone="electric" />
           </Reveal>
         </div>
       </div>
