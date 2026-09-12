@@ -46,17 +46,8 @@ export function AudienceSplit({ locale, t }: { locale: Locale; t: Dictionary }) 
                     </video>
                   ) : (
                     <div className="relative h-full w-full overflow-hidden bg-black" aria-hidden="true">
-                      <img
-                        src="/videos/creator-airport-loop-poster.jpg"
-                        alt=""
-                        width="720"
-                        height="1280"
-                        loading="lazy"
-                        decoding="async"
-                        className="absolute inset-0 h-full w-full scale-110 object-cover opacity-70 blur-xl"
-                      />
                       <video
-                        className="relative z-10 h-full w-full object-contain transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                        className="h-full w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                         autoPlay
                         muted
                         loop
