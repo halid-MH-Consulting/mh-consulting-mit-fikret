@@ -53,9 +53,9 @@ export function AudienceSplit({ locale, t }: { locale: Locale; t: Dictionary }) 
                         loop
                         playsInline
                         preload="metadata"
-                        poster="/videos/creator-airport-loop-poster.jpg?v=3"
+                        poster="/videos/creator-airport-loop-poster.jpg?v=4"
                       >
-                        <source src="/videos/creator-airport-loop.mp4?v=3" type="video/mp4" />
+                        <source src="/videos/creator-airport-loop.mp4?v=4" type="video/mp4" />
                       </video>
                     </div>
                   )}
