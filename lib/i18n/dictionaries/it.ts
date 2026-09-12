@@ -146,7 +146,7 @@ export const it: Dictionary = {
     label: 'Servizi',
     items: [
       {
-        title: 'Costruire notorietà',
+        title: 'Brand Awareness',
         tagline: 'Farsi conoscere dal pubblico giusto',
         description:
           'Aiutiamo i brand a conquistare attenzione dove conta davvero. Collaborando con creator il cui pubblico si fida sinceramente dei loro consigli, costruiamo una notorietà che va oltre le impression: riconoscibilità, credibilità e un ricordo di marca che dura.',

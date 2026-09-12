@@ -147,32 +147,32 @@ export const de: Dictionary = {
     label: 'Leistungen',
     items: [
       {
-        title: 'Markenbekanntheit aufbauen',
+        title: 'Brand Awareness',
         tagline: 'Bei den richtigen Zielgruppen bekannt werden',
         description:
           'Wir verschaffen Marken Aufmerksamkeit dort, wo sie zählt. Durch Partnerschaften mit Creators, deren Publikum ihren Empfehlungen wirklich vertraut, entsteht Bekanntheit, die über Impressionen hinausgeht: Wiedererkennung, Glaubwürdigkeit und eine Marke, die im Gedächtnis bleibt.',
-        capabilities: ['Kundenvertrauen', 'Visuelle Identität', 'Bleibende Erinnerung'],
+        capabilities: ['Customer Trust', 'Visual Identity', 'Lasting Recall'],
       },
       {
         title: 'Creator-Auswahl',
         tagline: 'Die passenden Creators, sorgfältig geprüft',
         description:
           'Große Kampagnen brauchen mehr als große Creators. Wir entwickeln datengetriebene Influencer-Kampagnen mit klaren Zielen, reibungsloser Umsetzung und messbaren Ergebnissen — damit jede Partnerschaft zu Bekanntheit, Wachstum und langfristigem Erfolg Ihrer Marke beiträgt.',
-        capabilities: ['Nischen-Expertise', 'Creator-Prüfung', 'Markenpassung'],
+        capabilities: ['Niche Expertise', 'Creator Vetting', 'Brand Fit'],
       },
       {
         title: 'Kampagnen mit Wirkung',
         tagline: 'Vom Konzept zu messbaren Ergebnissen',
         description:
           'Große Kampagnen brauchen mehr als große Creators. Wir entwickeln datengetriebene Influencer-Kampagnen mit klaren Zielen, reibungsloser Umsetzung und messbaren Ergebnissen — damit jede Partnerschaft zu Bekanntheit, Wachstum und langfristigem Erfolg Ihrer Marke beiträgt.',
-        capabilities: ['Richtige Strategie', 'Content-Lieferung', 'Datenauswertung'],
+        capabilities: ['Right Strategy', 'Content Delivery', 'Data Insights'],
       },
       {
         title: 'Beratung',
         tagline: 'Strategie für die lange Strecke',
         description:
           'Influencer-Marketing verändert sich ständig, und jede Marke steht vor anderen Fragen. Wir beraten auf Grundlage von Branchenerfahrung, Marktkenntnis und bewährter Praxis — damit Sie sicher entscheiden, Budgets sinnvoll einsetzen und eine tragfähige Influencer-Marketing-Strategie aufbauen.',
-        capabilities: ['Wachstum & Trends', 'Marktkenntnis', 'Fachliche Beratung'],
+        capabilities: ['Growth/Trends', 'Market Insights', 'Expert Advice'],
       },
     ],
   },
