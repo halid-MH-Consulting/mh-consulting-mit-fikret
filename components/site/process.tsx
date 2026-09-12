@@ -58,7 +58,7 @@ export function Process({ t }: { t: Dictionary }) {
 
           <Reveal delay={140} className="lg:sticky lg:top-28 lg:self-start">
             <div className="relative aspect-3/4 overflow-hidden rounded-2xl">
-              <Photo image={IMAGES.shoot} sizes="(min-width: 1024px) 34vw, calc(100vw - 3rem)" />
+              <Photo image={IMAGES.whatMakesUsDifferent} sizes="(min-width: 1024px) 34vw, calc(100vw - 3rem)" />
             </div>
           </Reveal>
         </div>

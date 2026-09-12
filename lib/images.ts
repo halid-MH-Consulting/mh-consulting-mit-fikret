@@ -158,4 +158,16 @@ export const IMAGES = {
     width: 1600,
     height: 900,
   },
+  /*
+    Motiv fuer den Prozess-Abschnitt. Quelle von MH Consulting als AVIF,
+    1800x945, 78 KB; hier WebP q=90, 159 KB bei 43.6 dB PSNR. Das
+    Seitenverhaeltnis ist 1.905 - deutlich breiter als jeder andere
+    Bildrahmen auf der Seite.
+  */
+  whatMakesUsDifferent: {
+    src: '/what-makes-us-different.webp',
+    alt: 'A smiling man in a lilac jacket drawing a rising line and the figure 10K on a glass wall in a bright office full of plants',
+    width: 1800,
+    height: 945,
+  },
 } satisfies Record<string, SiteImage>
