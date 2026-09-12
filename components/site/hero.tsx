@@ -8,7 +8,7 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[100svh] overflow-hidden bg-slate-950"
+      className="relative isolate mt-[72px] flex min-h-[calc(100svh-72px)] overflow-hidden bg-slate-950 md:mt-24 md:min-h-[calc(100svh-96px)]"
       aria-labelledby="hero-heading"
     >
       <video
@@ -21,7 +21,9 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
         playsInline
         preload="auto"
       >
-        <source src="/hero.mp4" type="video/mp4" />
+        <source media="(max-width: 639px)" src="/hero-mobile.mp4" type="video/mp4" />
+        <source media="(max-width: 1023px)" src="/hero-tablet.mp4" type="video/mp4" />
+        <source src="/hero-desktop.mp4" type="video/mp4" />
       </video>
 
       <img
@@ -39,8 +41,8 @@ export function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
         aria-hidden
       />
 
-      <div className="mx-auto flex w-full max-w-6xl items-center px-6 pb-16 pt-28 md:pb-20 md:pt-32">
-        <div className="max-w-[44rem] py-10 text-white">
+      <div className="mx-auto flex w-full max-w-6xl items-end px-6 pb-10 pt-8 sm:items-center sm:pb-16 md:pb-20 md:pt-12">
+        <div className="max-w-[44rem] py-6 text-white sm:py-10">
           <p className="text-hero-meta flex items-center gap-2 font-medium text-white/78">
             <MapPin className="size-4 text-primary" aria-hidden />
             {t.hero.location}
