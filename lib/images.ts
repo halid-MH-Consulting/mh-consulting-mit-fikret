@@ -131,4 +131,31 @@ export const IMAGES = {
     width: 1198,
     height: 692,
   },
+
+  /*
+    Aufmacher der Leistung "Build Brand Awareness". Von MH Consulting als
+    JPEG geliefert (2574x1664, 2.42 MB) und hier auf 1600px und WebP q=90
+    gebracht: 253 KB bei 42.0 dB PSNR gegen die verkleinerte Quelle, also
+    visuell verlustfrei. Echt verlustfreies WebP waere mit 3.50 MB groesser
+    gewesen als das Ausgangs-JPEG - deshalb q=90.
+
+    Der Bildtext steht im alt-Attribut: er ist Teil der Aussage und fuer
+    Suchmaschinen sonst unsichtbar.
+  */
+  brandAwareness: {
+    src: '/service-brand-awareness.webp',
+    alt: 'A figure standing on the surface of dark water, overlaid with the words "See what we do others miss?"',
+    width: 1600,
+    height: 1034,
+  },
+  /*
+    Aufmacher der Leistung "Consulting". Quelle 2732x1536, 2.01 MB; hier
+    1600px und WebP q=90, 135 KB bei 43.1 dB PSNR.
+  */
+  consulting: {
+    src: '/service-consulting.webp',
+    alt: 'A diagram of influencer marketing channels around a presenter with a microphone: podcasts, blogs and websites, email newsletters, online publications, webinars and virtual events, and traditional media, with the stated benefits wider reach, higher trust, stronger impact, better ROI and endless possibilities',
+    width: 1600,
+    height: 900,
+  },
 } satisfies Record<string, SiteImage>

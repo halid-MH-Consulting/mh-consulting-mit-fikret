@@ -16,14 +16,15 @@ const ICONS = [Radar, Users, Rocket, Compass]
   Bild je Reiter, dieselbe Reihenfolge. Bisher stand ein einziges Foto fest
   im Bauteil und galt fuer alle vier.
 
-  Nur "High Impact Campaigns" hat ein eigenes Motiv; die uebrigen drei
-  behalten das Klippenfoto, bis MH Consulting auch dafuer Bilder liefert.
+  Drei der vier tragen jetzt ein eigenes Motiv von MH Consulting. Nur
+  "Creator Discovery" behaelt das Klippenfoto, bis auch dafuer ein Bild
+  vorliegt.
 */
 const PHOTOS = [
-  IMAGES.creatorAtWork,
+  IMAGES.brandAwareness,
   IMAGES.creatorAtWork,
   IMAGES.impact,
-  IMAGES.creatorAtWork,
+  IMAGES.consulting,
 ]
 
 export function Services({ t }: { t: Dictionary }) {
