@@ -55,12 +55,14 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
 
   // Nur echte Routen koennen "aktuell" sein, der FAQ-Anker nie.
   const isCurrent = (path: string) => !path.includes('#') && pathname === href(locale, path)
+  const isHome = pathname === href(locale, '/')
+  const overHero = isHome && !scrolled && !open
 
   return (
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-300',
-        scrolled
+        scrolled || open
           ? 'border-b border-border bg-background/85 backdrop-blur-xl'
           : 'border-b border-transparent bg-transparent',
       )}
@@ -79,7 +81,10 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
             alt="MH Consulting & Influencer Marketing"
             width={400}
             height={248}
-            className="h-[46px] w-auto object-contain md:h-[62px]"
+            className={cn(
+              'h-[46px] w-auto object-contain transition-[filter] duration-300 md:h-[62px]',
+              overHero && 'brightness-0 invert',
+            )}
           />
         </Link>
 
@@ -92,8 +97,12 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
               className={cn(
                 'rounded-full px-4 py-2 text-[0.9375rem] font-medium transition-colors',
                 isCurrent(item.path)
-                  ? 'font-semibold text-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
+                  ? overHero
+                    ? 'font-semibold text-white'
+                    : 'font-semibold text-foreground'
+                  : overHero
+                    ? 'text-white/80 hover:text-white'
+                    : 'text-muted-foreground hover:text-foreground',
               )}
             >
               {item.label}
@@ -119,7 +128,10 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
-            className="flex size-11 items-center justify-center rounded-full border border-border text-foreground md:hidden"
+            className={cn(
+              'flex size-11 items-center justify-center rounded-full border md:hidden',
+              overHero ? 'border-white/45 text-white' : 'border-border text-foreground',
+            )}
           >
             {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
           </button>
