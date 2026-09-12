@@ -106,11 +106,31 @@ export const en = {
     ],
   },
 
+  /*
+    Wortgleich uebernommen aus dem bestehenden WordPress-Auftritt, damit beide
+    Seiten dasselbe sagen.
+
+    Die Ueberschrift steht in Stuecken, weil zwei Wortgruppen farbig gesetzt
+    werden - rot und blau wie im Original. Ein einzelner Satz mit Auszeichnung
+    mitten im Text laesst sich nicht als eine Zeichenkette uebersetzen, ohne
+    Markup in die Sprachdatei zu holen.
+  */
   core: {
-    line1: 'Not one-off promotions.',
-    line2: 'Not random sponsorships.',
-    line3: 'Real partnerships.',
-    lead: 'We connect ambitious brands with carefully selected content creators, then keep those relationships running long enough that trust, reach and revenue compound.',
+    headingBefore:
+      'Global influencer marketing agency connecting brands with carefully selected creators through ',
+    headingRed: 'strategic partnerships',
+    headingBetween: ', ',
+    headingBlue: 'authentic campaigns',
+    headingAfter: ' and measurable results.',
+    solution: {
+      title: 'Your one Stop Solution',
+      leadIn: 'One partner. Every market.',
+      body: 'From in depth market research and creator discovery to strategic partnerships and campaign management, MH Consulting helps brands expand across Europe, North America and to the world from Dubai.',
+    },
+    target: {
+      title: 'Our Target',
+      body: 'While we primarily specialise in travel brands and creators, our expertise is not limited to one industry. We are equally equipped to support businesses in other industries looking to grow through strategic influencer marketing.',
+    },
   },
 
   audience: {

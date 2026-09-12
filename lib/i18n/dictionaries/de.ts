@@ -109,10 +109,21 @@ export const de: Dictionary = {
   },
 
   core: {
-    line1: 'Keine einmaligen Werbeposts.',
-    line2: 'Keine beliebigen Sponsorings.',
-    line3: 'Echte Partnerschaften.',
-    lead: 'Wir bringen ambitionierte Marken mit sorgfältig ausgewählten Creators zusammen und halten diese Beziehungen lange genug am Laufen, dass Vertrauen, Reichweite und Umsatz sich addieren.',
+    headingBefore:
+      'Globale Influencer-Marketing-Agentur, die Marken mit sorgfältig ausgewählten Creators verbindet – über ',
+    headingRed: 'strategische Partnerschaften',
+    headingBetween: ', ',
+    headingBlue: 'authentische Kampagnen',
+    headingAfter: ' und messbare Ergebnisse.',
+    solution: {
+      title: 'Ihre Lösung aus einer Hand',
+      leadIn: 'Ein Partner. Alle Märkte.',
+      body: 'Von fundierter Marktanalyse und der Suche nach passenden Creators bis zu strategischen Partnerschaften und der Steuerung ganzer Kampagnen: MH Consulting begleitet Marken bei der Expansion in Europa, Nordamerika und von Dubai aus in die ganze Welt.',
+    },
+    target: {
+      title: 'Für wen wir arbeiten',
+      body: 'Unser Schwerpunkt liegt bei Reisemarken und Reise-Creators, unsere Erfahrung ist aber nicht auf eine Branche beschränkt. Wir unterstützen genauso Unternehmen aus anderen Branchen, die über strategisches Influencer-Marketing wachsen wollen.',
+    },
   },
 
   audience: {

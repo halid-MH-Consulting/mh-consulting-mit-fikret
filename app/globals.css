@@ -270,6 +270,20 @@
     text-shadow: 0 0 26px color-mix(in oklch, var(--neon) 55%, transparent);
   }
   /*
+    Die beiden Karten im Kernabschnitt: farbige Linie mit weichem Schein nach
+    aussen. Als eigene Klassen und nicht als beliebige Tailwind-Werte, weil
+    color-mix() in einer Utility-Klammer an den Kommas zerbricht - und weil
+    Linie und Schein zusammengehoeren und nur gemeinsam Sinn ergeben.
+  */
+  .card-outline-neon {
+    border-color: color-mix(in oklch, var(--neon) 55%, transparent);
+    box-shadow: 0 0 34px -14px color-mix(in oklch, var(--neon) 80%, transparent);
+  }
+  .card-outline-electric {
+    border-color: color-mix(in oklch, var(--electric) 55%, transparent);
+    box-shadow: 0 0 34px -14px color-mix(in oklch, var(--electric) 80%, transparent);
+  }
+  /*
     Der Reveal-Effekt greift nur, wenn JavaScript wirklich laeuft. Ohne JS
     bliebe der Inhalt sonst fuer immer auf opacity 0 haengen, also unsichtbar.
 
