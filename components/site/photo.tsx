@@ -24,7 +24,7 @@ export function Photo({
     <img
       src={image.src}
       srcSet={image.srcSet}
-      sizes={sizes}
+      sizes={image.srcSet ? sizes : undefined}
       alt={image.alt}
       width={image.width}
       height={image.height}

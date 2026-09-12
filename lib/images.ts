@@ -17,7 +17,8 @@ function unsplash(id: string, width: number) {
 
 export type SiteImage = {
   src: string
-  srcSet: string
+  /* Fehlt bei lokalen Dateien: dort gibt es nur eine Groesse. */
+  srcSet?: string
   alt: string
   width: number
   height: number
@@ -115,4 +116,19 @@ export const IMAGES = {
     1600,
     1067,
   ),
+
+  /*
+    Aufmacher der Leistung "High Impact Campaigns". Von MH Consulting
+    geliefert und liegt als einzige Datei lokal in /public - alle uebrigen
+    Motive kommen von Unsplash.
+
+    Kein srcSet: es gibt nur diese eine Fassung. 1198x692 deckt die
+    Anzeigebreite von rund 790px bis etwa 1.5-facher Pixeldichte.
+  */
+  impact: {
+    src: '/IMPACT.webp',
+    alt: 'A creator seen in profile against a blue background, surrounded by a floating collage of photos, video players and social reactions',
+    width: 1198,
+    height: 692,
+  },
 } satisfies Record<string, SiteImage>

@@ -12,6 +12,20 @@ import { Reveal } from './reveal'
 // Reihenfolge entspricht der Liste im Woerterbuch.
 const ICONS = [Radar, Users, Rocket, Compass]
 
+/*
+  Bild je Reiter, dieselbe Reihenfolge. Bisher stand ein einziges Foto fest
+  im Bauteil und galt fuer alle vier.
+
+  Nur "High Impact Campaigns" hat ein eigenes Motiv; die uebrigen drei
+  behalten das Klippenfoto, bis MH Consulting auch dafuer Bilder liefert.
+*/
+const PHOTOS = [
+  IMAGES.creatorAtWork,
+  IMAGES.creatorAtWork,
+  IMAGES.impact,
+  IMAGES.creatorAtWork,
+]
+
 export function Services({ t }: { t: Dictionary }) {
   const items = t.services.items
   const [activeIndex, setActiveIndex] = useState(0)
@@ -118,7 +132,7 @@ export function Services({ t }: { t: Dictionary }) {
           >
             <div className="relative aspect-16/10 overflow-hidden rounded-2xl">
               <Photo
-                image={IMAGES.creatorAtWork}
+                image={PHOTOS[activeIndex] ?? PHOTOS[0]}
                 sizes="(min-width: 1024px) 55vw, calc(100vw - 3rem)"
               />
             </div>
