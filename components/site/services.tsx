@@ -20,31 +20,25 @@ const ICONS = [Radar, Users, Rocket, Compass]
   "Creator Discovery" behaelt das Klippenfoto, bis auch dafuer ein Bild
   vorliegt.
 
-  Die Einpassung gehoert zum Motiv, nicht zum Abschnitt - vorher stand sie
-  pauschal fuer alle vier auf "contain", und das war falsch:
-
-  - cover fuellt den Rahmen und beschneidet dafuer die Kanten. Bei einem Foto
-    merkt das niemand, es fehlt nur mehr Wasser oder mehr Himmel.
-  - contain zeigt das ganze Motiv und laesst dafuer Rand. Noetig nur dort, wo
-    an der Kante Inhalt steht, den man nicht verlieren darf.
-
-  Genau ein Motiv braucht contain: die Consulting-Grafik traegt aussen
-  "WIDER REACH" und "ENDLESS POSSIBILITIES", die bei cover angeschnitten
-  wurden. Alle uebrigen fuellen den Rahmen.
+  Alle vier fuellen den Rahmen (object-cover aus Photo). Das ist so
+  entschieden: einheitlich gefuellte Flaechen ohne Rand, dafuer wird an den
+  Kanten beschnitten. Bei der Consulting-Grafik kostet das aussen je gut
+  5 Prozent, also die Raender von "WIDER REACH" und "ENDLESS POSSIBILITIES".
+  Wer das vermeiden will, braucht die Grafik im Seitenverhaeltnis des
+  Rahmens, 16/10 - nicht eine andere Einpassung.
 */
-const MEDIA = [
-  { image: IMAGES.brandAwareness, fit: 'cover' },
-  { image: IMAGES.creatorAtWork, fit: 'cover' },
-  { image: IMAGES.impact, fit: 'cover' },
-  { image: IMAGES.consulting, fit: 'contain' },
-] as const
+const PHOTOS = [
+  IMAGES.brandAwareness,
+  IMAGES.creatorAtWork,
+  IMAGES.impact,
+  IMAGES.consulting,
+]
 
 export function Services({ t }: { t: Dictionary }) {
   const items = t.services.items
   const [activeIndex, setActiveIndex] = useState(0)
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
   const active = items[activeIndex] ?? items[0]
-  const media = MEDIA[activeIndex] ?? MEDIA[0]
 
   // Pfeiltasten wechseln die Auswahl, wie es fuer eine Tableiste erwartet wird.
   function onKeyDown(e: React.KeyboardEvent, index: number) {
@@ -144,20 +138,12 @@ export function Services({ t }: { t: Dictionary }) {
             key={activeIndex}
             className="flex flex-col"
           >
-            {/*
-              Fester Rahmen fuer alle vier Motive, damit das Feld beim
-              Reiterwechsel nicht springt. bg-secondary liegt darunter und ist
-              nur dort zu sehen, wo ein Motiv den Rahmen nicht fuellt - also
-              aktuell allein bei der Consulting-Grafik.
-
-              Photo setzt von sich aus object-cover; contain wird nur dort
-              uebergeben, wo es in MEDIA so steht.
-            */}
-            <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-secondary">
+            {/* Fester Rahmen fuer alle vier Motive, damit das Feld beim
+                Reiterwechsel nicht springt. */}
+            <div className="relative aspect-16/10 overflow-hidden rounded-2xl">
               <Photo
-                image={media.image}
+                image={PHOTOS[activeIndex] ?? PHOTOS[0]}
                 sizes="(min-width: 1024px) 55vw, calc(100vw - 3rem)"
-                imgClassName={media.fit === 'contain' ? 'object-contain' : undefined}
               />
             </div>
             <h3 className="mt-8 text-2xl font-bold tracking-tight">{active.title}</h3>
