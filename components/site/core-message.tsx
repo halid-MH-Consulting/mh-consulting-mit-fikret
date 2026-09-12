@@ -1,4 +1,4 @@
-import { Boxes } from 'lucide-react'
+import { Blocks, Group } from 'lucide-react'
 
 import type { Dictionary } from '@/lib/i18n'
 import { Reveal } from './reveal'
@@ -61,7 +61,7 @@ export function CoreMessage({ t }: { t: Dictionary }) {
             <article className={`${CARD_BASE} card-outline-neon`}>
               <div className="flex items-start justify-between gap-6">
                 <h3 className="text-base font-semibold">{c.solution.title}</h3>
-                <Boxes className="size-9 shrink-0 text-neon" strokeWidth={1.5} aria-hidden />
+                <Blocks className="size-9 shrink-0 text-neon" strokeWidth={1.5} aria-hidden />
               </div>
               <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
                 <strong className="font-semibold text-foreground">{c.solution.leadIn}</strong>{' '}
@@ -74,7 +74,7 @@ export function CoreMessage({ t }: { t: Dictionary }) {
             <article className={`${CARD_BASE} card-outline-electric`}>
               <div className="flex items-start justify-between gap-6">
                 <h3 className="text-base font-semibold">{c.target.title}</h3>
-                <Boxes className="size-9 shrink-0 text-electric" strokeWidth={1.5} aria-hidden />
+                <Group className="size-9 shrink-0 text-electric" strokeWidth={1.5} aria-hidden />
               </div>
               <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{c.target.body}</p>
             </article>
