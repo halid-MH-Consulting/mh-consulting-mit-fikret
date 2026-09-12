@@ -56,7 +56,13 @@ export function Process({ t }: { t: Dictionary }) {
             </ol>
           </div>
 
-          <Reveal delay={140} className="lg:sticky lg:top-28 lg:self-start">
+          {/*
+            self-center statt self-start: das Bild ist 580px hoch, die
+            Textspalte 735px. Oben buendig blieb unten ein Rest von 155px
+            offen und das Feld wirkte nach oben gerutscht. Mittig steht es
+            78px tiefer, auf einer Hoehe mit der Schrift daneben.
+          */}
+          <Reveal delay={140} className="lg:sticky lg:top-28 lg:self-center">
             <div className="relative aspect-3/4 overflow-hidden rounded-2xl">
               <Photo image={IMAGES.whatMakesUsDifferent} sizes="(min-width: 1024px) 34vw, calc(100vw - 3rem)" />
             </div>
