@@ -73,7 +73,7 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
         */}
         <Link href={href(locale, '/')} className="flex shrink-0 items-center">
           <img
-            src="/mh-consulting-logo.png"
+            src="/mh-consulting-logo.webp"
             alt="MH Consulting & Influencer Marketing"
             width={400}
             height={248}

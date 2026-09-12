@@ -42,8 +42,8 @@ const BRANDS: {
 }[] = [
   {
     name: 'Directo',
-    src: '/logos/directo.png',
-    srcDark: '/logos/directo-dark.png',
+    src: '/logos/directo.webp',
+    srcDark: '/logos/directo-dark.webp',
     width: 819,
     height: 219,
     size: 'h-[36px] md:h-[32px] lg:h-[40px] xl:h-[44px]',
@@ -51,7 +51,7 @@ const BRANDS: {
   },
   {
     name: 'Holafly',
-    src: '/logos/holafly.png',
+    src: '/logos/holafly.webp',
     width: 900,
     height: 248,
     size: 'h-[38px] md:h-[34px] lg:h-[42px] xl:h-[46px]',
@@ -59,8 +59,8 @@ const BRANDS: {
   },
   {
     name: 'Freedome',
-    src: '/logos/freedome.png',
-    srcDark: '/logos/freedome-dark.png',
+    src: '/logos/freedome.webp',
+    srcDark: '/logos/freedome-dark.webp',
     width: 900,
     height: 128,
     size: 'h-[30px] md:h-[27px] lg:h-[34px] xl:h-[38px]',

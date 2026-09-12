@@ -54,7 +54,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
             */}
             <Link href={href(locale, '/')} className="inline-flex items-center">
               <img
-                src="/mh-consulting-logo-circle.png"
+                src="/mh-consulting-logo-circle.webp"
                 alt="MH Consulting & Influencer Marketing"
                 width={1200}
                 height={1182}
