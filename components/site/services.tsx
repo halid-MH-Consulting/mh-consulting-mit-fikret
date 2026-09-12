@@ -19,19 +19,32 @@ const ICONS = [Radar, Users, Rocket, Compass]
   Drei der vier tragen jetzt ein eigenes Motiv von MH Consulting. Nur
   "Creator Discovery" behaelt das Klippenfoto, bis auch dafuer ein Bild
   vorliegt.
+
+  Die Einpassung gehoert zum Motiv, nicht zum Abschnitt - vorher stand sie
+  pauschal fuer alle vier auf "contain", und das war falsch:
+
+  - cover fuellt den Rahmen und beschneidet dafuer die Kanten. Bei einem Foto
+    merkt das niemand, es fehlt nur mehr Wasser oder mehr Himmel.
+  - contain zeigt das ganze Motiv und laesst dafuer Rand. Noetig nur dort, wo
+    an der Kante Inhalt steht, den man nicht verlieren darf.
+
+  Genau ein Motiv braucht contain: die Consulting-Grafik traegt aussen
+  "WIDER REACH" und "ENDLESS POSSIBILITIES", die bei cover angeschnitten
+  wurden. Alle uebrigen fuellen den Rahmen.
 */
-const PHOTOS = [
-  IMAGES.brandAwareness,
-  IMAGES.creatorAtWork,
-  IMAGES.impact,
-  IMAGES.consulting,
-]
+const MEDIA = [
+  { image: IMAGES.brandAwareness, fit: 'cover' },
+  { image: IMAGES.creatorAtWork, fit: 'cover' },
+  { image: IMAGES.impact, fit: 'cover' },
+  { image: IMAGES.consulting, fit: 'contain' },
+] as const
 
 export function Services({ t }: { t: Dictionary }) {
   const items = t.services.items
   const [activeIndex, setActiveIndex] = useState(0)
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
   const active = items[activeIndex] ?? items[0]
+  const media = MEDIA[activeIndex] ?? MEDIA[0]
 
   // Pfeiltasten wechseln die Auswahl, wie es fuer eine Tableiste erwartet wird.
   function onKeyDown(e: React.KeyboardEvent, index: number) {
@@ -133,22 +146,18 @@ export function Services({ t }: { t: Dictionary }) {
           >
             {/*
               Fester Rahmen fuer alle vier Motive, damit das Feld beim
-              Reiterwechsel nicht springt - und object-contain statt -cover,
-              damit kein Motiv beschnitten wird. Die vier Vorlagen reichen von
-              1.500 bis 1.778 Seitenverhaeltnis; formatfuellend hat das bei der
-              Consulting-Grafik links und rechts in den Text geschnitten.
+              Reiterwechsel nicht springt. bg-secondary liegt darunter und ist
+              nur dort zu sehen, wo ein Motiv den Rahmen nicht fuellt - also
+              aktuell allein bei der Consulting-Grafik.
 
-              16/10 ist nachgerechnet das Format mit den kleinsten Raendern:
-              im Mittel 6.8 Prozent gegen 7.8 bei 16/9 und 8.0 bei 3:2.
-
-              Die Flaeche darunter traegt bg-secondary, damit die Raender als
-              Passepartout gelesen werden und nicht als Loch.
+              Photo setzt von sich aus object-cover; contain wird nur dort
+              uebergeben, wo es in MEDIA so steht.
             */}
             <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-secondary">
               <Photo
-                image={PHOTOS[activeIndex] ?? PHOTOS[0]}
+                image={media.image}
                 sizes="(min-width: 1024px) 55vw, calc(100vw - 3rem)"
-                imgClassName="object-contain"
+                imgClassName={media.fit === 'contain' ? 'object-contain' : undefined}
               />
             </div>
             <h3 className="mt-8 text-2xl font-bold tracking-tight">{active.title}</h3>
