@@ -150,29 +150,29 @@ export const de: Dictionary = {
         title: 'Markenbekanntheit aufbauen',
         tagline: 'Bei den richtigen Zielgruppen bekannt werden',
         description:
-          'Wir positionieren Ihre Marke bei aufmerksamen Reisezielgruppen — über Creators, deren Stimme wirklich zu Ihrer Geschichte passt, nicht über die mit der größten Zahl.',
-        capabilities: ['Marktrecherche', 'Content-Strategie', 'Reise-Marketing-Erfahrung'],
+          'Wir verschaffen Marken Aufmerksamkeit dort, wo sie zählt. Durch Partnerschaften mit Creators, deren Publikum ihren Empfehlungen wirklich vertraut, entsteht Bekanntheit, die über Impressionen hinausgeht: Wiedererkennung, Glaubwürdigkeit und eine Marke, die im Gedächtnis bleibt.',
+        capabilities: ['Kundenvertrauen', 'Visuelle Identität', 'Bleibende Erinnerung'],
       },
       {
         title: 'Creator-Auswahl',
         tagline: 'Die passenden Creators, sorgfältig geprüft',
         description:
-          'Wir stellen eine Vorauswahl aus einer internationalen Kartei zusammen und prüfen jede einzelne Person auf Echtheit, Publikumsqualität und Markenpassung, bevor sie Sie erreicht.',
-        capabilities: ['Echtheitsprüfung', 'Publikumsanalyse', 'Markenpassung'],
+          'Große Kampagnen brauchen mehr als große Creators. Wir entwickeln datengetriebene Influencer-Kampagnen mit klaren Zielen, reibungsloser Umsetzung und messbaren Ergebnissen — damit jede Partnerschaft zu Bekanntheit, Wachstum und langfristigem Erfolg Ihrer Marke beiträgt.',
+        capabilities: ['Nischen-Expertise', 'Creator-Prüfung', 'Markenpassung'],
       },
       {
         title: 'Kampagnen mit Wirkung',
         tagline: 'Vom Konzept zu messbaren Ergebnissen',
         description:
-          'Wir führen Kampagnen von Anfang bis Ende: Konzept, Verhandlung, Termine, Lieferungen und Berichte. Sie haben einen Ansprechpartner statt zwölf Postfächer.',
-        capabilities: ['Kampagnensteuerung', 'Verhandlung', 'Transparente Berichte'],
+          'Große Kampagnen brauchen mehr als große Creators. Wir entwickeln datengetriebene Influencer-Kampagnen mit klaren Zielen, reibungsloser Umsetzung und messbaren Ergebnissen — damit jede Partnerschaft zu Bekanntheit, Wachstum und langfristigem Erfolg Ihrer Marke beiträgt.',
+        capabilities: ['Richtige Strategie', 'Content-Lieferung', 'Datenauswertung'],
       },
       {
         title: 'Beratung',
         tagline: 'Strategie für die lange Strecke',
         description:
-          'Wir helfen Ihnen, ein Creator-Programm aufzubauen, das eine einzelne Kampagne überdauert — mit der Struktur und den Standards, um es nach der Übergabe weiterzuführen.',
-        capabilities: ['Creator-Programme', 'Kanalstrategie', 'Team-Befähigung'],
+          'Influencer-Marketing verändert sich ständig, und jede Marke steht vor anderen Fragen. Wir beraten auf Grundlage von Branchenerfahrung, Marktkenntnis und bewährter Praxis — damit Sie sicher entscheiden, Budgets sinnvoll einsetzen und eine tragfähige Influencer-Marketing-Strategie aufbauen.',
+        capabilities: ['Wachstum & Trends', 'Marktkenntnis', 'Fachliche Beratung'],
       },
     ],
   },

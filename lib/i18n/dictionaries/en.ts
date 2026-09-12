@@ -157,29 +157,29 @@ export const en = {
         title: 'Build Brand Awareness',
         tagline: 'Get known by the right audiences',
         description:
-          'We position your brand in front of engaged travel audiences through creators whose voice genuinely fits your story, not whoever has the biggest number.',
-        capabilities: ['Market Research', 'Content Strategy', 'Travel Marketing Expertise'],
+          'We help brands earn attention where it matters most. By partnering with creators whose audiences genuinely trust their recommendations, we build awareness that goes beyond impressions, creating recognition, credibility and lasting brand recall.',
+        capabilities: ['Customer Trust', 'Visual Identity', 'Lasting Recall'],
       },
       {
         title: 'Creator Discovery',
         tagline: 'The right creators, carefully vetted',
         description:
-          'We shortlist creators from an international roster and screen every one of them for authenticity, audience quality and brand fit before they reach you.',
-        capabilities: ['Authenticity Screening', 'Audience Analysis', 'Brand Fit Matching'],
+          'Great campaigns are built on more than great creators. We develop data driven influencer campaigns with clear objectives, seamless execution and measurable outcomes, ensuring every partnership contributes to your brand’s awareness, growth and long term success.',
+        capabilities: ['Niche Expertise', 'Creator Vetting', 'Brand Fit'],
       },
       {
         title: 'High Impact Campaigns',
         tagline: 'From concept to measurable results',
         description:
-          'We run campaigns end to end: concept, negotiation, timelines, deliverables and reporting. You get one point of contact instead of twelve inboxes.',
-        capabilities: ['Campaign Management', 'Negotiation', 'Transparent Reporting'],
+          'Great campaigns are built on more than great creators. We develop data driven influencer campaigns with clear objectives, seamless execution and measurable outcomes, ensuring every partnership contributes to your brand’s awareness, growth and long term success.',
+        capabilities: ['Right Strategy', 'Content Delivery', 'Data Insights'],
       },
       {
         title: 'Consulting',
         tagline: 'Strategy for the long game',
         description:
-          'We help you build a creator programme that outlives a single campaign, with the structure and standards to keep it running after we hand it over.',
-        capabilities: ['Creator Programmes', 'Channel Strategy', 'Team Enablement'],
+          'Influencer marketing is constantly evolving, and every brand faces different challenges. We provide strategic guidance built on industry experience, market insights and proven best practices, helping you make confident decisions, optimise investments and build a sustainable influencer marketing strategy.',
+        capabilities: ['Growth/Trends', 'Market Insights', 'Expert Advice'],
       },
     ],
   },

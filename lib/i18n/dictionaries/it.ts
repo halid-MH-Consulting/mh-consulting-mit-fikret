@@ -149,29 +149,29 @@ export const it: Dictionary = {
         title: 'Costruire notorietà',
         tagline: 'Farsi conoscere dal pubblico giusto',
         description:
-          'Portiamo il vostro brand davanti a un pubblico di viaggio realmente attento, attraverso creator la cui voce si accorda con la vostra storia, non attraverso chi ha il numero più grande.',
-        capabilities: ['Ricerca di mercato', 'Strategia di contenuto', 'Competenza nel turismo'],
+          'Aiutiamo i brand a conquistare attenzione dove conta davvero. Collaborando con creator il cui pubblico si fida sinceramente dei loro consigli, costruiamo una notorietà che va oltre le impression: riconoscibilità, credibilità e un ricordo di marca che dura.',
+        capabilities: ['Fiducia dei clienti', 'Identità visiva', 'Ricordo duraturo'],
       },
       {
         title: 'Selezione dei creator',
         tagline: 'I creator giusti, verificati con cura',
         description:
-          'Prepariamo una rosa a partire da un roster internazionale e verifichiamo ciascun creator su autenticità, qualità del pubblico e coerenza con il brand prima che arrivi a voi.',
-        capabilities: ['Verifica di autenticità', 'Analisi del pubblico', 'Coerenza con il brand'],
+          'Le grandi campagne richiedono più di grandi creator. Sviluppiamo campagne di influencer marketing basate sui dati, con obiettivi chiari, esecuzione impeccabile e risultati misurabili: così ogni collaborazione contribuisce alla notorietà, alla crescita e al successo di lungo periodo del vostro brand.',
+        capabilities: ['Competenza di nicchia', 'Verifica dei creator', 'Coerenza con il brand'],
       },
       {
         title: 'Campagne ad alto impatto',
         tagline: 'Dal concept a risultati misurabili',
         description:
-          'Seguiamo le campagne dall’inizio alla fine: concept, negoziazione, tempistiche, consegne e reportistica. Avete un solo interlocutore invece di dodici caselle di posta.',
-        capabilities: ['Gestione campagne', 'Negoziazione', 'Reportistica trasparente'],
+          'Le grandi campagne richiedono più di grandi creator. Sviluppiamo campagne di influencer marketing basate sui dati, con obiettivi chiari, esecuzione impeccabile e risultati misurabili: così ogni collaborazione contribuisce alla notorietà, alla crescita e al successo di lungo periodo del vostro brand.',
+        capabilities: ['Strategia giusta', 'Consegna dei contenuti', 'Analisi dei dati'],
       },
       {
         title: 'Consulenza',
         tagline: 'Strategia per il lungo periodo',
         description:
-          'Vi aiutiamo a costruire un programma con i creator che sopravviva alla singola campagna, con la struttura e gli standard per proseguirlo dopo il passaggio di consegne.',
-        capabilities: ['Programmi creator', 'Strategia di canale', 'Formazione del team'],
+          'L’influencer marketing cambia continuamente e ogni brand affronta sfide diverse. Offriamo una guida strategica fondata su esperienza di settore, conoscenza del mercato e pratiche consolidate: per decidere con sicurezza, investire meglio e costruire una strategia di influencer marketing sostenibile.',
+        capabilities: ['Crescita e tendenze', 'Conoscenza del mercato', 'Consulenza esperta'],
       },
     ],
   },
