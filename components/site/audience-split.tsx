@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 
@@ -29,36 +30,18 @@ export function AudienceSplit({ locale, t }: { locale: Locale; t: Dictionary }) 
                 className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border transition-colors duration-300 hover:border-primary/50"
               >
                 <div className="relative aspect-16/10 overflow-hidden">
-                  {door.path === '/for-brands' ? (
-                    <video
-                      className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      aria-hidden="true"
-                    >
-                      <source
-                        src="/videos/influencer-marketing-loop.webm"
-                        type="video/webm"
-                      />
-                    </video>
-                  ) : (
-                    <div className="relative h-full w-full overflow-hidden bg-black" aria-hidden="true">
-                      <video
-                        className="h-full w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
-                        poster="/videos/creator-airport-loop-poster.jpg?v=4"
-                      >
-                        <source src="/videos/creator-airport-loop.mp4?v=4" type="video/mp4" />
-                      </video>
-                    </div>
-                  )}
+                  <Image
+                    src={
+                      door.path === '/for-brands'
+                        ? '/images/audience-brands-influencer-marketing.webp'
+                        : '/images/audience-creators-airport.webp'
+                    }
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                    aria-hidden="true"
+                  />
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <span className="text-sm font-semibold text-primary">{door.kicker}</span>
