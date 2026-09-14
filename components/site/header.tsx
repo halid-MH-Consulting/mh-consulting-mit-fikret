@@ -57,80 +57,99 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
   const isCurrent = (path: string) => !path.includes('#') && pathname === href(locale, path)
 
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-40 border-b border-border bg-background transition-[background-color,backdrop-filter] duration-300',
-        (scrolled || open) && 'bg-background/90 backdrop-blur-xl',
-      )}
-    >
-      <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-6 px-6 md:h-24">
-        {/*
-          Kein aria-label auf dem Link: der zugaengliche Name soll aus dem
-          alt-Text des Bildes kommen, sonst wuerde das Label ihn verdecken.
-          Die Wortmarke ist breiter als hoch, die Hoehe bestimmt die
-          Breite. 46px in der 72px-Leiste, 62px in der 96px-Leiste - die
-          Leiste selbst waechst dadurch nicht.
-        */}
-        <Link href={href(locale, '/')} className="flex shrink-0 items-center">
-          <img
-            src="/mh-consulting-logo.webp"
-            alt="MH Consulting & Influencer Marketing"
-            width={400}
-            height={248}
-            className="h-[46px] w-auto object-contain md:h-[62px]"
-          />
-        </Link>
-
-        <nav aria-label={t.nav.main} className="hidden items-center gap-1 md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.path}
-              href={href(locale, item.path)}
-              aria-current={isCurrent(item.path) ? 'page' : undefined}
-              className={cn(
-                'rounded-full px-4 py-2 text-[0.9375rem] font-medium transition-colors',
-                isCurrent(item.path)
-                  ? 'font-semibold text-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <Link
-            href={href(locale, '/contact')}
-            className="group hidden items-center gap-1.5 rounded-full bg-primary px-5.5 py-2.5 text-[0.9375rem] font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 sm:inline-flex"
-          >
-            {t.common.startProject}
-            <ArrowUpRight
-              className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              aria-hidden
+    <>
+      <header
+        className={cn(
+          'fixed inset-x-0 top-0 z-40 border-b border-border bg-background transition-[background-color,backdrop-filter] duration-300',
+          (scrolled || open) && 'bg-background/90 backdrop-blur-xl',
+        )}
+      >
+        <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-6 px-6 md:h-24">
+          {/*
+            Kein aria-label auf dem Link: der zugaengliche Name soll aus dem
+            alt-Text des Bildes kommen, sonst wuerde das Label ihn verdecken.
+            Die Wortmarke ist breiter als hoch, die Hoehe bestimmt die
+            Breite. 46px in der 72px-Leiste, 62px in der 96px-Leiste - die
+            Leiste selbst waechst dadurch nicht.
+          */}
+          <Link href={href(locale, '/')} className="flex shrink-0 items-center">
+            <img
+              src="/mh-consulting-logo.webp"
+              alt="MH Consulting & Influencer Marketing"
+              width={400}
+              height={248}
+              className="h-[46px] w-auto object-contain md:h-[62px]"
             />
           </Link>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
-            className="flex size-11 items-center justify-center rounded-full border border-border text-foreground md:hidden"
-          >
-            {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
-          </button>
-        </div>
-      </div>
+          <nav aria-label={t.nav.main} className="hidden items-center gap-1 md:flex">
+            {NAV.map((item) => (
+              <Link
+                key={item.path}
+                href={href(locale, item.path)}
+                aria-current={isCurrent(item.path) ? 'page' : undefined}
+                className={cn(
+                  'rounded-full px-4 py-2 text-[0.9375rem] font-medium transition-colors',
+                  isCurrent(item.path)
+                    ? 'font-semibold text-foreground'
+                    : 'text-muted-foreground hover:text-foreground',
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
+          <div className="flex items-center gap-2">
+            <Link
+              href={href(locale, '/contact')}
+              className="group hidden items-center gap-1.5 rounded-full bg-primary px-5.5 py-2.5 text-[0.9375rem] font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 sm:inline-flex"
+            >
+              {t.common.startProject}
+              <ArrowUpRight
+                className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden
+              />
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
+              className="flex size-11 items-center justify-center rounded-full border border-border text-foreground md:hidden"
+            >
+              {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/*
+        Die Flaeche steht bewusst NEBEN dem header, nicht darin.
+
+        Der header traegt bei offenem Menue backdrop-blur-xl, und
+        backdrop-filter macht ein Element - wie transform oder filter - zum
+        Bezugsrahmen fuer position:fixed-Nachkommen. Als Kind des headers
+        rechnete "top-[72px] bottom-0" deshalb nicht gegen den Bildschirm,
+        sondern gegen die 72px hohe Leiste: die Flaeche blieb 49px hoch, genau
+        die Polsterung, und kein einziger der fuenf Eintraege war zu sehen.
+
+        Den Blur nur kleiner zu machen genuegt nicht - schon blur(2e-08px)
+        bildet den Bezugsrahmen. Die Flaeche muss aus dem header heraus.
+
+        z-40 wie der header: ueber allem in main, unter dem Sprachumschalter
+        (z-50). Ohne eigenen z-Wert koennten positionierte Nachkommen des
+        spaeter folgenden main darueber liegen.
+      */}
       {open && (
         <div
           id="mobile-nav"
           ref={panelRef}
           // Bildschirmfuellend statt als Klappe: sonst scheint der Inhalt
           // darunter durch und man sieht zwei Haupt-Buttons gleichzeitig.
-          className="fixed inset-x-0 bottom-0 top-[72px] overflow-y-auto border-t border-border bg-background px-6 pb-8 pt-4 md:hidden"
+          className="fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto border-t border-border bg-background px-6 pb-8 pt-4 md:hidden"
         >
           <nav aria-label={t.nav.mobile} className="flex flex-col">
             {NAV.map((item) => (
@@ -155,6 +174,6 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
           </Link>
         </div>
       )}
-    </header>
+    </>
   )
 }
